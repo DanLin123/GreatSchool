@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>My AngularJS App</title>
+  <title>Great school</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
@@ -37,17 +37,17 @@
 	  <div class="jumbotron" id="info">
 	     <div class="row">
 		    <div class="col-md-3">
-		       <img src="{{school.img}}" class="img-thumbnail" alt="Cinque Terre" width="200" height="200"> 
+		       <img src="{{ getImg() }}" class="img-thumbnail" alt="Cinque Terre" width="200" height="200"> 
 		    </div>
 		    <div class="col-md-9">
-		      <h2>{{school.name}}</h2>
+		      <h2>{{ getSchoolName() }}</h2>
 		      <br>
 		      <div>
-		      地址: {{school.addr}}
+		      地址: {{ getAddr() }}
 		      </br>
-		      电话: {{school.phone}}
+		      电话: {{ getPhone()}}
 		      </br> 
-		      标签: {{school.getTagString()}}
+		      标签: {{ getTag()}}
 		      </div>
 		    </div>
 	  	</div>
@@ -58,7 +58,7 @@
       <li class="active">
         <a href="#introduction">学校介绍</a>
       </li>
-      <li><a href="#reviews">评价</a></li>
+      <li><a href="./reviews.html">评价</a></li>
       <li><a href="#schoolLife">校园生活</a></li>
       <li><a href="#Program">课程</a></li>
 	 <section id="introduction">
@@ -83,7 +83,7 @@
 	        <br>      
 
 	      <div class="col-xs-12 col-sm-7 col-md-11 col-lg-11 col-md-offset-0">         
-	  			<div ng-repeat="review in school.reviews" class="well"> 
+	  			<div ng-repeat="review in getReviews()" class="well"> 
 
 	  			 {{review.content}}
 	  			     <br><br>
@@ -94,20 +94,55 @@
 	  		</div>
 	 </section>
 
-
-
  <script src="bower_components/angular/angular.js"></script>
  <script src="bower_components/angular-route/angular-route.js"></script>
 <script>
 
 
 var app = angular.module("myApp", []);
-app.controller("myCtrl", function($scope) {
-    $scope.firstName = "Johnd";
-    $scope.lastName = "Doe";
-    $scope.school = {
+app.controller("myCtrl", function($scope,  schoolInfo) {
+	$scope.getSchoolName = function () {
+		return schoolInfo.getSchoolName();
+	}
+
+	$scope.getAddr =function(){
+
+		return schoolInfo.getAddr();
+	}
+
+	$scope.getPhone = function()
+	{
+		return schoolInfo.getPhone();
+	}
+
+	$scope.getTagString = function()
+	{
+		return schoolInfo.getTagString();
+	}
+
+	$scope.getImg = function(){
+		return schoolInfo.getImg();
+	}
+	$scope.getIntro = function(){
+
+		return schoolInfo.getIntro();
+	}
+	$scope.getTag = function(){
+		return schoolInfo.getTag();
+	}
+	$scope.getReviews = function(){
+		return schoolInfo.getReviews();
+	}
+
+});
+
+app.factory("schoolInfo", function()
+{
+	var service = {};
+
+	var school = {
     	img: "no-school-photo.png",
-    	name: "小金星幼儿园",
+    	name: "小金星幼儿园2",
     	addr: "福建省 福州市 金山金环路１３号",
     	phone: "12345",
     	tags:  ["幼儿园", "双语"],
@@ -117,13 +152,46 @@ app.controller("myCtrl", function($scope) {
     		{ reviewer: "父母2", content: "幼儿园科研部门对各年龄阶段的孩子提出了体能测试的要求"},
     		{ reviewer: "父母3", content: "幼儿园科研部门对各年龄阶段的孩子提出了体能测试的要求"}
     	],
-    	getTagString : function()
-	    {
-	    	return this.tags.join(" ");
-	    }
+    	
     }
 
-});
+
+	service.getSchoolName = function()
+	{
+		return school.name;
+	}
+
+	service.getAddr = function()
+	{
+		return school.addr;
+	}
+
+	service.getPhone = function()
+	{
+		return school.phone;
+	}
+
+	service.getTagString = function()
+	{
+	    return school.tags.join(" ");
+	}
+
+	service.getImg = function(){
+		return school.img;
+	}
+	service.getIntro =  function() {
+		return school.intro;
+	}
+
+	service.getTag = function(){
+	   	return school.tags.join(" ");
+	}
+	service.getReviews =function(){
+		return school.reviews;
+	}
+	return service;
+
+})
 </script>
  
 </body>
