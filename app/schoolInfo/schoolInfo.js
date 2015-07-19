@@ -3,43 +3,12 @@
 var app = angular.module('myApp.schoolInfo', ['ngRoute','ngAnimate', 'ngTouch'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/schoolInfo', {templateUrl: 'schoolInfo/schoolInfo.html'})
-  .when('/reviews',{templateUrl: 'schoolInfo/reviews.html'})
-  .when('/schoolLife',{templateUrl: 'schoolInfo/schoolLife.html'});
+  .when('/schoolLife',{templateUrl: 'schoolInfo/schoolLife.html'})
+  .when('/schoolGallery',{templateUrl: 'schoolInfo/schoolLife.html'});
 }])
 
-app.controller('schoolGallery', function ($scope, $http) {
-  $scope.w = window.innerWidth-20;
-  $scope.h = window.innerHeight-40;
-  $scope.uri = "http://lorempixel.com";
-  $scope.images = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-});
-
-
 app.controller("schoolInfoCtrl", function($scope,  schoolInfo) {
-	$scope.getSchoolName = function () {
-
-		return schoolInfo.getSchoolName();
-	}
-
-	$scope.getAddr =function(){
-
-		return schoolInfo.getAddr();
-	}
-
-	$scope.getPhone = function()
-	{
-		return schoolInfo.getPhone();
-	}
-
-	$scope.getTagString = function()
-	{
-		return schoolInfo.getTagString();
-	}
-
-	$scope.getImg = function(){
-		return schoolInfo.getImg();
-	}
+	
 	$scope.getIntro = function(){
 
 		return schoolInfo.getIntro();
@@ -47,12 +16,13 @@ app.controller("schoolInfoCtrl", function($scope,  schoolInfo) {
 	$scope.getTag = function(){
 		return schoolInfo.getTag();
 	}
-	$scope.getReviews = function(){
-		return schoolInfo.getReviews();
-	}
-
+	
 	$scope.getFirstFewReviews = function(){
 		return schoolInfo.getReviews().slice(0,2);
+	}
+
+	$scope.getGallery = function(){
+		return schoolInfo.getGallery();
 	}
 
 });
@@ -76,10 +46,9 @@ app.factory("schoolInfo", function()
     		{ reviewer: "父母4", content: "幼儿园科研部门对各年龄阶段的孩子提出了体能测试的要求"}
     	],
     	gallary: [
-    	 	{src: 'http://farm9.staticflickr.com/8457/7918424412_bb641455c7_b.jpg', desc: 'Image 03'},
-	        {src: 'http://farm9.staticflickr.com/8179/7918424842_c79f7e345c_b.jpg', desc: 'Image 04'},
-	        {src: 'http://farm9.staticflickr.com/8315/7918425138_b739f0df53_b.jpg', desc: 'Image 05'},
-	        {src: 'http://farm9.staticflickr.com/8461/7918425364_fe6753aa75_b.jpg', desc: 'Image 06'}
+    	 	{src: 'schoolInfo/gallery/0.jpg', desc: 'school0'},
+    	 	{src: 'schoolInfo/gallery/1.jpg', desc: 'school1'},
+    	 	{src: 'schoolInfo/gallery/2.jpg', desc: 'school2'}
     	]
     	
     }
@@ -118,8 +87,8 @@ app.factory("schoolInfo", function()
 		return school.reviews;
 	}
 
-	service.getGallary =function(){
-		 return school.gallary;
+	service.getGallery =function(){
+		 return school.getGallery;
 	}
 	return service;
 
