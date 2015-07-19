@@ -20,11 +20,6 @@ app.controller("schoolInfoCtrl", function($scope,  schoolInfo) {
 	$scope.getFirstFewReviews = function(){
 		return schoolInfo.getReviews().slice(0,2);
 	}
-
-	$scope.getGallery = function(){
-		return schoolInfo.getGallery();
-	}
-
 });
 
 
@@ -46,9 +41,9 @@ app.factory("schoolInfo", function()
     		{ reviewer: "父母4", content: "幼儿园科研部门对各年龄阶段的孩子提出了体能测试的要求"}
     	],
     	gallary: [
-    	 	{src: 'schoolInfo/gallery/0.jpg', desc: 'school0'},
-    	 	{src: 'schoolInfo/gallery/1.jpg', desc: 'school1'},
-    	 	{src: 'schoolInfo/gallery/2.jpg', desc: 'school2'}
+    	 	{src: 'gallery/0.jpg', desc: 'school0'},
+    	 	{src: 'gallery/1.jpg', desc: 'school1'},
+    	 	{src: 'gallery/2.jpg', desc: 'school2'}
     	]
     	
     }

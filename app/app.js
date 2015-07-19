@@ -7,7 +7,8 @@ var app = angular.module('myApp', [
   'ngRoute',
   'myApp.schoolInfo',
   'myApp.review',
-  'myApp.intro'
+  'myApp.intro',
+  'myApp.gallery'
 ])
 
 

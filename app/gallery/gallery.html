@@ -1,0 +1,27 @@
+<div >
+    <div class="row" >
+        <div style="z-index: 1;" class="col-xs-12 col-sm-12 col-md-12  col-lg-12">
+             <hr>
+                <h2>校园生活</h2>
+        </div>
+    </div>
+
+    <div class="container">
+  <br>
+
+   <div ng-controller="galleryCtrl">
+    <div style="height: 305px">
+      <carousel interval="myInterval">
+        <slide ng-repeat="slide in slides" active="slide.active">
+          <img ng-src="{{slide.image}}" style="margin:auto;">
+          <div class="carousel-caption">
+            <h4>Slide {{$index}}</h4>
+            <p>{{slide.text}}</p>
+          </div>
+        </slide>
+      </carousel>
+    </div>
+   
+</div>
+
+
