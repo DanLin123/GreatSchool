@@ -40,10 +40,10 @@ app.factory("schoolInfo", function()
     		{ reviewer: "父母3", content: "幼儿园科研部门对各年龄阶段的孩子提出了体能测试的要求"},
     		{ reviewer: "父母4", content: "幼儿园科研部门对各年龄阶段的孩子提出了体能测试的要求"}
     	],
-    	gallary: [
+    	gallery: [
     	 	{src: 'gallery/0.jpg', desc: 'school0'},
     	 	{src: 'gallery/1.jpg', desc: 'school1'},
-    	 	{src: 'gallery/2.jpg', desc: 'school2'}
+    	 	{src: 'gallery/2.jpg', desc: 'school2'},
     	]
     	
     }
@@ -83,7 +83,7 @@ app.factory("schoolInfo", function()
 	}
 
 	service.getGallery =function(){
-		 return school.getGallery;
+		 return school.gallery;
 	}
 	return service;
 

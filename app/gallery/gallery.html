@@ -6,21 +6,22 @@
         </div>
     </div>
 
-    <div class="container">
-  <br>
 
-   <div ng-controller="galleryCtrl">
-    <div style="height: 305px">
-      <carousel interval="myInterval">
-        <slide ng-repeat="slide in slides" active="slide.active">
-          <img ng-src="{{slide.image}}" style="margin:auto;">
-          <div class="carousel-caption">
-            <h4>Slide {{$index}}</h4>
-            <p>{{slide.text}}</p>
+  <br>
+    <div id="gallery" class="carousel slide" style="width: {{width}};height:{{height}}; margin: 0 auto" ng-controller="galleryCtrl">
+      <div class="carousel-inner" >
+          <div class="item" ng-repeat="pic in getGallery()"  ng-class="{'active':isActive($index)}">
+            <img ng-src="{{pic.src}}" class="img-responsive">
           </div>
-        </slide>
-      </carousel>
+      </div>
+      <span class="left carousel-control" data-target="#gallery" data-slide="prev" ng-click="showPrev()">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+      </span>
+      <span class="right carousel-control" data-target="#gallery" data-slide="next" ng-click="showNext()">
+         <span class="glyphicon glyphicon-chevron-right"></span>
+      </span>
     </div>
+    
    
 </div>
 

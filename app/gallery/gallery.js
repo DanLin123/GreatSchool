@@ -9,23 +9,29 @@ reviewApp.config(['$routeProvider', function($routeProvider) {
 }])
 
 reviewApp.controller('galleryCtrl', function($scope,  schoolInfo) {
+	$scope._Index = 0;
+	$scope.width = '600px';
+	$scope.height = '400px';
 	$scope.getGallery = function(){
 		return schoolInfo.getGallery();
 	}
 
-	$scope.myInterval = 1000;
-	var slides = $scope.slides = [];
+	 // show next image
+    $scope.showNext = function () {
+        $scope._Index = ($scope._Index < $scope.getGallery().length - 1) ? ++$scope._Index : 0;
+    };
 
-	$scope.addSlide = function() {
-	    var newWidth = 600 + slides.length + 1;
-	    slides.push({
-	      image: 'http://placekitten.com/' + newWidth + '/300',
-	      text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
-	        ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
-	    });
-	  };
-	for (var i=0; i<4; i++) {
-	    $scope.addSlide();
-	}
+   // show prev image
+    $scope.showPrev = function () {
+        $scope._Index = ($scope._Index > 0) ? --$scope._Index : $scope.getGallery().length - 1;
+    };
 
+    // if a current image is the same as requested image
+    $scope.isActive = function (index) {
+        return $scope._Index === index;
+    };
+
+	 $scope.showPhoto = function (index) {
+        $scope._Index = index;
+    };
 });
