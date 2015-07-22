@@ -39,17 +39,17 @@
 	<!-- school intro-->
 	</div>
 
-	<div class="container">
+	<div class="container" ng-controller="myAppCtrl">
 		 <ul class="nav nav-tabs">
-	      <li class="active"><a href="#/schoolInfo">学校介绍</a></li>
-	      <li><a href="#/review">评价</a></li>
-	      <li><a href="#/gallery">校园生活</a></li>
-	      <li><a href="#/Program">课程</a></li>
-
+	      <li ng-class="{active:isActive('/schoolInfo')}"><a href="#/schoolInfo">学校介绍</a></li>
+	      <li ng-class="{active:isActive('/review')}"><a href="#/review">评价</a></li>
+	      <li ng-class="{active:isActive('/gallery')}"><a href="#/gallery">校园生活</a></li>
 	     <div class="container-fluid" ng-view>
 		<!-- Route-dependent content goes here -->
 		</div>
 	</div>
+
+
 
 <br>
 <br>
