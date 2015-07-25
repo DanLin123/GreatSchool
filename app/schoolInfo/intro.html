@@ -1,0 +1,18 @@
+<div class="jumbotron" id="intro"  ng-controller="schoolInfoController">
+ <div class="row">
+    <div class="col-md-3">
+       <img src="{{ schoolInfo.logo }}" class="img-thumbnail" alt="Cinque Terre" width="200" height="200"> 
+    </div>
+   <div class="col-md-9">
+      <h2>{{ schoolInfo.name }}</h2>
+      <br>
+      <div>
+      地址: {{ schoolInfo.addr }}
+      </br>
+      电话: {{ schoolInfo.phone}}
+      </br> 
+      标签: {{ schoolInfo.tags}}
+      </div>
+    </div>
+	</div>
+</div>

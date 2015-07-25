@@ -1,20 +1,10 @@
 'use strict';
 
-var reviewApp = angular.module('myApp.gallery', ['ngRoute','myApp.schoolInfo', 'ui.bootstrap']);
-
-reviewApp.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/gallery', {
-    templateUrl: 'gallery/gallery.html',
-  });
-}])
-
-reviewApp.controller('galleryCtrl', function($scope,  schoolInfo) {
+angular.module('myApp.gallery', ['ngRoute', 'ui.bootstrap', 'resources.school'])
+.controller('galleryCtrl', function($scope) {
 	$scope._Index = 0;
 	$scope.width = '600px';
 	$scope.height = '400px';
-	$scope.getGallery = function(){
-		return schoolInfo.getGallery();
-	}
 
 	 // show next image
     $scope.showNext = function () {

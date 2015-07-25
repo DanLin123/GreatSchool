@@ -1,0 +1,21 @@
+db.school.insert(
+   {
+      logo: "intro/no-school-photo.png"
+      name: "小金星幼儿园",
+      addr: "福建省 福州市 金山金环路１３号",
+      phone: "167334"
+      tags: [ '幼儿园', '双语' ],
+      reviews: [
+        { reviewer: "父母", content: "不错的学校,老师很好"}, 
+        { reviewer: "学生", content: "幼儿园科研部门对各年龄阶段的孩子提出了体能测试的要求"},
+        { reviewer: "父母", content: "幼儿园科研部门对各年龄阶段的孩子提出了体能测试的要求"},
+        { reviewer: "老师", content: "幼儿园科研部门对各年龄阶段的孩子提出了体能测试的要求"}
+      ],
+      gallery: [
+        {src: 'gallery/0.jpg', desc: 'school0'},
+        {src: 'gallery/1.jpg', desc: 'school1'},
+        {src: 'gallery/2.jpg', desc: 'school2'},
+      ],
+      
+   }
+)

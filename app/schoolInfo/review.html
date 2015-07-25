@@ -1,5 +1,5 @@
 
-<div ng-controller="reviewCtrl">
+<div ng-controller="schoolInfoController">
 <section id="reviews">	
 	<div class="row" >
     	<div style="z-index: 1;" class="col-xs-12 col-sm-12 col-md-12  col-lg-12">
@@ -10,12 +10,12 @@
         <br>      
 
       <div class="col-xs-12 col-sm-7 col-md-11 col-lg-11 col-md-offset-0">         
-  			<div ng-repeat="review in getReviews()" class="well"> 
+  			<div ng-repeat="review in schoolInfo.reviews" class="well"> 
 
   			 {{review.content}}
   			     <br><br>
 	  			 <div class="pull-right">
-	  			 	- {{review.reviewer}}
+	  			 	- {{review.from}}
 	  			 <div>
   			</div>
   		</div>
