@@ -17,16 +17,15 @@
     <div class="navbar-collapse collapse">
         <a class="navbar-brand" href="#">好学校</a>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#/showschools">找学校</a></li>
-            <li><a href="#">点评</a></li>
-            <li><a href="#">注册</a></li>
-            <li><a href="#">登入</a></li>
+            <li><a ui-sref="showschools">找学校</a></li>
+            <li><a ui-sref="showSchool">点评</a></li>
+            <li><a ui-sref="#">注册</a></li>
+            <li><a ui-sref="#">登入</a></li>
           </ul>
    </div>
   </div>
+ <div ui-view class="container"></div>
 
-  <div ng-view  class="container">
-  </div>
 <br>
 <br>
 
@@ -38,10 +37,13 @@
    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-    <script src="bower_components/angular-mongolab/angular-mongolab.js"></script>
+   <script src="bower_components/angular-mongolab/angular-mongolab.js"></script>
+   <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  
 	 <script src="app.js"></script>
-   <script src="schoolInfo/gallery.js"></script>
-  <script src="schoolInfo/schoolInfo.js"></script>
+   <script src="showSchool/gallery.js"></script>
+   <script src="showSchool/schoolInfo.js"></script>
+   <script src="showSchools/showSchools.js"></script>
    <script src="common/school.js"></script>
 </body>
 </html>

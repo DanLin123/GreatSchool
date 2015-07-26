@@ -4,42 +4,44 @@
 
 
 angular.module('myApp', [
-  'ngRoute',
+  'ui.router',
   'resources.school',
-  'myApp.gallery'
+  'myApp.gallery',
+  'myApp.showSchools',
+  'myApp.showSchool'
 ])
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/intro', {templateUrl: 'schoolInfo/intro.html'})
-  .when('/showSchool/:schoolId/review', {templateUrl: 'schoolInfo/review.html'})
-  .when('/showSchool/:schoolId/info', {templateUrl: 'schoolInfo/info.html'})
-  .when('/showSchool/:schoolId/gallery', {templateUrl: 'schoolInfo/gallery.html'})
-  .when('/showSchools', {
-        templateUrl: 'showSchools/showSchools.html',
-        controller: 'showSchoolsController'
-      })
-  .when('/showSchool/:schoolId', {
-      templateUrl: 'schoolInfo/info.html',
+.config(function($stateProvider, $urlRouterProvider) {
+  
+  // Now set up the states
+  $stateProvider
+    .state('showSchools', {
+      url: "/showSchools",
+      templateUrl: "showSchools/showSchools.html",
+      controller: 'showSchoolsController'
+    })
+
+    .state('showSchool', {
+      url: "/showSchool/:schoolId",
+      templateUrl: "showSchool/schoolInfo.html",
       controller: 'schoolInfoController'
-  })
-  .otherwise({redirectTo: '/showSchools'});
-}])
+    })
 
-.controller('showSchoolsController', function ($scope, schoolService) {
+    .state('showSchool.Info', {
+      url: "/info",
+      templateUrl: "showSchool/info.html",
+      controller: 'schoolInfoController'
+    })
 
-  schoolService.all().then(function(schools){
-    $scope.schools = schools;
-  });
+    .state('showSchool.reviews', {
+      url: "/reviews",
+      templateUrl: "showSchool/reviews.html",
+      controller: 'schoolInfoController'
+    })
+    .state('showSchool.gallery', {
+      url: "/gallery",
+      templateUrl: "showSchool/gallery.html",
+      controller: 'schoolInfoController'
+    })
+
 })
 
-.controller('myAppCtrl', function($scope, $route, $location) {
-	 $scope.isActive = function(route) {
-        return route === $location.path();
-    }
-})
-
-.controller('schoolInfoController', function($scope,schoolService,$routeParams){
-  $scope.schoolId = $routeParams.schoolId;
-  schoolService.getById($scope.schoolId).then(function(schoolInfo){
-    $scope.schoolInfo = schoolInfo;
-  });
-})
