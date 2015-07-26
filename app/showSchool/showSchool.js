@@ -1,6 +1,18 @@
-'use strict';
+angular.module('myApp.showSchool', [
+  'resources.school'
+])
+.controller('schoolInfoController', function($scope,schoolService,$stateParams,$location){
+  $scope.schoolId = $stateParams.schoolId;
 
-angular.module('myApp.gallery', ['ngRoute', 'ui.bootstrap', 'resources.school'])
+  schoolService.getById($scope.schoolId).then(function(schoolInfo){
+    $scope.schoolInfo = schoolInfo;
+  });
+
+  $scope.isActive = function(route) {
+        return route === $location.path();
+  };
+})
+
 .controller('galleryCtrl', function($scope) {
 	$scope._Index = 0;
 	$scope.width = '600px';
@@ -25,3 +37,5 @@ angular.module('myApp.gallery', ['ngRoute', 'ui.bootstrap', 'resources.school'])
         $scope._Index = index;
     };
 });
+
+

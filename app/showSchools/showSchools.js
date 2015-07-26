@@ -4,11 +4,9 @@
 
 
 angular.module('myApp.showSchools', [
-  'ngRoute',
   'resources.school',
 ])
 .controller('showSchoolsController', function ($scope, schoolService) {
-
   schoolService.all().then(function(schools){
     $scope.schools = schools;
   });

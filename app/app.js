@@ -6,7 +6,6 @@
 angular.module('myApp', [
   'ui.router',
   'resources.school',
-  'myApp.gallery',
   'myApp.showSchools',
   'myApp.showSchool'
 ])
@@ -22,7 +21,7 @@ angular.module('myApp', [
 
     .state('showSchool', {
       url: "/showSchool/:schoolId",
-      templateUrl: "showSchool/schoolInfo.html",
+      templateUrl: "showSchool/showSchool.html",
       controller: 'schoolInfoController'
     })
 
