@@ -10,7 +10,7 @@ angular.module('myApp.showSchool', [
   });
 
   $scope.isActive = function(route) {
-        return route === $location.path();
+        return route === $location.path().split(/[\s/]+/).pop();
   };
 })
 

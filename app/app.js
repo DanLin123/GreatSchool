@@ -41,6 +41,5 @@ angular.module('myApp', [
       templateUrl: "showSchool/gallery.html",
       controller: 'schoolInfoController'
     })
-
 })
 
