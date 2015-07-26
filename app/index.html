@@ -13,43 +13,20 @@
 
 <body  ng-app="myApp">
 
-  <div>
-   <nav class="navbar navbar-static-top bs-docs-nav">
-        <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">好学校</a>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <form class="navbar-form navbar-right">
-              <div class="form-group">
-                <input type="text" placeholder="Email" class="form-control">
-              </div>
-              <div class="form-group">
-                <input type="password" placeholder="Password" class="form-control">
-              </div>
-              <button type="submit" class="btn btn-success">登入</button>
-            </form>
-          </div>
-        </div>
-  </nav>
+  <div class="container">
+    <div class="navbar-collapse collapse">
+        <a class="navbar-brand" href="#">好学校</a>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#/showschools">找学校</a></li>
+            <li><a href="#">点评</a></li>
+            <li><a href="#">注册</a></li>
+            <li><a href="#">登入</a></li>
+          </ul>
+   </div>
   </div>
 
-
-	<div class="container" ng-include="'schoolInfo/intro.html'" >
-	<!-- school intro-->
-	</div>
-
-	<div class="container" ng-controller="myAppCtrl">
-		 <ul class="nav nav-tabs">
-	      <li ng-class="{active:isActive('/schoolInfo')}"><a href="#/schoolInfo">学校介绍</a></li>
-	      <li ng-class="{active:isActive('/review')}"><a href="#/review">评价</a></li>
-	      <li ng-class="{active:isActive('/gallery')}"><a href="#/gallery">校园生活</a></li>
-
-	     <div  ng-controller="schoolInfoController" class="container-fluid" ng-view>
-		<!-- Route-dependent content goes here -->
-		</div>
-	</div>
-
+  <div ng-view  class="container">
+  </div>
 <br>
 <br>
 
@@ -63,7 +40,8 @@
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="bower_components/angular-mongolab/angular-mongolab.js"></script>
 	 <script src="app.js"></script>
-    <script src="schoolInfo/gallery.js"></script>
+   <script src="schoolInfo/gallery.js"></script>
+  <script src="schoolInfo/schoolInfo.js"></script>
    <script src="common/school.js"></script>
 </body>
 </html>

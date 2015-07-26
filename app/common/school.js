@@ -10,21 +10,7 @@ angular.module('resources.school', ['mongolabResourceHttp'])
     return $mongolabResourceHttp('school');
  }) 
 
-.controller('AppController', function ($scope, schoolService) {
 
-  Project.all().then(function(schoolService){
-    $scope.school = schoolService;
-  });
-})
-
-.controller('schoolInfoController', function($scope,schoolService){
-
-  schoolService.getById('55b38749e4b01d0a17cdd015').then(function(schoolInfo){
-   
-    $scope.schoolInfo = schoolInfo;
-     console.log(schoolInfo);
-  });
-})
 
 
 

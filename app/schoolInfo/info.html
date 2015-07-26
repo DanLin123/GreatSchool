@@ -1,0 +1,39 @@
+ <div >
+ <section id="introduction">
+  	<div class="row" >
+    	<div style="z-index: 1;" class="col-xs-12 col-sm-12 col-md-12  col-lg-12">
+             <hr>
+              	<h2>学校介绍</h2>     
+              	<p>{{schoolInfo.introduction}}</p>			
+      	</div>	
+    </div>
+ 
+</section> 
+
+<section id="reviews">	
+	<div class="row" >
+    	<div style="z-index: 1;" class="col-xs-12 col-sm-12 col-md-12  col-lg-12">
+             <hr>
+              	<h2>评价</h2>
+      			<a class="pull-right" href="#/review">See all 15 reviews</a>
+      	</div>
+    </div>
+        <br>      
+
+      <div class="col-xs-12 col-sm-7 col-md-11 col-lg-11 col-md-offset-0">         
+  			<div ng-repeat="review in schoolInfo.reviews" class="well"> 
+
+  			 {{review.content}}
+  			     <br><br>
+	  			 <div class="pull-right">
+	  			 	- {{review.from}}
+	  			 <div>
+  			</div>
+  		</div>
+ </section>
+
+
+  <div class="container" ng-include="'schoolInfo/gallery.html'" >
+  <!-- school intro-->
+  </div>
+</div>
