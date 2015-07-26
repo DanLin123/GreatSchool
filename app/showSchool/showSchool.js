@@ -2,6 +2,7 @@ angular.module('myApp.showSchool', [
   'resources.school'
 ])
 .controller('schoolInfoController', function($scope,schoolService,$stateParams,$location){
+  
   $scope.schoolId = $stateParams.schoolId;
 
   schoolService.getById($scope.schoolId).then(function(schoolInfo){
