@@ -7,7 +7,8 @@ angular.module('myApp', [
   'ui.router',
   'resources.school',
   'myApp.showSchools',
-  'myApp.showSchool'
+  'myApp.showSchool',
+  'myApp.directives'
 ])
 .config(function($stateProvider, $urlRouterProvider) {
   

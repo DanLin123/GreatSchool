@@ -2,12 +2,17 @@
 <div ng-controller="schoolInfoController">
 <section id="reviews">	
 	<div class="row" >
-    	<div style="z-index: 1;" class="col-xs-12 col-sm-12 col-md-12  col-lg-12">
+    <div style="z-index: 1;" class="col-xs-12 col-sm-12 col-md-12  col-lg-12">
+             <hr>
+                <h2>点评</h2>
+        </div>
+        <div rating score="0" max="5" ></div>
+
+    <div style="z-index: 1;" class="col-xs-12 col-sm-12 col-md-12  col-lg-12">
              <hr>
               	<h2>评价</h2>
       	</div>
-    </div>
-        <br>      
+    </div>      
 
       <div class="col-xs-12 col-sm-7 col-md-11 col-lg-11 col-md-offset-0">         
   			<div ng-repeat="review in schoolInfo.reviews" class="well"> 
