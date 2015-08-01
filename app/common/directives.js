@@ -9,7 +9,7 @@ angular.module("myApp.directives", [])
     topic: '@',
     note:"@",
     score: '=',
-    max: '='
+    max: '=', 
   };
 
   directive.templateUrl = "common/templates/rating.html";

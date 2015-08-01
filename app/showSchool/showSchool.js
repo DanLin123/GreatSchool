@@ -3,6 +3,13 @@ angular.module('myApp.showSchool', [
 ])
 .controller('schoolInfoController', function($scope,schoolService,$stateParams,$location){
   
+  $scope.newReview = {
+    generalScore: 0,
+    teacherScore: 0,
+    facilityScore: 0,
+    studentScore: 0,
+    content: "dd"
+  } 
   $scope.schoolId = $stateParams.schoolId;
 
   schoolService.getById($scope.schoolId).then(function(schoolInfo){
@@ -12,6 +19,16 @@ angular.module('myApp.showSchool', [
   $scope.isActive = function(route) {
         return route === $location.path().split(/[\s/]+/).pop();
   };
+
+  
+  $scope.addReview = function(){
+    debugger;
+      console.log($scope.schoolInfo.reviews);
+      $scope.schoolInfo.reviews.push($scope.newReview);
+
+      $scope.schoolInfo.$saveOrUpdate();
+
+  }
 })
 
 .controller('galleryCtrl', function($scope) {

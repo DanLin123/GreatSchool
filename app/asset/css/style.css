@@ -7,11 +7,11 @@
 }
 .rating .rating-highlight,
 .rating.rating-highlight:hover {
-  color: #f4914e;
+  color: #f1c40f;
 }
 .rating .rating-normal,
 .rating.rating-normal:hover {
-  color: #3c3c3c;
+  color: #f4914e;
 }
 .rating > a {
   text-decoration: none;
