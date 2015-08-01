@@ -1,18 +1,20 @@
 "use strict";
 
-angular.module("myApp.directives", []).directive("rating", function() {
+angular.module("myApp.directives", [])
+.directive("rating", function() {
   var directive = { };
   directive.restrict = 'AE';
   
   directive.scope = {
-    score: '=score',
-    max: '=max'
+    topic: '@',
+    note:"@",
+    score: '=',
+    max: '='
   };
 
   directive.templateUrl = "common/templates/rating.html";
   
   directive.link = function(scope, elements, attr) {
-    
     scope.updateStars = function() {
       var idx = 0;
       scope.stars = [ ];

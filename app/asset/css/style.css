@@ -1,6 +1,9 @@
 .rating {
   font-size: 175%;
   padding: 0 0.5em;
+  display: inline-block;
+  width: 180px;
+  text-align: right;
 }
 .rating .rating-highlight,
 .rating.rating-highlight:hover {
@@ -13,3 +16,16 @@
 .rating > a {
   text-decoration: none;
 }
+
+.reviewTopic {
+	display: inline-block;
+	width: 80px;
+	text-align: right;
+}
+
+.reviewNote {
+	display: inline-block;
+	text-align: left;
+}
+
+

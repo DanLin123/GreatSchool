@@ -1,20 +1,38 @@
 
-<div ng-controller="schoolInfoController">
-<section id="reviews">	
-	<div class="row" >
-    <div style="z-index: 1;" class="col-xs-12 col-sm-12 col-md-12  col-lg-12">
-             <hr>
-                <h2>点评</h2>
+<div ng-controller="schoolInfoController">	
+
+	<div class="col-xs-12 col-sm-12 col-md-12  col-lg-12" >
+
+    <div ><hr><h2>点评</h2></div>  
+    <div class="col-xs-12 col-sm-7 col-md-6 col-lg-6 col-md-offset-1 well">
+        <form >
+            <div rating score="0" max="5" topic="总体点评:" note="点击星星为学校打分"> </div>       
+            <div rating score="0" max="5" topic="师资:" note=""> </div> 
+            <div rating score="0" max="5" topic="硬件设施:" note=""> </div> 
+            <div rating score="0" max="5" topic="校风:" note=""> </div> 
+
+            <div>
+              <div class="reviewTopic" style="vertical-align:top">写点评:</div>
+              <div style="display: inline-block;margin-left:35px">
+                <textarea class="form-control" rows="6" style="width:380px"></textarea>    
+              </div>
+            </div>
+
+            <div>
+              <div class="reviewTopic" style="vertical-align:top"></div>
+              <div style="display: inline-block;margin-left:35px">
+                 <button type="submit" class="btn btn-default pull-right" >Submit</button>  
+              </div>
+            </div>
+        </form>
         </div>
-        <div rating score="0" max="5" ></div>
+  </div>
+      
 
-    <div style="z-index: 1;" class="col-xs-12 col-sm-12 col-md-12  col-lg-12">
-             <hr>
-              	<h2>评价</h2>
-      	</div>
-    </div>      
+    <div  class="col-xs-12 col-sm-12 col-md-12  col-lg-12">
+        <div><hr><h2>评价</h2></div>     
 
-      <div class="col-xs-12 col-sm-7 col-md-11 col-lg-11 col-md-offset-0">         
+      <div class="col-xs-12 col-sm-7 col-md-11 col-lg-11 col-md-offset-1">        
   			<div ng-repeat="review in schoolInfo.reviews" class="well"> 
 
   			 {{review.content}}
@@ -24,5 +42,4 @@
 	  			 <div>
   			</div>
   		</div>
- </section>
 </div>
