@@ -8,8 +8,19 @@ angular.module('myApp.showSchool', [
     teacherScore: 0,
     facilityScore: 0,
     studentScore: 0,
-    content: "dd"
+    content: "写点评"
   } 
+
+  $scope.reset = function(){
+    $scope.newReview = {
+      generalScore: 0,
+      teacherScore: 0,
+      facilityScore: 0,
+      studentScore: 0,
+      content: ""
+    } 
+  }
+
   $scope.schoolId = $stateParams.schoolId;
 
   schoolService.getById($scope.schoolId).then(function(schoolInfo){
@@ -22,12 +33,16 @@ angular.module('myApp.showSchool', [
 
   
   $scope.addReview = function(){
-    debugger;
       console.log($scope.schoolInfo.reviews);
       $scope.schoolInfo.reviews.push($scope.newReview);
-
-      $scope.schoolInfo.$saveOrUpdate();
-
+      $scope.schoolInfo.$update().then(
+        function( value ){
+          console.log(value);
+          $scope.reset();
+        },
+        
+        function( error ){}
+      )
   }
 })
 

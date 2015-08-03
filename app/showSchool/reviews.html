@@ -1,48 +1,37 @@
 
 <div ng-controller="schoolInfoController">
-
-	<div class="col-xs-12 col-sm-12 col-md-12  col-lg-12" >
-
-    <div ><hr><h2>点评</h2></div>  
-    <div class="col-xs-12 col-sm-7 col-md-6 col-lg-6 col-md-offset-1 well">
-        <form >
-            <div rating  score="newReview.generalScore" max="5" topic="总体点评:" note="点击星星为学校打分"> </div>   
-
-           <div rating score="newReview.teacherScore" max="5" topic="师资:" note=""> </div> 
  
-            <div rating score="newReview.facilityScore" max="5" topic="硬件设施:" note=""> </div> 
-            <div rating score="newReview.studentScore" max="5" topic="校风:" note=""> </div>
-            
-            <div>
-              <div class="reviewTopic" style="vertical-align:top">写点评:</div>
-              <div style="display: inline-block;margin-left:35px">
-                <textarea class="form-control" rows="6" style="width:380px" ng-model="newReview.content"></textarea>    
-              </div>
-            </div>
+  <div id="newReview">
+      <hr><h2>点评</h2>
+      <div class="well row">
 
-            <div>
-              <div class="reviewTopic" style="vertical-align:top"></div>
-              <div style="display: inline-block;margin-left:35px">
-                 <button class="btn btn-default pull-right" ng-click="addReview()">Submit</button>  
-              </div>
-            </div>
-        </form>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <rating score="newReview.generalScore" max="5" topic="总体点评:" note="点击星星为学校打分"> </rating>  
+            <rating score="newReview.teacherScore" max="5" topic="师资:" note=""> </rating> 
+            <rating score="newReview.facilityScore" max="5" topic="硬件设施:" note=""> </rating> 
+            <rating score="newReview.studentScore" max="5" topic="校风:" note=""> </rating>
         </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <textarea rows="6" class="form-control" ng-model="newReview.content" ></textarea>
+              <br>
+              <button class="btn btn-default pull-right" ng-click="addReview()">Submit</button> 
+        </div>
+      </div>
   </div>
-      
 
-    <div  class="col-xs-12 col-sm-12 col-md-12  col-lg-12" >
-        <div><hr><h2>评价</h2></div>     
 
-      <div class="col-xs-12 col-sm-7 col-md-11 col-lg-11 col-md-offset-1">        
-  			<div ng-repeat="review in schoolInfo.reviews" class="well"> 
-        {{review.generalScore}}
-         <br><br>
-  			 {{review.content}}
-  			     <br><br>
-	  			 <div class="pull-right">
-	  			 	- {{review.from}}
-	  			 <div>
-  			</div>
-  		</div>
+  <div id="fullReview">
+    <hr><h2>评价</h2>  
+
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 pull-right row">    
+    			<div ng-repeat="review in schoolInfo.reviews" class="well"> 
+            {{review.generalScore}}
+             <br><br>
+      			 {{review.content}}
+      			     <br><br>
+    	  			 <div class="pull-right">- {{review.from}}<div>
+    			</div>
+    </div>
+  </div>
 </div>

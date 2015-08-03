@@ -19,7 +19,7 @@
 
 .reviewTopic {
 	display: inline-block;
-	width: 80px;
+	width: 60px;
 	text-align: right;
 }
 
@@ -28,4 +28,17 @@
 	text-align: left;
 }
 
+.debug {
 
+  background: #FFC6AA;
+}
+
+.debug2 {
+
+  background: #4A6B89;
+}
+
+.debug3 {
+
+  background: yellow;
+}

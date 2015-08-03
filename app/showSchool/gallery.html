@@ -1,26 +1,25 @@
 <div ng-controller="galleryCtrl">
-    <div class="row" >
-        <div style="z-index: 1;" class="col-xs-12 col-sm-12 col-md-12  col-lg-12">
-             <hr>
-                <h2>校园生活</h2>
+
+  <hr>
+  <h2>校园生活</h2>
+  <br>
+
+  <div id="gallery" class="carousel slide" style="width: {{width}};height:{{height}}; margin: 0 auto">
+    <div class="carousel-inner" >  
+        <div class="item" ng-repeat="pic in schoolInfo.gallery"  ng-class="{'active':isActive($index)}">
+          <img ng-src="{{pic.src}}" class="img-responsive">
         </div>
     </div>
+    <span class="left carousel-control" data-target="#gallery" data-slide="prev" ng-click="showPrev()">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </span>
+    <span class="right carousel-control" data-target="#gallery" data-slide="next" ng-click="showNext()">
+       <span class="glyphicon glyphicon-chevron-right"></span>
+    </span>
+  </div>   
 
-
-  <br>
-    <div id="gallery" class="carousel slide" style="width: {{width}};height:{{height}}; margin: 0 auto">
-      <div class="carousel-inner" >  
-          <div class="item" ng-repeat="pic in schoolInfo.gallery"  ng-class="{'active':isActive($index)}">
-            <img ng-src="{{pic.src}}" class="img-responsive">
-          </div>
-      </div>
-      <span class="left carousel-control" data-target="#gallery" data-slide="prev" ng-click="showPrev()">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-      </span>
-      <span class="right carousel-control" data-target="#gallery" data-slide="next" ng-click="showNext()">
-         <span class="glyphicon glyphicon-chevron-right"></span>
-      </span>
-    </div>   
 </div>
+
+
 
 
