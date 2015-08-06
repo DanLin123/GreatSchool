@@ -4,20 +4,20 @@ angular.module('myApp.showSchool', [
 .controller('schoolInfoController', function($scope,schoolService,$stateParams,$location){
   
   $scope.newReview = {
-    generalScore: 0,
-    teacherScore: 0,
-    facilityScore: 0,
-    studentScore: 0,
+    generalScore: "无",
+    teacherScore: "无",
+    facilityScore: "无",
+    studentScore: "无",
     content: "写点评"
   } 
 
   $scope.reset = function(){
     $scope.newReview = {
-      generalScore: 0,
-      teacherScore: 0,
-      facilityScore: 0,
-      studentScore: 0,
-      content: ""
+      generalScore: "无",
+      teacherScore: "无",
+      facilityScore: "无",
+      studentScore: "无",
+      content: "写点评"
     } 
   }
 
