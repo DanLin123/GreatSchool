@@ -28,8 +28,11 @@
 	text-align: left;
 }
 
-.debug {
+.warning {
+    color: red;
+}
 
+.debug {
   background: #FFC6AA;
 }
 

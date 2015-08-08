@@ -22,6 +22,7 @@ rating.directive("rating", function() {
           full: scope.score > idx
         });
       }
+
     };
 
     var defaultNote = scope.note;
@@ -69,6 +70,17 @@ rating.directive("rating", function() {
       }
       return starClass;
     };
+
+    scope.scoreIsEmpty = function(score)
+    {
+      return (score == "无");
+    }
+
+    scope.noteClass = function(score){
+      if(scope.scoreIsEmpty(score))
+        return 'warning';
+      return '';
+    };
     
     scope.setRating = function(idx) {
       scope.score = idx + 1;
@@ -78,6 +90,7 @@ rating.directive("rating", function() {
     scope.$watch('score', function(newValue, oldValue) {
       if (newValue !== null && newValue !== undefined) {
         scope.updateStars();
+        scope.note = getScoreNote(newValue);
       }
     });
 

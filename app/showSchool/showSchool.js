@@ -4,21 +4,25 @@ angular.module('myApp.showSchool', [
 .controller('schoolInfoController', function($scope,schoolService,$stateParams,$location){
   
   $scope.newReview = {
-    generalScore: "无",
-    teacherScore: "无",
-    facilityScore: "无",
-    studentScore: "无",
+    generalScore: "",
+    teacherScore: "",
+    facilityScore: "",
+    studentScore: "",
     content: "写点评"
   } 
 
   $scope.reset = function(){
     $scope.newReview = {
-      generalScore: "无",
-      teacherScore: "无",
-      facilityScore: "无",
-      studentScore: "无",
+      generalScore: "",
+      teacherScore: "",
+      facilityScore: "",
+      studentScore: "",
       content: "写点评"
     } 
+  }
+
+  $scope.clearText = function(){
+    $scope.newReview.content="";
   }
 
   $scope.schoolId = $stateParams.schoolId;
@@ -31,18 +35,46 @@ angular.module('myApp.showSchool', [
         return route === $location.path().split(/[\s/]+/).pop();
   };
 
-  
+  $scope.canSubmitReview = function(){
+      var $canSubmit = true;
+      Object.keys($scope.newReview).forEach(function (key) { 
+        var value = $scope.newReview[key];
+        if(key == "content")
+        {
+            if(value == "写点评" || value == "点评不能为空" || value == "")
+            {
+              $scope.newReview.content = "点评不能为空";
+              $canSubmit = false;
+            }
+        }
+        else
+        {
+            if(value =="" || value=="无")
+            {
+               $scope.newReview[key] ="无";
+               $canSubmit = false;
+            }
+        }
+      
+      });
+      return $canSubmit;
+
+  }
+
   $scope.addReview = function(){
-      console.log($scope.schoolInfo.reviews);
-      $scope.schoolInfo.reviews.push($scope.newReview);
-      $scope.schoolInfo.$update().then(
-        function( value ){
-          console.log(value);
-          $scope.reset();
-        },
-        
-        function( error ){}
-      )
+      if( $scope.canSubmitReview())
+      {
+            $scope.schoolInfo.reviews.push($scope.newReview);
+            $scope.schoolInfo.$update().then(
+              function( value ){
+                console.log(value);
+                $scope.reset();
+              },
+              
+              function( error ){}
+            )
+      }
+    
   }
 })
 
