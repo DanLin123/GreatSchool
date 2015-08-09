@@ -2,14 +2,10 @@ angular.module('myApp.showSchool', [
   'resources.school'
 ])
 .controller('schoolInfoController', function($scope,schoolService,$stateParams,$location){
-  
-  $scope.newReview = {
-    generalScore: "",
-    teacherScore: "",
-    facilityScore: "",
-    studentScore: "",
-    content: "写点评"
-  } 
+
+  $scope.getDatetime = function() {
+    return (new Date).toLocaleFormat("%A, %B %e, %Y");
+  };
 
   $scope.reset = function(){
     $scope.newReview = {
@@ -17,9 +13,25 @@ angular.module('myApp.showSchool', [
       teacherScore: "",
       facilityScore: "",
       studentScore: "",
-      content: "写点评"
+      userName:"匿名",
+      role:"其他",
+      content: "写点评",
+      userImg: "asset/anony.png",
+      date: Date.now()
     } 
   }
+
+  $scope.commentClass = function(){
+
+    if( $scope.newReview.content == "点评不能为空" )
+    {
+      return 'emptyComment';
+    }
+    return '';
+  }
+  
+
+  $scope.reset();
 
   $scope.clearText = function(){
     $scope.newReview.content="";
@@ -64,10 +76,9 @@ angular.module('myApp.showSchool', [
   $scope.addReview = function(){
       if( $scope.canSubmitReview())
       {
-            $scope.schoolInfo.reviews.push($scope.newReview);
+            $scope.schoolInfo.reviews.unshift($scope.newReview);
             $scope.schoolInfo.$update().then(
               function( value ){
-                console.log(value);
                 $scope.reset();
               },
               

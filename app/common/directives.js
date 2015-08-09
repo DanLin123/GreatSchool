@@ -79,7 +79,7 @@ rating.directive("rating", function() {
     scope.noteClass = function(score){
       if(scope.scoreIsEmpty(score))
         return 'warning';
-      return '';
+      return 'smallNote';
     };
     
     scope.setRating = function(idx) {

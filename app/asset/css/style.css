@@ -23,13 +23,36 @@
 	text-align: right;
 }
 
-.reviewNote {
-	display: inline-block;
-	text-align: left;
+.warning {
+     color: red;
+    display: inline-block;
+    text-align: left;
 }
 
-.warning {
-    color: red;
+.commentContent{
+  padding: 15px;
+  border-bottom:1px solid #ccc;
+}
+
+.comment img {
+    width:100%;
+    border-radius:50%;
+    margin-top: 15px;
+}
+
+.smallNote{
+  color: #8c8c8c;
+  display: inline-block;
+  text-align: left;
+}
+
+p.reviewContent{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.emptyComment{
+  color: red;
 }
 
 .debug {
@@ -37,11 +60,5 @@
 }
 
 .debug2 {
-
-  background: #4A6B89;
-}
-
-.debug3 {
-
-  background: yellow;
+  background: blue;
 }

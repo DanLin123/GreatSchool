@@ -2,20 +2,39 @@
 <div ng-controller="schoolInfoController">
  
   <div id="newReview">
-      <hr><h2>点评</h2>
+      <h2>点评</h2>
       <div class="well row">
 
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <rating score="newReview.generalScore" max="5" topic="总体点评*:" note="点击星星为学校打分"> </rating>  
-            <rating score="newReview.teacherScore" max="5" topic="师资:" note="为老师点评"> </rating> 
-            <rating score="newReview.facilityScore" max="5" topic="硬件设施:" note="为硬件设施点评"> </rating> 
-            <rating score="newReview.studentScore" max="5" topic="校风:" note="为校风点评"> </rating>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 ">
+            <rating score="newReview.generalScore" max="5" topic="总体点评 *:" note="点击星星为学校打分"> </rating>  
+            <rating score="newReview.teacherScore" max="5" topic="师资 *:" note="为老师点评"> </rating> 
+            <rating score="newReview.facilityScore" max="5" topic="硬件设施 *:" note="为硬件设施点评"> </rating> 
+            <rating score="newReview.studentScore" max="5" topic="校风 *:" note="为校风点评"> </rating>
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-              <textarea rows="6" class="form-control" ng-model="newReview.content" ng-click="clearText()"></textarea>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="margin-top:20px">
+              <textarea rows="6" class="form-control" ng-model="newReview.content" ng-click="clearText()" ng-class="commentClass()"></textarea>
               <br>
-              <button class="btn btn-default pull-right" ng-click="addReview()">提交点评</button> 
+              您是: 
+               <label>
+                <input type="radio" ng-model="newReview.role" value="父母">
+                父母
+              </label>
+              <label>
+                <input type="radio" ng-model="newReview.role" value="学生">
+                学生
+              </label>
+
+              <label>
+              <input type="radio" ng-model="newReview.role" value="老师">
+                老师
+              </label>
+              <label>
+              <input type="radio" ng-model="newReview.role" value="其他">
+                其他
+              </label>
+
+              <button class="btn btn-warning pull-right" ng-click="addReview()">提交点评</button> 
         </div>
       </div>
   </div>
@@ -23,20 +42,28 @@
 
   <div id="fullReview">
     <hr><h2>评价</h2>  
+    <div ng-repeat="review in schoolInfo.reviews" class="row comment"> 
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+            <img src="{{review.userImg}}"} />
+        </div>
+        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 commentContent">
+             <p class="smallNote">{{review.userName}} ({{review.role}})</p>
 
-    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 pull-right row">    
-    			<div ng-repeat="review in schoolInfo.reviews" class="well"> 
+             <div>
+               <show-rating score="review.generalScore" max="5" style="margin-left:-30px"></show-rating> 个哦
+              <span>师资: {{review.teacherScore}}</span> &nbsp;
+              <span>硬件设施: {{review.facilityScore}}</span> &nbsp;
+              <span>校风: {{review.studentScore}}</span>
+            </div>
+            <p class="reviewContent">
+                {{review.content}}
+            </p>  			
+    	  		<p class="smallNote">
+                 {{review.date | date:'yyyy-MM-dd'}} 提交
+            </p>
 
-             <show-rating score="review.generalScore" max="5" style="margin-left:-30px"></show-rating> 
-            <span>师资: {{review.teacherScore}}</span> &nbsp;
-            <span>硬件设施: {{review.facilityScore}}</span> &nbsp;
-            <span>校风: {{review.studentScore}}</span>
-           
-             <br><br>
-      			 {{review.content}}
-      			     <br><br>
-    	  			 <div class="pull-right">- {{review.from}}<div>
-    			</div>
+        </div>
     </div>
+
   </div>
 </div>
