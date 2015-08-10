@@ -99,19 +99,20 @@ rating.directive("rating", function() {
   return directive;
 });
 
-rating.directive("showRating",function() {
+
+rating.directive("staticStar",function() {
   var directive = { };
   directive.restrict = 'AE';
   directive.scope = {
-    topic: '@',
-    note:"@",
     score: '=',
     max: '=', 
   };
 
-  directive.templateUrl = "common/templates/showRating.html";
+
+  directive.templateUrl = "common/templates/stars.html";
   
   directive.link = function(scope, elements, attr) {
+
     scope.updateStars = function() {
       var idx = 0;
       scope.stars = [ ];
@@ -121,27 +122,19 @@ rating.directive("showRating",function() {
         });
       }
     };
-    scope.starColor = function(/** Integer */ idx) {
-      var starClass = 'rating-normal';
-      if (idx <= scope.hoverIdx) {
-       starClass = 'rating-highlight'; 
-      }
-      return starClass;
-    };
-    
+   
+ 
     scope.starClass = function(/** Star */ star, /** Integer */ idx) {
       var starClass = 'fa-star-o';
-      if (star.full || idx <= scope.hoverIdx) {
+      if (star.full || idx <= scope.hoverid) {
         starClass = 'fa-star';
       }
       return starClass;
     };
 
-    scope.$watch('score', function(newValue, oldValue) {
-      if (newValue !== null && newValue !== undefined) {
-        scope.updateStars();
-      }
-    });
+    scope.updateStars();
+  
   };
   return directive;
 });
+
