@@ -42,28 +42,10 @@
 
   <div id="fullReview">
     <hr><h2>评价</h2>  
-    <div ng-repeat="review in schoolInfo.reviews" class="row comment"> 
-        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-            <img src="{{review.userImg}}"} />
-        </div>
-        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 commentContent">
-             <p class="smallNote">{{review.userName}} ({{review.role}})</p>
 
-             <div>
-               <static-star score="review.generalScore" max="5" style="margin-left:-30px"></static-star> 
-              <span>师资: {{review.teacherScore}}</span> &nbsp;
-              <span>硬件设施: {{review.facilityScore}}</span> &nbsp;
-              <span>校风: {{review.studentScore}}</span>
-            </div>
-            <p class="reviewContent">
-                {{review.content}}
-            </p>  			
-    	  		<p class="smallNote">
-                 {{review.date | date:'yyyy-MM-dd'}} 提交
-            </p>
-
-        </div>
+    <div ng-repeat="item in schoolInfo.reviews" class="row comment">    
+      <show-one-review review="item"></show-one-review>
     </div>
-
+    
   </div>
 </div>

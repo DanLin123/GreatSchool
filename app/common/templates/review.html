@@ -1,0 +1,24 @@
+<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+          <img src="{{review.userImg}}"} />
+           <p class="smallNote text-center">{{review.userName}} </p>
+           <p class="smallNote text-center">{{review.role}} </p>
+        
+      </div>
+      <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 commentContent" style="margin-left:35px">
+          
+
+           <div>
+             <static-star score="review.generalScore" max="5" style="margin-left:-30px"></static-star> 
+            <span>师资: {{review.teacherScore}}</span> &nbsp;
+            <span>硬件设施: {{review.facilityScore}}</span> &nbsp;
+            <span>校风: {{review.studentScore}}</span>
+          </div>
+          <p class="reviewContent">
+              {{review.content}}
+          </p>        
+          <p class="smallNote">
+               {{review.date | date:'yyyy-MM-dd'}}
+          </p>
+
+        
+</div>

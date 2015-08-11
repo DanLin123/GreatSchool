@@ -138,3 +138,14 @@ rating.directive("staticStar",function() {
   return directive;
 });
 
+rating.directive("showOneReview", function(){
+  return{
+    restrict:'AE',
+    scope:{review: '='},
+    templateUrl: "common/templates/review.html",
+    link:function(scope, elements, attr) {
+      console.log(scope.review);
+    }
+  }
+})
+

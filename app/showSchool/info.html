@@ -14,12 +14,9 @@
   <h2>评价</h2>
   <a class="pull-right" ui-sref="showSchool.reviews">See all 15 reviews</a>
   <br>
-  <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 pull-right">    
-  		<div ng-repeat="review in schoolInfo.reviews" class="well"> 
-  		    {{review.content}}
-  		     <br><br>
-    			 <div class="pull-right">- {{review.from}}</div>
-  		</div>
-  </div>
+
+   <div ng-repeat="item in schoolInfo.reviews.slice(0,3)" class="row comment">    
+      <show-one-review review="item"></show-one-review>
+    </div>
 </div>
 
