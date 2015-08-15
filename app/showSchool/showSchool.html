@@ -1,10 +1,26 @@
-<div ng-include="'showSchool/intro.html'" class="jumbotron">
-    <!-- school intro-->
+<div  class="jumbotron">
+    <div class="row">
+	    <div class="col-md-3">
+	       <img src="{{ schoolInfo.logo }}" class="img-thumbnail" alt="Cinque Terre" width="200" height="200"> 
+	    </div>
+	    
+	   <div class="col-md-9">
+	      <h2>{{ schoolInfo.name }}</h2>
+	      <br>
+	      <div>
+	      地址: {{ schoolInfo.addr }}
+	      </br>
+	      电话: {{ schoolInfo.phone}}
+	      </br> 
+	      标签: {{ schoolInfo.tags}}
+	      </div>
+	    </div>
+	</div>
 </div>
 
 <ul class="nav nav-tabs">
   <li ng-class="{active:isActive('/info')}"><a ui-sref="showSchool.Info">学校介绍</a></li>
-  <li ng-class="{active:isActive('/review')}"><a ui-sref="showSchool.reviews">评价</a></li>
+  <li ng-class="{active:isActive('/review')}"><a ui-sref="showSchool.review">评价</a></li>
   <li ng-class="{active:isActive('/gallery')}"><a ui-sref="showSchool.gallery">校园生活</a></li>
 </ul>
         

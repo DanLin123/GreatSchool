@@ -28,18 +28,18 @@ angular.module('myApp', [
 
     .state('showSchool.Info', {
       url: "/info",
-      templateUrl: "showSchool/info.html",
+      templateUrl: "showSchool/info/info.html",
       controller: 'schoolInfoController'
     })
 
-    .state('showSchool.reviews', {
-      url: "/reviews",
-      templateUrl: "showSchool/reviews.html",
+    .state('showSchool.review', {
+      url: "/review",
+      templateUrl: "showSchool/review/review.html",
       controller: 'schoolInfoController'
     })
     .state('showSchool.gallery', {
       url: "/gallery",
-      templateUrl: "showSchool/gallery.html",
+      templateUrl: "showSchool/gallery/gallery.html",
       controller: 'schoolInfoController'
     })
 })
