@@ -3,19 +3,17 @@
   <h2>校园生活</h2>
   <br>
 
-  <div id="gallery" class="carousel slide" style="width: {{width}};height:{{height}}; margin: 0 auto">
-    <div class="carousel-inner" >  
-        <div class="item" ng-repeat="pic in schoolInfo.gallery"  ng-class="{'active':isActive($index)}">
-          <img ng-src="{{pic.src}}" class="img-responsive">
+  <div id="gallery" class="carousel slide" style="width: {{width}}px;height:{{height}}px; margin: 0 auto">
+    <div style="width: {{width}}px;height:{{height}}px; margin: 0 aut">
+    <carousel interval="myInterval" no-wrap="noWrapSlides">
+      <slide ng-repeat="pic in gallery" active="pic.active">
+        <img ng-src="{{pic.src}}?imageView2/1/w/{{width}}/h/{{height}}" class="img-responsive">
+        <div class="carousel-caption">
+          <p>{{pic.desc}}</p>
         </div>
-    </div>
-    <span class="left carousel-control" data-target="#gallery" data-slide="prev" ng-click="showPrev()">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-    </span>
-    <span class="right carousel-control" data-target="#gallery" data-slide="next" ng-click="showNext()">
-       <span class="glyphicon glyphicon-chevron-right"></span>
-    </span>
-  </div>   
+      </slide>
+    </carousel>
+  </div>
 
 </div>
 

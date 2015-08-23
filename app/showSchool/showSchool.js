@@ -6,6 +6,7 @@ angular.module('myApp.showSchool', [
 
   schoolService.getById($scope.schoolId).then(function(schoolInfo){
     $scope.schoolInfo = schoolInfo;
+    $scope.tag = $scope.schoolInfo.tags.join(' '); 
   });
 
   $scope.isActive = function(route) {

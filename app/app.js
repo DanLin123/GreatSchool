@@ -5,6 +5,7 @@
 
 angular.module('myApp', [
   'ui.router',
+  'ui.bootstrap',
   'resources.school',
   'myApp.showSchools',
   'myApp.showSchool',
@@ -29,18 +30,15 @@ angular.module('myApp', [
     .state('showSchool.Info', {
       url: "/info",
       templateUrl: "showSchool/info/info.html",
-      controller: 'schoolInfoController'
     })
 
     .state('showSchool.review', {
       url: "/review",
       templateUrl: "showSchool/review/review.html",
-      controller: 'schoolInfoController'
     })
     .state('showSchool.gallery', {
       url: "/gallery",
       templateUrl: "showSchool/gallery/gallery.html",
-      controller: 'schoolInfoController'
     })
 })
 

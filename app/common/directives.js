@@ -1,7 +1,7 @@
 "use strict";
 var rating = angular.module("myApp.directives", []);
 
-rating.directive("rating", function() {
+rating.directive("myrating", function() {
   var directive = { };
   directive.restrict = 'AE';
   directive.scope = {
