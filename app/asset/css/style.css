@@ -49,6 +49,13 @@ p.reviewContent{
   margin-bottom: 15px;
 }
 
+.bgimage {
+background-image: url(../goodSchoolBanner.jpg);
+background-size: cover;
+height: 400px;
+}
+
+
 .emptyComment{
   color: red;
 }
@@ -60,3 +67,4 @@ p.reviewContent{
 .debug2 {
   background: blue;
 }
+

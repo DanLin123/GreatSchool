@@ -1,5 +1,7 @@
+	<div class="jumbotron bgimage">
 
-    <h2>School List</h2>
+	</div>
+	<h>按区域查找学校</h>
     <div ng-repeat="school in schools">
     	<a ui-sref="showSchool.Info({schoolId:'{{school._id.$oid}}'})">{{school.name}}</a>
     </div>
