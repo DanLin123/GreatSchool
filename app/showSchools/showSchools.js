@@ -4,10 +4,22 @@
 
 
 angular.module('myApp.showSchools', [
-  'resources.school',
+  'resources.school','ngAnimate', 'ui.bootstrap'
 ])
 .controller('showSchoolsController', function ($scope, schoolService) {
   schoolService.all().then(function(schools){
     $scope.schools = schools;
   });
+  $scope.selected = undefined;
+
+  schoolService.all({fields:{name:1}}).then(function(schools){
+  	$scope.schoolNames = [];
+  	
+  	for( var i =0; i< schools.length; i++)
+  	{
+  		$scope.schoolNames.push( schools[i].name );
+  	}
+  });
+
+  
 })

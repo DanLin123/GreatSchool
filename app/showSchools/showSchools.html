@@ -1,6 +1,73 @@
-	<div class="jumbotron bgimage">
-		
+	<div class="bgimage">
+		<div class="container" style="padding-top:10%">
+				<div class="row">
+				 	<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+				 		<h1 style="color:#fff;" class="text-primary">找学校</h1>
+				 		<div class="input-group">
+				 			<input type="text" style="width:100%;" ng-model="selected" placeholder="输入学校名字" class="input-lg form-control ui-autocomplete-input" typeahead="schoolName for schoolName in schoolNames | filter:$viewValue"
+				 			aria-autocomplete="list" aria-haspopup="true">
+
+				 			<span class="input-group-btn">
+				 				<input type="submit" class="btn btn-primary btn-lg"  value="&nbsp;查找&nbsp;">
+				 			</span>
+				 		</div>					 	
+					</div>
+				</div>
+
+				<div style="padding-bottom: 50px;padding-top: 50px" class="row text-center">
+				   <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+				    <button aria-controls="collapseExample" aria-expanded="false" data-target="#advancedOptions" data-toggle="collapse" class="btn btn-primary btn-lg collapsed" type="button">更多条件筛选</button>
+				     <span>&nbsp</span>	
+				     <input type="submit" class="btn btn-primary btn-lg" id="btnShowAll" value="查看所有学校">
+				   </div>
+			  	</div>
+			  	<!--
+			  	hiding part		  	 
+			  	-->
+			  	<div style="font-size: 16px; height: auto;" id="advancedOptions" class="collapse">
+			  	<div style="padding-bottom: 20px;" class="row well">
+				   <div class="col-sm-3 col-sm-offset-1">
+				    <h4 class="text-primary">区域</h4>
+				    <span class="checkbox h5 grey-dark fasInput"><input type="checkbox"><label>民后</label></span>
+				    <span class="checkbox h5 grey-dark fasInput"><input type="checkbox"><label>藏上</label></span>
+				     <span class="checkbox h5 grey-dark fasInput"><input type="checkbox"><label>民后</label></span>
+				    <span class="checkbox h5 grey-dark fasInput"><input type="checkbox"><label>藏上</label></span>
+				     <span class="checkbox h5 grey-dark fasInput"><input type="checkbox"><label>民后</label></span>
+				    <span class="checkbox h5 grey-dark fasInput"><input type="checkbox"><label>藏上</label></span>
+				    <span class="checkbox h5 grey-dark fasInput"><input type="checkbox"><label>High School</label></span>
+				   </div>
+
+				    <div class="col-sm-3">
+				    <h4 class="text-primary">
+				     学校类型</h4>
+				     <span class="checkbox h5 grey-dark fasInput"><input type="checkbox"><label>高中</label></span>
+					 <span class="checkbox h5 grey-dark fasInput"><input type="checkbox"><label>初中</label></span>
+					 <span class="checkbox h5 grey-dark fasInput"><input type="checkbox"><label>幼儿园</label></span>
+					 <span class="checkbox h5 grey-dark fasInput"><input type="checkbox"><label>日托</label></span>
+				   </div>
+
+				    <div class="col-sm-3 ">
+				    	  <h4 style="margin-top:5px;" class="text-primary">
+					     办学性质</h4>
+					    <span class="checkbox h5 grey-dark fasInput"><input type="checkbox"><label>公立</label></span>
+					    <span class="checkbox h5 grey-dark fasInput"><input type="checkbox"><label>民办</label></span>
+					    <span class="checkbox h5 grey-dark fasInput"><input type="checkbox"><label>私立</label></span>
+				    </div>
+
+				    <div class="col-sm-2 ">
+				    	  <h4 style="margin-top:5px;" class="text-primary">
+					     学校属性</h4>
+					    <span class="checkbox h5 grey-dark fasInput"><input type="checkbox"><label>示范</label></span>
+					    <span class="checkbox h5 grey-dark fasInput"><input type="checkbox"><label>重点</label></span>
+					    <span class="checkbox h5 grey-dark fasInput"><input type="checkbox"><label>普通</label></span>
+				    </div>
+
+				  
+				  </div>
+				  </div>
+		</div>
 	</div>
+	
 	<h>按区域查找学校</h>
     <div ng-repeat="school in schools">
     	<a ui-sref="showSchool.Info({schoolId:'{{school._id.$oid}}'})">{{school.name}}</a>

@@ -50,14 +50,20 @@ p.reviewContent{
 }
 
 .bgimage {
-background-image: url(../goodSchoolBanner.jpg);
+background: url(../education.jpg) center center no-repeat;
 background-size: cover;
-height: 400px;
+min-height: 700px;
 }
 
 
 .emptyComment{
   color: red;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
 }
 
 .debug {

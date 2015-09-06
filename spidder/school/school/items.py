@@ -19,7 +19,7 @@ class SchoolItem(Item):
 	catagery = Field()
 	schoolType = Field()
 	phone = Field()
-	reviews = Field()
+	schoolIntroduction = Field()
 	score = Field()
    
    

@@ -4,7 +4,7 @@ from scrapy.http.request import Request
 from scrapy.selector import Selector
 from school.items import SchoolItem
 import urlparse
-
+import pdb
 class DmozSpider(Spider):
 	name = "xuexiao"
 	allowed_domains = ["xuexiao.51sxue.com"]
@@ -43,24 +43,35 @@ class DmozSpider(Spider):
 		address = addressAndPhone.xpath('li[1]/b/text()').extract()
 		item['address'] = address[0] if address else ""
 		item['phone'] = addressAndPhone.xpath('li[2]/b/text()').extract()
-		
-		return item
-		
-	
-	'''
-	try to parse reviews on school detail page, but the reviews are generated with ajax and encryped, so currently will leave this alone
-		#yield item
-		schoolUrl = school_main.xpath('li/h3/a/@href').extract()[0]
-		request = Request(schoolUrl,callback=self.parse_items)
+		schoollUrl = school_main.xpath('li/h3/a/@href').extract()[0]
+		request = Request(schoollUrl, callback=self.parse_schoolIntroUrl)
 		request.meta['item'] = item
+		return request
+
+
+	def parse_schoolIntroUrl(self, response):
+		sel = Selector(response)
+		item = response.meta['item']
+
+		schoolIntroUrl = sel.xpath('//div[@class="school_kz fr"]/a/@href').extract()
+		link = self.start_urls[0]
+		if schoolIntroUrl:
+			link =  schoolIntroUrl[0]
+			request = Request(link, callback=self.parse_items)
+			request.meta['item'] = item
+			return request
+		else:
+			return item
+	
+	
 
 	def parse_items(self, response):
 		sel = Selector(response)
-		reviews = sel.xpath('//div[@id="school_main"]/div[@class="school_main_l fl"]/div[@style="width:700px;"]/div/div[@class="school_pl_list"]/div[@id="shuchu"]').extract()
+		schoolIntroduction = sel.xpath('//div[@class="nr_m"]/p/text()').extract()
 		item = response.meta['item']
-		item['reviews'] = reviews
-		return item
-'''   
+		if schoolIntroduction:
+			item['schoolIntroduction'] = schoolIntroduction[0] 
+		yield item   
 
    	def parse(self, response):
 		sel = Selector(response)
