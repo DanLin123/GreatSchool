@@ -10,7 +10,12 @@ angular.module('myApp.showSchools', [
   schoolService.all().then(function(schools){
     $scope.schools = schools;
   });
-  $scope.selected = undefined;
+
+  $scope.myfunction = function(message){
+  	window.alert(JSON.stringify(message));
+
+  }
+
 
   schoolService.all({fields:{name:1}}).then(function(schools){
   	$scope.schoolNames = [];

@@ -1,15 +1,18 @@
+
+	
 	<div class="bgimage">
 		<div class="container" style="padding-top:10%">
 				<div class="row">
 				 	<div class="col-xs-12 col-sm-8 col-sm-offset-2">
 				 		<h1 style="color:#fff;" class="text-primary">找学校</h1>
 				 		<div class="input-group">
-				 			<input type="text" style="width:100%;" ng-model="selected" placeholder="输入学校名字" class="input-lg form-control ui-autocomplete-input" typeahead="schoolName for schoolName in schoolNames | filter:$viewValue"
+				 			<input type="text" style="width:100%;" ng-model="school" placeholder="输入学校名字" class="input-lg form-control ui-autocomplete-input" typeahead="school as school.name for school in schools | filter:$viewValue"
 				 			aria-autocomplete="list" aria-haspopup="true">
-
-				 			<span class="input-group-btn">
-				 				<input type="submit" class="btn btn-primary btn-lg"  value="&nbsp;查找&nbsp;">
-				 			</span>
+				 			
+				 			<a ui-sref="showSchool.Info({schoolId:school._id.$oid})" class="input-group-btn">
+				 				<button class="btn btn-primary btn-lg">查找</button>
+				 			</a>
+				 			
 				 		</div>					 	
 					</div>
 				</div>
@@ -70,7 +73,7 @@
 	
 	<h>按区域查找学校</h>
     <div ng-repeat="school in schools">
-    	<a ui-sref="showSchool.Info({schoolId:'{{school._id.$oid}}'})">{{school.name}}</a>
+    	<a ui-sref="showSchool.Info({schoolId:school._id.$oid})">{{school.name}}</a>
     </div>
 
 
