@@ -24,7 +24,5 @@ angular.module('myApp.showSchools', [
   	{
   		$scope.schoolNames.push( schools[i].name );
   	}
-  });
-
-  
+  });  
 })

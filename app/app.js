@@ -21,6 +21,12 @@ angular.module('myApp', [
       controller: 'showSchoolsController'
     })
 
+    .state('search', {
+      url: "/search",
+      templateUrl: "showSchools/search.html",
+      controller: 'showSchoolsController'
+    })
+
     .state('showSchool', {
       url: "/showSchool/:schoolId",
       templateUrl: "showSchool/showSchool.html",
