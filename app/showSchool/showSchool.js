@@ -5,7 +5,6 @@ angular.module('myApp.showSchool', [
   $scope.schoolId = $stateParams.schoolId;
   $scope.schoolInfo = {};
   schoolService.getById($scope.schoolId).then(function(schoolInfoDB){
-  	console.log(schoolInfoDB.catagery);
   	$scope.schoolInfo.name = schoolInfoDB.name;
   	$scope.schoolInfo.addr = schoolInfoDB.address;
     $scope.schoolInfo.tag = schoolInfoDB.catagery.concat(" ", schoolInfoDB.level," ", schoolInfoDB.schoolType) ;
@@ -13,6 +12,16 @@ angular.module('myApp.showSchool', [
     $scope.schoolInfo.logo = schoolInfoDB.logo; 
     $scope.schoolInfo.phone = schoolInfoDB.phone.join(" ")
     $scope.schoolInfo.introduction = schoolInfoDB.schoolIntroduction;
+
+    $scope.getlogo = function(logo){
+    if(logo== "")
+    {
+      return "asset/no-school-photo.png"
+    }
+    else{
+      return logo
+    }
+   }
   });
 
   $scope.isActive = function(route) {

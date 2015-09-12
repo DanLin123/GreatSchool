@@ -12,7 +12,6 @@ angular.module('myApp', [
   'myApp.directives'
 ])
 .config(function($stateProvider, $urlRouterProvider) {
-  
   // Now set up the states
   $stateProvider
     .state('showSchools', {
@@ -47,4 +46,3 @@ angular.module('myApp', [
       templateUrl: "showSchool/gallery/gallery.html",
     })
 })
-

@@ -55,6 +55,11 @@ background-size: cover;
 min-height: 700px;
 }
 
+.searchResult {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
 
 .emptyComment{
   color: red;

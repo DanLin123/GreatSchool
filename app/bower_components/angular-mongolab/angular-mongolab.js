@@ -1,4 +1,4 @@
-angular.module('mongolabResourceHttp', [])
+angular.module('mongolabResourceHttp',[])
     .factory('$mongolabResourceHttp', ['MONGOLAB_CONFIG', '$http', '$q', function (MONGOLAB_CONFIG, $http, $q) {
 
     function MmongolabResourceFactory(collectionName) {
@@ -51,7 +51,6 @@ angular.module('mongolabResourceHttp', [])
             };
 
             var requestParams = angular.extend({}, defaultParams, preparyQueryParam(queryJson), prepareOptions(options));
-
             return $http.get(collectionUrl, {params: requestParams}).then(resourcesArrayRespTransform);
         };
 

@@ -6,23 +6,20 @@
 angular.module('myApp.showSchools', [
   'resources.school','ngAnimate', 'ui.bootstrap'
 ])
-.controller('showSchoolsController', function ($scope, schoolService) {
-  schoolService.all().then(function(schools){
-    $scope.schools = schools;
-  });
-
-  $scope.myfunction = function(message){
-  	window.alert(JSON.stringify(message));
-
-  }
+.controller('showSchoolsController', function ($scope, schoolService, schoolServiceCached) {
 
 
-  schoolService.all({fields:{name:1}}).then(function(schools){
-  	$scope.schoolNames = [];
-  	
-  	for( var i =0; i< schools.length; i++)
-  	{
-  		$scope.schoolNames.push( schools[i].name );
-  	}
+ $scope.getlogo = function(logo){
+ 	if(logo== "")
+ 	{
+ 		return "asset/no-school-photo.png"
+ 	}
+ 	else{
+ 		return logo
+ 	}
+ }
+
+  schoolServiceCached.all(function(schools){
+  	$scope.schools = schools;
   });  
 })
