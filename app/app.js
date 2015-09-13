@@ -38,7 +38,7 @@ angular.module('myApp', [
     })
 
     .state('showSchool.review', {
-      url: "/review",
+      url: "/:schoolId/review",
       templateUrl: "showSchool/review/review.html",
     })
     .state('showSchool.gallery', {

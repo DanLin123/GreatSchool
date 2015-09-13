@@ -9,7 +9,7 @@ angular.module('myApp.showSchools', [
 .controller('showSchoolsController', function ($scope, schoolService, schoolServiceCached) {
 
 
- $scope.getlogo = function(logo){
+ $scope.getLogo = function(logo){
  	if(logo== "")
  	{
  		return "asset/no-school-photo.png"
@@ -17,6 +17,28 @@ angular.module('myApp.showSchools', [
  	else{
  		return logo
  	}
+ }
+
+ $scope.getScore = function(reviews){
+ 	var schoolScore = 0;
+ 	if(reviews!=null && reviews!=undefined)
+ 	{
+ 		var reviewLength = reviews.length;
+	 	for(var i=0; i< reviewLength; i++)
+	 	{
+	 		schoolScore += reviews[i].generalScore
+	 	}
+		schoolScore = schoolScore/reviewLength;
+ 	}
+ 	return schoolScore;
+ }
+
+ $scope.getReviewsCount = function(reviews){
+ 	if(reviews==null && reviews==undefined)
+ 	{
+ 		return 0;
+ 	}
+ 	return reviews.length;
  }
 
   schoolServiceCached.all(function(schools){
