@@ -1,0 +1,83 @@
+
+	<div class="bgimage" style="margin-top:-20px">
+		<div class="container" style="padding-top:10%">
+				<div class="row">
+				 	<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+				 		<h1 style="color:#fff;" class="text-primary">找学校</h1>
+				 		<div class="text-center" >
+							{{selectedValue | getAdvancedSearch }} 
+						</div>
+				 		<div class="input-group">
+				 			<input type="text" style="width:100%;" ng-model="school" placeholder="输入学校名字" class="input-lg form-control ui-autocomplete-input" typeahead="school as school.name for school in schools | filter:$viewValue"
+				 			aria-autocomplete="list" aria-haspopup="true">
+				 			<a ui-sref="showSchool.Info({schoolId:school._id.$oid})" class="input-group-btn">
+				 				<button class="btn btn-primary btn-lg">查找</button>
+				 			</a>
+				 		</div>					 	
+						
+					</div>
+				</div>
+			
+				<div style="padding-bottom: 50px;padding-top: 50px" class="row text-center">
+				   <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+				    <button aria-controls="collapseExample" aria-expanded="false" data-target="#advancedOptions" data-toggle="collapse" class="btn btn-primary btn-lg collapsed" type="button">更多条件查找</button>
+				     <span>&nbsp</span>	
+				     <a ui-sref="showSchools" >
+				 		 <button class="btn btn-primary btn-lg">查看所有学校</button>
+				 	 </a>
+				   </div>
+			  	</div>
+			  	<!--
+			  	hiding part		  	 
+			  	-->
+			  	<div style="font-size: 16px; height: auto;" id="advancedOptions" class="collapse">
+				  	<div style="padding-bottom: 20px;" class="row well">
+					   <div class="col-sm-3">
+					    	<h4 class="text-primary">区域</h4>
+				    		<label ng-repeat="area in schoolAreas" class="checkbox-inline" >
+						      <input type="checkbox" checklist-model="selectedValue.areas" checklist-value="area" >{{area}}
+						    </label>
+				    	 
+					   </div>
+
+					    <div class="col-sm-3">
+					    	<h4 class="text-primary">学校类型</h4>
+					    	 <div class="checkbox" ng-repeat="categary in schoolCategary">
+						    	 <label >
+							      <input type="checkbox" checklist-model="selectedValue.categary" 
+							      checklist-value="categary">{{categary}}
+							    </label>
+					    	 </div>
+					    	
+					   </div>
+
+					    <div class="col-sm-3 ">
+					    	  <h4 style="margin-top:5px;" class="text-primary">办学性质</h4>
+					    	  <div class="checkbox" ng-repeat="property in schoolProperty">
+						    	 <label >
+							      <input type="checkbox" checklist-model="selectedValue.property" 
+							      checklist-value="property">{{property}}
+							    </label>
+					    	 </div>
+				
+					    </div>
+
+					    <div class="col-sm-3 ">
+					    	<h4 style="margin-top:5px;" class="text-primary">学校属性</h4>
+					    	 <div class="checkbox" ng-repeat="level in schoolLevel">
+						    	 <label >
+							      <input type="checkbox" checklist-model="selectedValue.level" 
+							      checklist-value="level">{{level}}
+							    </label>
+					    	 </div>
+					    </div>
+					  
+					  </div>
+					  </div>
+				</div>
+	</div>
+	
+	
+
+
+  
