@@ -6,7 +6,9 @@
 angular.module('myApp', [
   'ui.router',
   'ui.bootstrap',
+  'checklist-model',
   'resources.school',
+  'myApp.search',
   'myApp.showSchools',
   'myApp.showSchool',
   'myApp.directives'
@@ -23,8 +25,8 @@ angular.module('myApp', [
 
     .state('search', {
       url: "/search",
-      templateUrl: "showSchools/search.html",
-      controller: 'showSchoolsController'
+      templateUrl: "search/search.html",
+      controller: 'searchController'
     })
 
     .state('showSchool', {

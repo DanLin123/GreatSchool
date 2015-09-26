@@ -6,7 +6,7 @@
 angular.module('myApp.showSchools', [
   'resources.school','ngAnimate', 'ui.bootstrap'
 ])
-.controller('showSchoolsController', function ($scope, schoolService, schoolServiceCached) {
+.controller('showSchoolsController', function ($scope,  schoolServiceCached) {
 	$scope.currentPage = 1;
     $scope.pageSize = 10;
     $scope.maxSize= 10;

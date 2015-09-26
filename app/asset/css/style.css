@@ -71,6 +71,16 @@ min-height: 700px;
     float: none;
 }
 
+.checkbox-inline{
+  margin-left:10px;
+  font-size: smaller;
+}
+
+.checkbox{
+  margin-left:10px;
+  font-size: smaller;
+}
+
 .debug {
   background: #FFC6AA;
 }
