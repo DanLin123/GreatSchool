@@ -73,7 +73,15 @@ angular.module('myApp.showSchool.review', [
   $scope.addReview = function(){
       if( $scope.canSubmitReview())
       {
-            $scope.schoolInfo.reviews.unshift($scope.newReview);
+            if($scope.schoolInfo.reviews != null && $scope.schoolInfo.reviews != undefined)
+            {
+               $scope.schoolInfo.reviews.unshift($scope.newReview);
+            }
+            else
+            {
+              $scope.schoolInfo.reviews = [$scope.newReview]
+            }
+           
             $scope.schoolInfo.$update().then(
               function( value ){
                 $scope.reset();

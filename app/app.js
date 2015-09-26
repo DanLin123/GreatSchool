@@ -13,6 +13,7 @@ angular.module('myApp', [
 ])
 .config(function($stateProvider, $urlRouterProvider) {
   // Now set up the states
+
   $stateProvider
     .state('showSchools', {
       url: "/showSchools",
@@ -44,5 +45,7 @@ angular.module('myApp', [
     .state('showSchool.gallery', {
       url: "/gallery",
       templateUrl: "showSchool/gallery/gallery.html",
-    })
+    })   
+    
+    $urlRouterProvider.otherwise("/search") 
 })

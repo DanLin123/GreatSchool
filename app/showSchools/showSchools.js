@@ -53,8 +53,13 @@ angular.module('myApp.showSchools', [
 })
 .filter('startFrom', function() {
     return function(input, start) {
-    	debugger;
         start = +start; //parse to int
-        return input.slice(start);
+        if(input != null && input!=undefined){
+        	return input.slice(start);
+        }
+        else{
+        	return input;
+        }
+        
     }
 });
