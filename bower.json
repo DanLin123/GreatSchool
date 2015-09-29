@@ -11,11 +11,17 @@
     "angular-loader": "~1.4.0",
     "angular-mocks": "~1.4.0",
     "html5-boilerplate": "~5.2.0",
-
     "bootstrap": "3.1.1",
     "jquery": "latest",
     "lodash": "2.4.1",
     "underscore.string": "2.3.3",
-    "font-awesome": "4.0.3"
+    "font-awesome": "4.0.3",
+    "angular-ui-router": "~0.2.15",
+    "checklist-model": "~0.6.0",
+    "angular-animate": "~1.4.6",
+    "angular-touch": "~1.4.6"
+  },
+  "resolutions": {
+    "angular": "1.4.3"
   }
 }

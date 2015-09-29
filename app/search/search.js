@@ -6,10 +6,9 @@ angular.module('myApp.search', ['ngAnimate', 'ui.bootstrap'
  	$http.get('/api/schools/name')
         .success(function(data) {
             $scope.schoolNames = data;
-            console.log('schools name:' + $scope.schoolNames)
         })
         .error(function(data) {
-            console.log('Error: ' + data);
+            console.log('Error get schools names: ' + data);
         });
 
 

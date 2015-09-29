@@ -57,12 +57,16 @@ router.route('/schools/name')
             res.send(arr);
         });
     });
+
+router.route('/schools/:id')
+    .get(function(req, res){
+        School.findById(req.params.id, function (err, schoolDocument) {
+          res.send(schoolDocument);
+        });  
+    });
+
 app.use('/api', router);
-
-
 app.use(express.static(publicDir));
-
-
 
 
 // START THE SERVER

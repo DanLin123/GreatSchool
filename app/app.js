@@ -7,7 +7,6 @@ angular.module('myApp', [
   'ui.router',
   'ui.bootstrap',
   'checklist-model',
-  'resources.school',
   'myApp.search',
   'myApp.showSchools',
   'myApp.showSchool',

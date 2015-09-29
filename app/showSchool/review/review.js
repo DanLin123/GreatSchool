@@ -1,13 +1,12 @@
-angular.module('myApp.showSchool.review', [
-  'resources.school'
-])
-.controller('review', function($scope,schoolService,$stateParams,$location){
+angular.module('myApp.showSchool.review', [])
+.controller('review', function($scope,$stateParams,$location, $http){
 
   $scope.schoolId = $stateParams.schoolId;
 
-  schoolService.getById($scope.schoolId).then(function(schoolInfo){
-    $scope.schoolInfo = schoolInfo;
-  });
+  var schoolUri =  '/api/schools/' + $stateParams.schoolId;
+  $http.get(schoolUri).success(function(data) {
+       $scope.schoolInfo = data;
+  })
 
 
   $scope.getDatetime = function() {
