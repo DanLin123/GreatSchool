@@ -1,9 +1,18 @@
 'use strict';
 
-angular.module('myApp.search', [
-  'resources.school','ngAnimate', 'ui.bootstrap'
+angular.module('myApp.search', ['ngAnimate', 'ui.bootstrap'
 ])
-.controller('searchController', function ($scope, schoolServiceCached) {
+.controller('searchController', function ($scope, $http) {
+ 	$http.get('/api/schools/name')
+        .success(function(data) {
+            $scope.schoolNames = data;
+            console.log('schools name:' + $scope.schoolNames)
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+
+
  	 $scope.currentCity = "福州"  //to do : auto detect the city by the ip
  	 $scope.chinaAreas = {
 		    "福建省": {
@@ -24,12 +33,10 @@ angular.module('myApp.search', [
 		    }
  	 }
 
-	  schoolServiceCached.all(function(schools){
-	  	$scope.schools = schools;
-	  });
+	 
 	  $scope.schoolAreas = $scope.chinaAreas.福建省.福州市
 	  $scope.schoolCategary = ["高中", "初中", "幼儿园", "日托"]
-	  $scope.schoolProperty = ["公立","名办", "私立"]
+	  $scope.schoolProperty = ["公立","民办", "私立"]
 	  $scope.schoolLevel = ["示范", "重点", "普通"]
 
 	  $scope.selectedValue = {

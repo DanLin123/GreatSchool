@@ -3,13 +3,21 @@
 // Declare app level module which depends on views, and components
 
 
-angular.module('myApp.showSchools', [
-  'resources.school','ngAnimate', 'ui.bootstrap'
-])
-.controller('showSchoolsController', function ($scope,  schoolServiceCached) {
+angular.module('myApp.showSchools', ['ngAnimate', 'ui.bootstrap'])
+.controller('showSchoolsController', function ($scope, $http) {
 	$scope.currentPage = 1;
     $scope.pageSize = 10;
     $scope.maxSize= 10;
+
+    $http.get('/api/schools')
+        .success(function(data) {
+            $scope.schools = data;
+            console.log(data);
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+
 
     $scope.numberOfPages=function(){
         return Math.ceil($scope.data.length/$scope.pageSize);                
@@ -47,9 +55,6 @@ angular.module('myApp.showSchools', [
 	 	return reviews.length;
 	 }
 
-	  schoolServiceCached.all(function(schools){
-	  	$scope.schools = schools;
-	  });  
 })
 .filter('startFrom', function() {
     return function(input, start) {

@@ -4,11 +4,11 @@
 				<div class="row">
 				 	<div class="col-xs-12 col-sm-8 col-sm-offset-2">
 				 		<h1 style="color:#fff;" class="text-primary">找学校</h1>
-				 		<div class="text-center" >
+				 		<div class="text-center" style="color:#fff;" >
 							{{selectedValue | getAdvancedSearch }} 
 						</div>
 				 		<div class="input-group">
-				 			<input type="text" style="width:100%;" ng-model="school" placeholder="输入学校名字" class="input-lg form-control ui-autocomplete-input" typeahead="school as school.name for school in schools | filter:$viewValue"
+				 			<input type="text" style="width:100%;" ng-model="school" placeholder="输入学校名字" class="input-lg form-control ui-autocomplete-input" typeahead="name for name in schoolNames | filter:$viewValue"
 				 			aria-autocomplete="list" aria-haspopup="true">
 				 			<a ui-sref="showSchool.Info({schoolId:school._id.$oid})" class="input-group-btn">
 				 				<button class="btn btn-primary btn-lg">查找</button>
