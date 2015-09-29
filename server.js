@@ -7,7 +7,7 @@
 var express    = require('express');        // call express
 var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');
-var publicDir = require('path').join(__dirname, '/app');
+var publicDir = require('path').join(__dirname, '/publish');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -32,7 +32,7 @@ mongoose = require('mongoose');
 var uri = 'mongodb://admin:admin@ds053638.mongolab.com:53638/greatschool';
 db = mongoose.connect(uri);
 
-var School     = require('./app/models/school');
+var School     = require('./api/models/school');
 router.route('/schools')
     .get(function(req, res) {
         School.find(function(err, schools) {
