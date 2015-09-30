@@ -15,7 +15,7 @@
   <a class="pull-right" ui-sref="showSchool.review({schoolId:id})">See all {{reviewCount}} reviews</a>
   <br>
 
-   <div ng-repeat="item in schoolInfo.reviews.slice(0,3)" class="row comment">    
+   <div ng-repeat="item in reviews.slice(0,3)" class="row comment">    
       <show-one-review review="item"></show-one-review>
     </div>
 </div>

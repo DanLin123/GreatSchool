@@ -2,8 +2,11 @@ angular.module('myApp.showSchool', ['myApp.showSchool.review', 'myApp.showSchool
 ])
 .controller('schoolInfoController', function($scope,$stateParams,$state,
       $location, $http, schoolReviewService){
- 
-  $state.transitionTo('showSchool.Info', {schoolId:$stateParams.schoolId});
+  //default state set to showSchool.Info
+  if($state.current.name == "showSchool")
+  {
+      $state.transitionTo('showSchool.Info', {schoolId:$stateParams.schoolId});
+  }
 
   var schoolUri =  '/api/schools/' + $stateParams.schoolId;
   $http.get(schoolUri).success(function(data) {
@@ -27,6 +30,7 @@ angular.module('myApp.showSchool', ['myApp.showSchool.review', 'myApp.showSchool
               $scope.introduction = data.introduction;
               $scope.score = schoolReviewService.getScore(data);
               $scope.reviewCount = data.reviews ? data.reviews.length : 0;
+              $scope.reviews = data.reviews;
             
         })
         .error(function(data) {
