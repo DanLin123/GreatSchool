@@ -43,5 +43,13 @@ router.route('/schools/:id')
         });  
     });
 
+router.route('/schools/:id/:field')
+    .get(function(req, res){
+        var field = req.params.field;
+        var query = School.findById(req.params.id).select(req.params.field);
+        query.exec(function (err, docs) {
+           res.send(docs);
+        });
+    });
 
 module.exports = router;

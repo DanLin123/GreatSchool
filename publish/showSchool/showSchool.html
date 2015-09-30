@@ -2,20 +2,22 @@
 <div  class="jumbotron">
     <div class="row">
 	    <div class="col-md-3">
-	       <img ng-src="{{ schoolInfo.logo }}" class="img-thumbnail" alt="Cinque Terre" width="200" height="200"> 
+	       <img ng-src="{{ logo }}" class="img-thumbnail" alt="Cinque Terre" > 
 	    </div>
 	    
 	   <div class="col-md-9">
-	      <h2>{{ schoolInfo.name }}</h2>
-	      <br>
+	      <h2>{{ name }}</h2>
+
+	      <static-star score="score" max="5" style="margin-left:-25px"></static-star> 
+          <a ui-sref="showSchool.review()">See all {{reviewCount}} reviews</a>
 	      <div>
-		      区域: {{schoolInfo.area}}
+		      区域: {{area}}
 		      </br>
-		      地址: {{ schoolInfo.addr }}
+		      地址: {{ addr }}
 		      </br>
-		      电话: {{ schoolInfo.phone}}
+		      电话: {{ phone}}
 		      </br> 
-		      标签: {{ schoolInfo.tag }}
+		      标签: {{ tag }}
 	      </div>
 	    </div>
 	</div>

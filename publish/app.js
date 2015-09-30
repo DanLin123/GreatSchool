@@ -6,6 +6,7 @@
 angular.module('myApp', [
   'ui.router',
   'ui.bootstrap',
+  'myApp.schoolServices',
   'checklist-model',
   'myApp.search',
   'myApp.showSchools',
@@ -40,9 +41,11 @@ angular.module('myApp', [
     })
 
     .state('showSchool.review', {
-      url: "/:schoolId/review",
+      url: "/review",
       templateUrl: "showSchool/review/review.html",
     })
+   
+
     .state('showSchool.gallery', {
       url: "/gallery",
       templateUrl: "showSchool/gallery/gallery.html",

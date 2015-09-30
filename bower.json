@@ -6,31 +6,35 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "angular": "~1.4.0",
-    "angular-route": "~1.4.0",
-    "angular-loader": "~1.4.0",
-    "angular-mocks": "~1.4.0",
+    "angular": "~1.4.7",
+    "angular-route": "~1.4.7",
+    "angular-loader": "~1.4.7",
+    "angular-mocks": "~1.4.7",
     "html5-boilerplate": "~5.2.0",
-    "bootstrap": "3.1.1",
+    "bootstrap": "~3.3.5",
     "jquery": "latest",
-    "lodash": "2.4.1",
-    "underscore.string": "2.3.3",
-    "font-awesome": "4.0.3",
+    "lodash": "~3.10.1",
+    "underscore.string": "~3.2.2",
+    "font-awesome": "~4.4.0",
     "angular-ui-router": "~0.2.15",
     "checklist-model": "~0.6.0",
-    "angular-animate": "~1.4.6",
-    "angular-touch": "~1.4.6",
+    "angular-animate": "~1.4.7",
+    "angular-touch": "~1.4.7",
     "angular-bootstrap": "~0.13.4"
   },
   "resolutions": {
-    "angular": "1.4.3"
+    "angular": "1.4.3",
+    "bootstrap": "~3.3.5",
+    "lodash": "~3.10.1",
+    "underscore.string": "~3.2.2",
+    "font-awesome": "~4.4.0"
   },
   "main": "",
   "moduleType": [],
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components",
+    "publish/bower_components",
     "test",
     "tests"
   ]

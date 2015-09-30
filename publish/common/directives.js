@@ -132,8 +132,14 @@ rating.directive("staticStar",function() {
       return starClass;
     };
 
+    scope.$watch(attr.score,function(newValue,oldValue){
+                //check new value to be what you expect.
+        if (newValue){           
+            scope.updateStars();
+            console.log("the score change");
+         }
+    });
     scope.updateStars();
-  
   };
   return directive;
 });

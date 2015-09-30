@@ -3,8 +3,8 @@
 // Declare app level module which depends on views, and components
 
 
-angular.module('myApp.showSchools', ['ngAnimate', 'ui.bootstrap'])
-.controller('showSchoolsController', function ($scope, $http) {
+angular.module('myApp.showSchools', ['myApp.schoolServices'])
+.controller('showSchoolsController', function ($scope, $http, schoolReviewService) {
 	$scope.currentPage = 1;
     $scope.pageSize = 10;
     $scope.maxSize= 10;
@@ -12,16 +12,14 @@ angular.module('myApp.showSchools', ['ngAnimate', 'ui.bootstrap'])
     $http.get('/api/schools')
         .success(function(data) {
             $scope.schools = data;
-            console.log(data);
+            for(var i =0; i < $scope.schools.length; i++)
+            {
+            	$scope.schools[i].score = schoolReviewService.getScore($scope.schools[i]);
+            }
         })
         .error(function(data) {
             console.log('Error: ' + data);
         });
-
-
-    $scope.numberOfPages=function(){
-        return Math.ceil($scope.data.length/$scope.pageSize);                
-    }
 
 	 $scope.getLogo = function(logo){
 	 	if(logo== "")
@@ -33,26 +31,14 @@ angular.module('myApp.showSchools', ['ngAnimate', 'ui.bootstrap'])
 	 	}
 	 }
 
-	 $scope.getScore = function(reviews){
-	 	var schoolScore = 0;
-	 	if(reviews!=null && reviews!=undefined)
-	 	{
-	 		var reviewLength = reviews.length;
-		 	for(var i=0; i< reviewLength; i++)
-		 	{
-		 		schoolScore += reviews[i].generalScore
-		 	}
-			schoolScore = schoolScore/reviewLength;
-	 	}
-	 	return schoolScore;
-	 }
+	
 
 	 $scope.getReviewsCount = function(reviews){
-	 	if(reviews==null && reviews==undefined)
+	 	if(reviews)
 	 	{
-	 		return 0;
+	 		return reviews.length;
 	 	}
-	 	return reviews.length;
+	 	return 0;
 	 }
 
 })

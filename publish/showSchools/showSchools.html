@@ -12,9 +12,9 @@
 
     		<div class="col-md-8">
     			<a ui-sref="showSchool({schoolId:school._id})"><h4>{{school.name}}</h4></a>
-    			<p> {{school.address}}</p>
-                <static-star score="getScore(school.reviews)" max="5" style="margin-left:-25px"></static-star> 
-                <a ui-sref="showSchool.review({schoolId:school._id.$oid})">See all {{getReviewsCount(school.reviews)}} reviews</a>
+                <static-star score="school.score" max="5" style="margin-left:-25px"></static-star> 
+                <a ui-sref="showSchool.review({schoolId:school._id})">See all {{getReviewsCount(school.reviews)}} reviews</a>
+                <p> {{school.address}}</p>
 
     		</div>
     	
