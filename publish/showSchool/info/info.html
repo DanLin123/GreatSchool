@@ -1,7 +1,7 @@
 
 <div>
     	<h2>学校介绍</h2>     
-    	<p>{{schoolInfo.introduction}}</p>			
+    	<p>{{introduction}}</p>			
 </div>	
     
     
@@ -12,7 +12,7 @@
 <div id="reviews">	
    <hr>
   <h2>评价</h2>
-  <a class="pull-right" ui-sref="showSchool.review">See all 15 reviews</a>
+  <a class="pull-right" ui-sref="showSchool.review({schoolId:id})">See all {{reviewCount}} reviews</a>
   <br>
 
    <div ng-repeat="item in schoolInfo.reviews.slice(0,3)" class="row comment">    

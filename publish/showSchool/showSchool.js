@@ -1,7 +1,10 @@
 angular.module('myApp.showSchool', ['myApp.showSchool.review', 'myApp.showSchool.gallery', 'myApp.schoolServices'
 ])
-.controller('schoolInfoController', function($scope,$stateParams,$location, $http, schoolReviewService){
+.controller('schoolInfoController', function($scope,$stateParams,$state,
+      $location, $http, schoolReviewService){
  
+  $state.transitionTo('showSchool.Info', {schoolId:$stateParams.schoolId});
+
   var schoolUri =  '/api/schools/' + $stateParams.schoolId;
   $http.get(schoolUri).success(function(data) {
               $scope.name = data.name;
