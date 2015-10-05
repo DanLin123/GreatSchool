@@ -8,13 +8,14 @@
   "devDependencies": {
     "angular-mocks": "^1.4.6",
     "body-parser": "^1.14.0",
-    "bower": "*",
     "express": "^4.13.3",
     "jasmine-core": "^2.3.4",
+    "karma-chrome-launcher": "^0.2.0",
     "karma-jasmine": "^0.3.6",
     "mongoose": "^4.1.8",
     "protractor": "^2.1.0",
-    "shelljs": "^0.2.6"
+    "shelljs": "^0.2.6",
+     "karma": "^0.13.10"
   },
   "scripts": {
     "postinstall": "bower install",
@@ -28,8 +29,5 @@
     "preprotractor": "npm run update-webdriver",
     "protractor": "protractor e2e-tests/protractor.conf.js",
     "update-index-async": "node -e \"require('shelljs/global'); sed('-i', /\\/\\/@@NG_LOADER_START@@[\\s\\S]*\\/\\/@@NG_LOADER_END@@/, '//@@NG_LOADER_START@@\\n' + sed(/sourceMappingURL=angular-loader.min.js.map/,'sourceMappingURL=bower_components/angular-loader/angular-loader.min.js.map','app/bower_components/angular-loader/angular-loader.min.js') + '\\n//@@NG_LOADER_END@@', 'app/index-async.html');\""
-  },
-  "dependencies": {
-    "karma": "^0.13.10"
   }
 }
