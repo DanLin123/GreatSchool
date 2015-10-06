@@ -3,7 +3,7 @@ var router = express.Router();              // get an instance of the express Ro
 // middleware to use for all requests
 router.use(function(req, res, next) {
     // do logging
-    console.log('Something is happening.');
+    console.log('###### Request for ' + req.path);
     next(); // make sure we go to the next routes and don't stop here
 });
 mongoose = require('mongoose');
@@ -11,13 +11,20 @@ var uri = 'mongodb://admin:admin@ds053638.mongolab.com:53638/greatschool';
 db = mongoose.connect(uri);
 
 var School     = require('../models/school');
+
 router.route('/schools')
     .get(function(req, res) {
-        School.find(function(err, schools) {
-            if (err)
-                res.send(err);
-
-            res.json(schools);
+        var queryParam ={};
+        if(req.query.name ) { queryParam.name = req.query.name;    }
+        if(req.query.province ) { queryParam.province = req.query.province;    }
+        if(req.query.city ) { queryParam.city = req.query.city;    }
+        if(req.query.area ) { queryParam.area = req.query.area;    }
+        if(req.query.schoolType ) { queryParam.schoolType = req.query.schoolType;    }
+        if(req.query.level ) { queryParam.level = req.query.level;    }
+        if(req.query.category ) { queryParam.catagery = req.query.category;    }  //todo , change catagery to category in mongodb
+        var query = School.find(queryParam);
+        query.exec(function (err, docs) {
+            res.send(docs);
         });
     });
 
@@ -36,6 +43,7 @@ router.route('/schools/name')
         });
     });
 
+
 router.route('/schools/:id')
     .get(function(req, res){
         School.findById(req.params.id, function (err, schoolDocument) {
@@ -51,5 +59,6 @@ router.route('/schools/:id/:field')
            res.send(docs);
         });
     });
+
 
 module.exports = router;
