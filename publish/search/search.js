@@ -16,6 +16,7 @@ angular.module('myApp.search', ['ngAnimate', 'ui.bootstrap'
  	 $scope.chinaAreas = {
 		    "福建省": {
 		    	"福州市": [
+		    		"全部",
 			        "鼓楼区",
 			        "台江区",
 			        "仓山区",
@@ -35,9 +36,9 @@ angular.module('myApp.search', ['ngAnimate', 'ui.bootstrap'
  	  $scope.province = "福建省"
  	  $scope.city = "福州市"
 	  $scope.schoolAreas = $scope.chinaAreas.福建省.福州市
-	  $scope.schoolTypes = ["高中", "初中", "幼儿园", "日托"]
-	  $scope.schoolCategories = ["公办","民办", "私立"]
-	  $scope.schoolLevel = ["示范", "重点", "普通"]
+	  $scope.schoolTypes = ["全部","高中", "初中", "幼儿园", "日托"]
+	  $scope.schoolCategories = ["全部","公办","民办", "私立"]
+	  $scope.schoolLevel = ["全部","示范", "重点", "普通"]
 
 	  $scope.selectedValue = {
 	    areas: [], 
