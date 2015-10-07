@@ -13,6 +13,8 @@ db = mongoose.connect(uri);
 
 var School     = require('../models/school');
 
+
+
 //if query param is "" or 全部 ，do not filter db on the field
 router.route('/schools')
     .get(function(req, res) {
@@ -30,8 +32,6 @@ router.route('/schools')
         });
     });
 
-
-
 function notInclude(arr,obj) {
     return (arr.indexOf(obj) == -1);
 }
@@ -47,7 +47,6 @@ router.route('/schools/:queryField')
                 var value = result[i][field]
                 if(value && notInclude(arr, value))
                 {
-                    console.log(value);
                     arr.push( value );
                 }
             }

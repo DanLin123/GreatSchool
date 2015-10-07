@@ -75,6 +75,14 @@ min-height: 700px;
   height: 200px;
 }
 
+.form-control{
+  height: 46px; 
+}
+
+label[for=sel1]{
+  color: #337ab7;
+}
+
 .checkbox-inline{
   margin-left:10px;
   font-size: smaller;

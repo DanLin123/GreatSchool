@@ -31,25 +31,6 @@ angular.module('myApp.search', ['ngAnimate', 'ui.bootstrap'
         .error(function(data) {
             console.log('Error get schoolType: ' + data);
       });
-
-       $http.get('/api/schools/catagery')
-        .success(function(data) {
-             data.unshift("全部")
-             $scope.schoolCategories = data;
-        })
-        .error(function(data) {
-            console.log('Error get category: ' + data);
-      });
-
-      $http.get('/api/schools/level')
-        .success(function(data) {
-             data.unshift("全部")
-             $scope.schoolLevel = data;
-        })
-        .error(function(data) {
-            console.log('Error get level: ' + data);
-      });
-
  	  $scope.province = "福建省"
  	  $scope.city = "福州市"
 	   
@@ -69,3 +50,4 @@ angular.module('myApp.search', ['ngAnimate', 'ui.bootstrap'
     return output; 
    }
 });
+
