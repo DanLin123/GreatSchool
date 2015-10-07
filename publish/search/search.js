@@ -3,6 +3,10 @@
 angular.module('myApp.search', ['ngAnimate', 'ui.bootstrap'
 ])
 .controller('searchController', function ($scope, $http) {
+	$scope.selectedSchoolType="全部"
+	$scope.selectedArea = "全部"
+	$scope.selectedCategory ="全部"
+	$scope.selectedLevel = "全部"
  	$http.get('/api/schools/name')
         .success(function(data) {
             $scope.schoolNames = data;
@@ -10,56 +14,45 @@ angular.module('myApp.search', ['ngAnimate', 'ui.bootstrap'
         .error(function(data) {
             console.log('Error get schools names: ' + data);
         });
+      $http.get('/api/schools/area')
+        .success(function(data) {
+             data.unshift("全部")
+             $scope.schoolAreas = data;
+        })
+        .error(function(data) {
+            console.log('Error get areas: ' + data);
+      });
 
+       $http.get('/api/schools/schoolType')
+        .success(function(data) {
+             data.unshift("全部")
+             $scope.schoolTypes = data;
+        })
+        .error(function(data) {
+            console.log('Error get schoolType: ' + data);
+      });
 
- 	 $scope.currentCity = "福州"  //to do : auto detect the city by the ip
- 	 $scope.chinaAreas = {
-		    "福建省": {
-		    	"福州市": [
-		    		"全部",
-			        "鼓楼区",
-			        "台江区",
-			        "仓山区",
-			        "马尾区",
-			        "晋安区",
-			        "福清市",
-			        "长乐市",
-			        "闽侯县",
-			        "连江县",
-			        "罗源县",
-			        "闽清县",
-			        "永泰县",
-			        "平潭县"]
-		    }
- 	 }
+       $http.get('/api/schools/catagery')
+        .success(function(data) {
+             data.unshift("全部")
+             $scope.schoolCategories = data;
+        })
+        .error(function(data) {
+            console.log('Error get category: ' + data);
+      });
+
+      $http.get('/api/schools/level')
+        .success(function(data) {
+             data.unshift("全部")
+             $scope.schoolLevel = data;
+        })
+        .error(function(data) {
+            console.log('Error get level: ' + data);
+      });
 
  	  $scope.province = "福建省"
  	  $scope.city = "福州市"
-	  $scope.schoolAreas = $scope.chinaAreas.福建省.福州市
-	  $scope.schoolTypes = ["全部","高中", "初中", "幼儿园", "日托"]
-	  $scope.schoolCategories = ["全部","公办","民办", "私立"]
-	  $scope.schoolLevel = ["全部","示范", "重点", "普通"]
-
-	  $scope.selectedValue = {
-	    areas: [], 
-	    schoolType:[],
-	    categary: [], 
-	    level:[]
-	  }
-
-	  $scope.showSearchTags = function(selected){
-	  	var searchText = "更多查找条件: ";
-	  	var areas = selected.areas;
-
-	  	for (var i = areas.length - 1; i >= 0; i--) {
-	  		searchText += areas[i];
-	  		searchText += " "; 
-	  	};
-	  	return searchText;
-	  }
-
-	  $scope.searchTagsText = $scope.showSearchTags($scope.selectedValue);
-	  
+	   
 })
 .filter("getAdvancedSearch", function(){
    return function(input){

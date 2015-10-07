@@ -11,8 +11,7 @@
 				     	<input type="text" style="width:100%;" ng-model="schoolName" placeholder="输入学校名字" class="input-lg form-control ui-autocomplete-input" typeahead="name for name in schoolNames | filter:$viewValue"
 			 			aria-autocomplete="list" aria-haspopup="true">
 				    </div>
-				    <div class="pull-right">	<a ui-sref="showSchools({name:schoolName, province:province, city:city, area:selectedValue.areas
-				 		, schoolType:selectedValue.schoolType,  category: selectedValue.category, level:selectedValue.level  })"> <button class="btn btn-info btn-lg">查找</button></a></div>
+				    <div class="pull-right">	<a ui-sref="showSchools({name:schoolName})"> <button class="btn btn-info btn-lg">查找</button></a></div>
 				</form>
 			</div>
 		</div>
@@ -26,33 +25,33 @@
 				<form role="form">
 				    <div class="form-group col-sm-3">
 				      <label for="sel1">地区</label>
-				      <select class="form-control" id="sel1">
+				      <select class="form-control" ng-model="selectedArea">
 				        <option  ng-repeat="area in schoolAreas">{{area}}</option>
 				      </select>
 				    </div>
 
 				    <div class="form-group col-sm-3">
 				      <label for="sel1">学校类型</label>
-				      <select class="form-control" id="sel1">
+				      <select class="form-control" ng-model="selectedSchoolType">
 				        <option  ng-repeat="schoolType in schoolTypes">{{schoolType}}</option>
 				      </select>
 				    </div>
-
 				     <div class="form-group col-sm-3">
 				      <label for="sel1">办学性质</label>
-				      <select class="form-control" id="sel1">
+				      <select class="form-control" ng-model="selectedCategory">
 				        <option ng-repeat="category in schoolCategories">{{category}}</option>
 				      </select>
 				    </div>
 
 				     <div class="form-group col-sm-3">
 				      <label for="sel1">学校属性</label>
-				      <select class="form-control" id="sel1">
+				      <select class="form-control" ng-model="selectedLevel">
 				        <option ng-repeat="level in schoolLevel">{{level}}</option>
 				      </select>
 				    </div>
 
-				    <div class="pull-right">  <button class="btn btn-info btn-lg">查找</button></div>
+				    <div class="pull-right"><a ui-sref="showSchools({ province:province, city:city, area:selectedArea, schoolType:selectedSchoolType,  category: selectedCategory, level:selectedLevel})"> <button class="btn btn-info btn-lg">查找</button></a> </div>
+
 				</form>
 			</div>
 		</div>
@@ -61,5 +60,3 @@
 </div>
 
 
-
-  

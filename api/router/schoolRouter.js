@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();              // get an instance of the express Router
+
 // middleware to use for all requests
 router.use(function(req, res, next) {
     // do logging
@@ -12,31 +13,43 @@ db = mongoose.connect(uri);
 
 var School     = require('../models/school');
 
+//if query param is "" or 全部 ，do not filter db on the field
 router.route('/schools')
     .get(function(req, res) {
         var queryParam ={};
-        if(req.query.name ) { queryParam.name = req.query.name;    }
-        if(req.query.province ) { queryParam.province = req.query.province;    }
-        if(req.query.city ) { queryParam.city = req.query.city;    }
-        if(req.query.area ) { queryParam.area = req.query.area;    }
-        if(req.query.schoolType ) { queryParam.schoolType = req.query.schoolType;    }
-        if(req.query.category ) { queryParam.catagery = req.query.category;    } //todo , change catagery to category in mongodb
-        if(req.query.level ) { queryParam.level = req.query.level;    }
+        if(req.query.name && req.query.name!="全部") { queryParam.name = req.query.name;    }
+        if(req.query.province && req.query.province!="全部") { queryParam.province = req.query.province;    }
+        if(req.query.city && req.query.city!="全部") { queryParam.city = req.query.city;    }
+        if(req.query.area && req.query.area != "全部" ) { queryParam.area = req.query.area;    }
+        if(req.query.schoolType && req.query.schoolType != "全部" ) { queryParam.schoolType = req.query.schoolType;    }
+        if(req.query.category && req.query.category != "全部"  ) { queryParam.catagery = req.query.category;    } //todo , change catagery to category in mongodb
+        if(req.query.level && req.query.level != "全部" ) { queryParam.level = req.query.level;    }
         var query = School.find(queryParam);
         query.exec(function (err, docs) {
             res.send(docs);
         });
     });
 
-router.route('/schools/name')
+
+
+function notInclude(arr,obj) {
+    return (arr.indexOf(obj) == -1);
+}
+router.route('/schools/:queryField')
     .get(function(req, res) {
-        var query = School.find({}).select('name -_id');
-        query.exec(function (err, schoolNames) {
+        var field = req.params.queryField
+        var query = School.find({}).select(field);
+        query.exec(function (err, result) {
             if (err) return next(err);
              var arr =[]
-            for (var i =0; i < schoolNames.length; i++)
+            for (var i =0; i < result.length; i++)
             {
-                arr.push( schoolNames[i].name );
+                var value = result[i][field]
+                if(value && notInclude(arr, value))
+                {
+                    console.log(value);
+                    arr.push( value );
+                }
             }
         
             res.send(arr);
