@@ -4,12 +4,28 @@
 
 
 angular.module('myApp.showSchools', ['myApp.schoolServices'])
-.controller('showSchoolsController', function ($scope, $http, schoolReviewService) {
+.controller('showSchoolsController', function ($scope, $http, schoolReviewService,  $stateParams) {
+    $scope.name = $stateParams.name;
+    $scope.province = $stateParams.province;
+    $scope.city = $stateParams.city
+    $scope.area = $stateParams.area
+    $scope.schoolType = $stateParams.schoolType
+    $scope.category = $stateParams.category
+    $scope.level = $stateParams.level
+    console.log("**** params name" + $scope.name);
+    console.log("**** params province" + $scope.province)
+    console.log("**** params city" + $scope.city)
+    console.log("**** params area" + $scope.area)
+    console.log("**** params schoolType" + $scope.schoolType)
+    console.log("**** params category" + $scope.category)
+    console.log("**** params level" + $scope.level)
+
 	$scope.currentPage = 1;
     $scope.pageSize = 10;
     $scope.maxSize= 10;
 
-    $http.get('/api/schools')
+    $http.get('/api/schools',{params:{name:$scope.name, province: $scope.province, city:$scope.city, 
+                        area:$scope.area, schoolType:$scope.schoolType, category:$scope.category, level: $scope.level}})
         .success(function(data) {
             $scope.schools = data;
             for(var i =0; i < $scope.schools.length; i++)
@@ -31,7 +47,6 @@ angular.module('myApp.showSchools', ['myApp.schoolServices'])
 	 	}
 	 }
 
-	
 
 	 $scope.getReviewsCount = function(reviews){
 	 	if(reviews)
@@ -44,7 +59,7 @@ angular.module('myApp.showSchools', ['myApp.schoolServices'])
 })
 .filter('startFrom', function() {
     return function(input, start) {
-        start = +start; //parse to int
+        start = +start; 
         if(input != null && input!=undefined){
         	return input.slice(start);
         }

@@ -3,8 +3,10 @@
     <div style="margin-left:15px" >
         找到{{schools.length}}所学校
     </div>
-    
-    <div ng-repeat="school in schools | startFrom:currentPage*pageSize | limitTo:pageSize" class="row">
+
+
+    <div ng-repeat="school in schools | startFrom:(currentPage-1)*pageSize | limitTo:pageSize" class="row">
+
     	<div class="col-xs-8 col-sm-8 col-md-8 searchResult">
             <div class="col-md-3">
     			<img ng-src="{{ getLogo(school.logo) }}" class="img-thumbnail" alt="Cinque Terre" width="250" height="250"> 

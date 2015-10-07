@@ -8,9 +8,11 @@
 							{{selectedValue | getAdvancedSearch }} 
 						</div>
 				 		<div class="input-group">
-				 			<input type="text" style="width:100%;" ng-model="school" placeholder="输入学校名字" class="input-lg form-control ui-autocomplete-input" typeahead="name for name in schoolNames | filter:$viewValue"
+				 			<input type="text" style="width:100%;" ng-model="schoolName" placeholder="输入学校名字" class="input-lg form-control ui-autocomplete-input" typeahead="name for name in schoolNames | filter:$viewValue"
 				 			aria-autocomplete="list" aria-haspopup="true">
-				 			<a ui-sref="showSchool.Info({schoolId:school._id.$oid})" class="input-group-btn">
+				 			<a ui-sref="showSchools({name:schoolName, province:province, city:city, area:selectedValue.areas
+				 		, schoolType:selectedValue.schoolType,  category: selectedValue.category, level:selectedValue.level  })" 
+				 				class="input-group-btn">
 				 				<button class="btn btn-primary btn-lg">查找</button>
 				 			</a>
 				 		</div>					 	
@@ -42,10 +44,10 @@
 
 					    <div class="col-sm-3">
 					    	<h4 class="text-primary">学校类型</h4>
-					    	 <div class="checkbox" ng-repeat="categary in schoolCategary">
+					    	 <div class="checkbox" ng-repeat="schoolType in schoolTypes">
 						    	 <label >
-							      <input type="checkbox" checklist-model="selectedValue.categary" 
-							      checklist-value="categary">{{categary}}
+							      <input type="checkbox" checklist-model="selectedValue.schoolType" 
+							      checklist-value="schoolType">{{schoolType}}
 							    </label>
 					    	 </div>
 					    	
@@ -53,10 +55,10 @@
 
 					    <div class="col-sm-3 ">
 					    	  <h4 style="margin-top:5px;" class="text-primary">办学性质</h4>
-					    	  <div class="checkbox" ng-repeat="property in schoolProperty">
+					    	  <div class="checkbox" ng-repeat="category in schoolCategories">
 						    	 <label >
-							      <input type="checkbox" checklist-model="selectedValue.property" 
-							      checklist-value="property">{{property}}
+							      <input type="checkbox" checklist-model="selectedValue.category" 
+							      checklist-value="category">{{category}}
 							    </label>
 					    	 </div>
 				

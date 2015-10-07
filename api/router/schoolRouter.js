@@ -20,8 +20,8 @@ router.route('/schools')
         if(req.query.city ) { queryParam.city = req.query.city;    }
         if(req.query.area ) { queryParam.area = req.query.area;    }
         if(req.query.schoolType ) { queryParam.schoolType = req.query.schoolType;    }
+        if(req.query.category ) { queryParam.catagery = req.query.category;    } //todo , change catagery to category in mongodb
         if(req.query.level ) { queryParam.level = req.query.level;    }
-        if(req.query.category ) { queryParam.catagery = req.query.category;    }  //todo , change catagery to category in mongodb
         var query = School.find(queryParam);
         query.exec(function (err, docs) {
             res.send(docs);
