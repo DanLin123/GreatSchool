@@ -11,14 +11,15 @@ angular.module('myApp', [
   'myApp.search',
   'myApp.showSchools',
   'myApp.showSchool',
-  'myApp.directives'
+  'myApp.directives',
+  'rt.encodeuri'
 ])
 .config(function($stateProvider, $urlRouterProvider) {
   // Now set up the states
 
   $stateProvider
     .state('showSchools', {
-      url: "/showSchools?name?province?city?area?schoolType?category?level",
+      url: "/showSchools?name?province?city?area?schoolType",
       templateUrl: "showSchools/showSchools.html",
       controller: 'showSchoolsController'
     })

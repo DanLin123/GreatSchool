@@ -83,16 +83,19 @@ label[for=sel1]{
   color: #337ab7;
 }
 
-.checkbox-inline{
-  margin-left:10px;
-  font-size: smaller;
+.center-content-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items:center;
 }
 
-.checkbox{
-  margin-left:10px;
-  font-size: smaller;
+.center-content-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
 }
-
 
 .debug {
   background: #FFC6AA;

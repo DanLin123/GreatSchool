@@ -22,12 +22,11 @@ angular.module('myApp.showSchool', ['myApp.showSchool.review', 'myApp.showSchool
               $scope.area = (data.area) ? data.area :"";
         
               $scope.logo = (data.logo!= "")? data.logo : "asset/no-school-photo.png" ; 
-              $scope.phone = data.phone.join(" ")
+              $scope.phone = (data.phone) ? data.phone.join(" ") :"";
               $scope.introduction = data.introduction ? data.introduction : "" ;
               $scope.score = schoolReviewService.getScore(data);
               $scope.reviewCount = data.reviews ? data.reviews.length : 0;
               $scope.reviews = data.reviews ? data.reviews :  (new Array());
-            
         })
         .error(function(data) {
             console.log('Error: ' + data);

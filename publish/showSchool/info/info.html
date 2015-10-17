@@ -1,7 +1,21 @@
 
 <div>
-    	<h2>学校介绍</h2>     
-    	<p>{{introduction}}</p>			
+    	<h2>学校介绍</h2>
+      <div class="row">
+          <div ng-show="introduction">
+              {{introduction}}
+          </div> 
+
+          <div ng-hide="introduction" class="center-content-row">
+              <div class="hidden-xs" >
+                <img src="asset/edit.png" style="height:150px" class="img-responsive" alt="Responsive image">
+              </div>
+              <div class="center-content-column" style="margin-left:20px">
+                  <p>暂时没有资料哦！亲来分享一个吧！</p>
+                  <button type="button" class="btn btn-info">我要添加</button>
+              </div>
+          </div>
+      </div>           
 </div>	
     
     

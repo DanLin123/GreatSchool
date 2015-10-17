@@ -7,14 +7,14 @@ angular.module('myApp.search', ['ngAnimate', 'ui.bootstrap'
 	$scope.selectedArea = "全部"
 	$scope.selectedCategory ="全部"
 	$scope.selectedLevel = "全部"
- 	$http.get('/api/schools/name')
+ 	$http.get('/api/schoolFiled/name')
         .success(function(data) {
             $scope.schoolNames = data;
         })
         .error(function(data) {
             console.log('Error get schools names: ' + data);
         });
-      $http.get('/api/schools/area')
+      $http.get('/api/schoolFiled/area')
         .success(function(data) {
              data.unshift("全部")
              $scope.schoolAreas = data;
@@ -23,7 +23,7 @@ angular.module('myApp.search', ['ngAnimate', 'ui.bootstrap'
             console.log('Error get areas: ' + data);
       });
 
-       $http.get('/api/schools/schoolType')
+       $http.get('/api/schoolFiled/schoolType')
         .success(function(data) {
              data.unshift("全部")
              $scope.schoolTypes = data;
@@ -34,6 +34,10 @@ angular.module('myApp.search', ['ngAnimate', 'ui.bootstrap'
  	  $scope.province = "福建省"
  	  $scope.city = "福州市"
 	   
+    $scope.beautyEncode = function(string){
+      string = string.replace();
+      return string;
+    };
 })
 .filter("getAdvancedSearch", function(){
    return function(input){
@@ -49,5 +53,6 @@ angular.module('myApp.search', ['ngAnimate', 'ui.bootstrap'
    
     return output; 
    }
-});
+})
+
 

@@ -4,11 +4,11 @@ var router = express.Router();              // get an instance of the express Ro
 // middleware to use for all requests
 router.use(function(req, res, next) {
     // do logging
-    console.log('###### Request for ' + req.path);
+    console.log('**** Request for ' + req.path);
     next(); // make sure we go to the next routes and don't stop here
 });
 mongoose = require('mongoose');
-var uri = 'mongodb://admin:admin@ds053638.mongolab.com:53638/greatschool';
+var uri = 'mongodb://127.0.01:27017/greatschool';
 db = mongoose.connect(uri);
 
 var School     = require('../models/school');
@@ -35,8 +35,9 @@ router.route('/schools')
 function notInclude(arr,obj) {
     return (arr.indexOf(obj) == -1);
 }
-router.route('/schools/:queryField')
+router.route('/schoolFiled/:queryField')
     .get(function(req, res) {
+        console.log("inside router /schools:queryField");
         var field = req.params.queryField
         var query = School.find({}).select(field);
         query.exec(function (err, result) {
@@ -55,10 +56,13 @@ router.route('/schools/:queryField')
         });
     });
 
-
 router.route('/schools/:id')
     .get(function(req, res){
+         console.log("****");
+          console.log(req.params.id);
         School.findById(req.params.id, function (err, schoolDocument) {
+         
+
           res.send(schoolDocument);
         });  
     });
@@ -66,11 +70,10 @@ router.route('/schools/:id')
 router.route('/schools/:id/:field')
     .get(function(req, res){
         var field = req.params.field;
-        var query = School.findById(req.params.id).select(req.params.field);
+        var query = School.findById(req.params._id).select(req.params.field);
         query.exec(function (err, docs) {
            res.send(docs);
         });
     });
-
 
 module.exports = router;

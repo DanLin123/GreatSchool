@@ -11,12 +11,6 @@ angular.module('myApp.showSchools', ['myApp.schoolServices'])
     $scope.area = $stateParams.area
     $scope.schoolType = $stateParams.schoolType
 
-    console.log("**** params name" + $scope.name);
-    console.log("**** params province" + $scope.province)
-    console.log("**** params city" + $scope.city)
-    console.log("**** params area" + $scope.area)
-    console.log("**** params schoolType" + $scope.schoolType)
-  
 
 	$scope.currentPage = 1;
     $scope.pageSize = 10;

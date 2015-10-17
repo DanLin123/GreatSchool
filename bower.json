@@ -20,7 +20,8 @@
     "checklist-model": "~0.6.0",
     "angular-animate": "~1.4.7",
     "angular-touch": "~1.4.7",
-    "angular-bootstrap": "~0.13.4"
+    "angular-bootstrap": "~0.13.4",
+    "angular-encode-uri": "~1.0.0"
   },
   "resolutions": {
     "angular": "1.4.3",
