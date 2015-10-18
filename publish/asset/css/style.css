@@ -60,15 +60,8 @@ min-height: 700px;
   margin-top: 15px;
 }
 
-
 .emptyComment{
   color: red;
-}
-
-.vcenter {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
 }
 
 .search-panel{

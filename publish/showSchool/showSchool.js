@@ -26,7 +26,7 @@ angular.module('myApp.showSchool', ['myApp.showSchool.review', 'myApp.showSchool
               $scope.introduction = data.introduction ? data.introduction : "" ;
               $scope.score = schoolReviewService.getScore(data);
               $scope.reviewCount = data.reviews ? data.reviews.length : 0;
-              $scope.reviews = data.reviews ? data.reviews :  (new Array());
+              $scope.reviews = data.reviews ? data.reviews : null;
         })
         .error(function(data) {
             console.log('Error: ' + data);
