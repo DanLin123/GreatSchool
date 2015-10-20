@@ -9,11 +9,11 @@ router.use(function(req, res, next) {
 });
 mongoose = require('mongoose');
 var uri = 'mongodb://127.0.01:27017/greatschool';
+
+var testUri = 'mongodb://127.0.01:12345/greatschool';  // this is test db
 db = mongoose.connect(uri);
 
 var School     = require('../models/school');
-
-
 
 //if query param is "" or 全部 ，do not filter db on the field
 router.route('/schools')
@@ -30,12 +30,27 @@ router.route('/schools')
         query.exec(function (err, docs) {
             res.send(docs);
         });
+    })
+    //create a school 
+    .post(function(req,res){
+        var school = new School;
+        setSchool(school, req.body);
+
+  
+
+        school.save(function(err){
+            if(err)
+                res.send(err);
+            else
+                res.json({message: 'school created!'});
+        });
     });
+
 
 function notInclude(arr,obj) {
     return (arr.indexOf(obj) == -1);
 }
-router.route('/schoolFiled/:queryField')
+router.route('/schoolField/:queryField')
     .get(function(req, res) {
         console.log("inside router /schools:queryField");
         var field = req.params.queryField
@@ -57,15 +72,40 @@ router.route('/schoolFiled/:queryField')
     });
 
 router.route('/schools/:id')
+    // get school info with the id
     .get(function(req, res){
-         console.log("****");
-          console.log(req.params.id);
-        School.findById(req.params.id, function (err, schoolDocument) {
-         
-
-          res.send(schoolDocument);
+        School.findById(req.params.id, function (err, school) {
+          res.send(school);
         });  
+    })
+    //update the school info with the id
+    .put(function (req, res) {
+        School.findById(req.params.id, function (err, school) {
+            if(err)
+                res.send(err);
+            setSchool(school, req.body);
+            // save back 
+            school.save(function(err) {
+                if (err)
+                    res.send(err);
+
+                res.json({ message: 'school updated!' });
+            });
+
+        });  
+    })
+     // delete school with this id
+    .delete(function(req, res) {
+        School.remove({
+            _id: req.params.id
+        }, function(err, bear) {
+            if (err)
+                res.send(err);
+
+            res.json({ message: 'Successfully deleted' });
+        });
     });
+
 
 router.route('/schools/:id/:field')
     .get(function(req, res){
@@ -75,5 +115,19 @@ router.route('/schools/:id/:field')
            res.send(docs);
         });
     });
+
+
+var setSchool = function(school, body){
+        school.name =  body.name;
+        school.province = body.province;
+        school.city = body.city;
+        school.schoolType = body.schoolType;
+        school.area = body.area;
+        school.level = body.level;
+        school.address = body.address;
+        school.logo = body.logo;
+        School.catagery = body.catagery
+}
+
 
 module.exports = router;
