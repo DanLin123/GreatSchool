@@ -11,7 +11,7 @@ mongoose = require('mongoose');
 var uri = 'mongodb://127.0.01:27017/greatschool';
 
 var testUri = 'mongodb://127.0.01:12345/greatschool';  // this is test db
-db = mongoose.connect(uri);
+db = mongoose.connect(testUri);
 
 var School     = require('../models/school');
 
@@ -35,9 +35,8 @@ router.route('/schools')
     .post(function(req,res){
         var school = new School;
         setSchool(school, req.body);
-
-  
-
+        console.log("******");
+        console.log(school);
         school.save(function(err){
             if(err)
                 res.send(err);
@@ -88,10 +87,8 @@ router.route('/schools/:id')
             school.save(function(err) {
                 if (err)
                     res.send(err);
-
                 res.json({ message: 'school updated!' });
             });
-
         });  
     })
      // delete school with this id
@@ -118,16 +115,28 @@ router.route('/schools/:id/:field')
 
 
 var setSchool = function(school, body){
-        school.name =  body.name;
-        school.province = body.province;
-        school.city = body.city;
-        school.schoolType = body.schoolType;
-        school.area = body.area;
-        school.level = body.level;
-        school.address = body.address;
-        school.logo = body.logo;
-        School.catagery = body.catagery
+        if(body.name) 
+            school.name =  body.name;
+        if(body.province)
+            school.province = body.province;
+        if(body.city)
+            school.city = body.city;
+        if(body.schoolType)
+            school.schoolType = body.schoolType;
+        if(body.area)
+            school.area = body.area;
+        if(body.level)
+            school.level = body.level;
+        if(body.address)
+            school.address = body.address;
+        if(body.logo)
+            school.logo = body.logo;
+        if(body.catagery)
+            School.catagery = body.catagery;
+        if(body.phone)
+            school.phone.push(body.phone);
+        if(body.review)
+            school.review.push(body.review);
 }
-
 
 module.exports = router;

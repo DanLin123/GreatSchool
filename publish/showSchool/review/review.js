@@ -1,14 +1,8 @@
 angular.module('myApp.showSchool.review', [])
-.controller('review', function($scope,$stateParams,$location, $http){
+.controller('review', function($scope,$stateParams,$location, $http, $window){
 
+  $scope.submitButtonText = "提交点评";
   $scope.schoolId = $stateParams.schoolId;
-
-  var schoolUri =  '/api/schools/' + $stateParams.schoolId;
-  $http.get(schoolUri).success(function(data) {
-       $scope.schoolInfo = data;
-  })
-
-
   $scope.getDatetime = function() {
     return (new Date).toLocaleFormat("%A, %B %e, %Y");
   };
@@ -72,23 +66,19 @@ angular.module('myApp.showSchool.review', [])
   $scope.addReview = function(){
       if( $scope.canSubmitReview())
       {
-            if($scope.schoolInfo.reviews != null && $scope.schoolInfo.reviews != undefined)
-            {
-               $scope.schoolInfo.reviews.unshift($scope.newReview);
-            }
-            else
-            {
-              $scope.schoolInfo.reviews = [$scope.newReview]
-            }
-           
-            $scope.schoolInfo.$update().then(
-              function( value ){
-                $scope.reset();
-              },
-              
-              function( error ){}
-            )
+            $scope.submitButtonText ="正在提交...";
+            $http.put('/api/schools/'+ $scope.schoolId,{ review: $scope.newReview})
+              .success(function(data) {
+                  $window.location.reload();
+              })
+              .error(function(data) {
+                 
+                  $window.alert("提交失败，请联系lindan_xmu@126.com");
+                   $scope.submitButtonText = "提交点评";
+
+              });
+          
       }
-    
+
   }
 })

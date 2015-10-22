@@ -3,7 +3,7 @@ angular.module('myApp.schoolServices', [])
 	var factory = [];
 	factory.getScore = function(school){
 		var schoolScore = 0;
-		var reviews = school.reviews;
+		var reviews = school.review;
 	 	if(reviews && reviews.length != 0)
 	 	{
 	 		var reviewLength = reviews.length;

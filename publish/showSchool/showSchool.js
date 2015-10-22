@@ -7,6 +7,16 @@ angular.module('myApp.showSchool', ['myApp.showSchool.review', 'myApp.showSchool
       $state.transitionTo('showSchool.Info', {schoolId:$stateParams.schoolId});
   }
 
+  Array.prototype.clean = function(deleteValue) {
+    for (var i = 0; i < this.length; i++) {
+      if (this[i] == deleteValue) {         
+        this.splice(i, 1);
+        i--;
+      }
+    }
+    return this;
+  };
+
   var schoolUri =  '/api/schools/' + $stateParams.schoolId;
   $http.get(schoolUri).success(function(data) {
               $scope.name = data.name;
@@ -25,8 +35,8 @@ angular.module('myApp.showSchool', ['myApp.showSchool.review', 'myApp.showSchool
               $scope.phone = (data.phone) ? data.phone.join(" ") :"";
               $scope.introduction = data.introduction ? data.introduction : "" ;
               $scope.score = schoolReviewService.getScore(data);
-              $scope.reviewCount = data.reviews ? data.reviews.length : 0;
-              $scope.reviews = data.reviews ? data.reviews : null;
+              $scope.reviews = data.review ? data.review.clean(null) : null;
+              $scope.reviewCount = $scope.reviews ? $scope.reviews.length : 0;
         })
         .error(function(data) {
             console.log('Error: ' + data);

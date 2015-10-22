@@ -4,7 +4,6 @@
   <div id="newReview">
       <h2>点评</h2>
       <div class="well row">
-
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 ">
             <myrating score="newReview.generalScore" max="5" topic="总体点评 *:" note="点击星星为学校打分"> </myrating>  
             <myrating score="newReview.teacherScore" max="5" topic="师资 *:" note="为老师点评"> </myrating> 
@@ -34,7 +33,7 @@
                 其他
               </label>
 
-              <button class="btn btn-warning pull-right" ng-click="addReview()">提交点评</button> 
+              <button class="btn btn-warning pull-right" ng-click="addReview()">{{submitButtonText}}</button> 
         </div>
       </div>
   </div>
@@ -42,8 +41,7 @@
 
   <div id="fullReview">
     <hr><h2>评价</h2>  
-
-    <div ng-repeat="item in schoolInfo.reviews" class="row comment">    
+    <div ng-repeat="item in reviews" class="row comment">    
       <show-one-review review="item"></show-one-review>
     </div>
     
