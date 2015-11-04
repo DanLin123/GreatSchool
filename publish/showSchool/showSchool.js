@@ -1,11 +1,35 @@
-angular.module('myApp.showSchool', ['myApp.showSchool.review', 'myApp.showSchool.gallery', 'myApp.schoolServices'
+angular.module('myApp.showSchool', ['ui.bootstrap','dialogs.main',
+  'myApp.showSchool.review', 'myApp.showSchool.gallery', 'myApp.schoolServices'
 ])
-.controller('schoolInfoController', function($scope,$stateParams,$state,$location, $http, schoolReviewService){
+.controller('schoolInfoController', function($scope,$stateParams,$state,$location, $http, $window,
+        dialogs, schoolReviewService){
   //default state set to showSchool.Info
   if($state && $state.current && $state.current.name == "showSchool")
   {
       $state.transitionTo('showSchool.Info', {schoolId:$stateParams.schoolId});
   }
+
+  $scope.addIntroduction = function(){
+    var dlg = dialogs.create('/common/templates/customDialog.html','customDialogCtrl',{},'lg');
+    dlg.result.then(
+          function(newIntroduction){
+             saveIntroductionToDb(newIntroduction);
+             console.log(newIntroduction);
+          });
+  }
+
+   var saveIntroductionToDb = function(newIntroduction){
+        $http.put('/api/schools/'+ $scope.id,{ 'introduction': newIntroduction})
+
+          .success(function(data) {
+              $window.location.reload();
+          })
+          .error(function(data) {
+              $window.alert("提交失败，请联系lindan_xmu@126.com");
+          });
+
+  }
+  
 
   Array.prototype.clean = function(deleteValue) {
     for (var i = 0; i < this.length; i++) {
@@ -46,6 +70,19 @@ angular.module('myApp.showSchool', ['myApp.showSchool.review', 'myApp.showSchool
         return route === $location.path().split(/[\s/]+/).pop();
   };
 })
+.controller('customDialogCtrl',function($scope,$modalInstance,data){
+  $scope.input = {introduction : ''};
+
+  $scope.cancel = function(){
+    $modalInstance.dismiss('canceled');  
+  }; // end cancel
+  
+  $scope.save = function(){
+    $modalInstance.close($scope.introduction);
+  }; // end save
+  
+ 
+}) // end whatsYourNameCtrl
 
 
 

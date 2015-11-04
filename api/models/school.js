@@ -12,7 +12,8 @@ var SchoolSchema   = new Schema({
     review: [],
     address: String,
     logo: String,
-    catagery: String 
+    catagery: String,
+    introduction: String 
 });
 
 module.exports = mongoose.model('School', SchoolSchema);

@@ -132,11 +132,14 @@ var setSchool = function(school, body){
         if(body.logo)
             school.logo = body.logo;
         if(body.catagery)
-            School.catagery = body.catagery;
+            school.catagery = body.catagery;
+        if(body.introduction)
+            school.introduction = body.introduction;
         if(body.phone)
             school.phone.push(body.phone);
         if(body.review)
             school.review.push(body.review);
+
 }
 
 module.exports = router;

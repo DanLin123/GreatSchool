@@ -21,7 +21,8 @@
     "angular-animate": "~1.4.7",
     "angular-touch": "~1.4.7",
     "angular-bootstrap": "~0.13.4",
-    "angular-encode-uri": "~1.0.0"
+    "angular-encode-uri": "~1.0.0",
+    "angular-dialog-service": "~5.2.8"
   },
   "resolutions": {
     "angular": "1.4.3",
