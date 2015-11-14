@@ -1,9 +1,8 @@
 angular.module('myApp.schoolServices', [])
 .factory("schoolReviewService", function(){
 	var factory = [];
-	factory.getScore = function(school){
+	factory.getScore = function(reviews){
 		var schoolScore = 0;
-		var reviews = school.review;
 	 	if(reviews && reviews.length != 0)
 	 	{
 	 		var reviewLength = reviews.length;

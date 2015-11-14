@@ -6,17 +6,18 @@
 	    </div>
 	    
 	   <div class="col-md-9">
-	      <h2>{{ name }}</h2>
-	      <static-star score="score" max="5" style="margin-left:-25px"></static-star> 
-          <a ui-sref="showSchool.review()">See all {{reviewCount}} reviews</a>
+	      <h2>{{  school.name }}</h2>
+	   
+	      <static-star ng-if="school.score" score="school.score" max="5" style="margin-left:-25px"></static-star>
+          <a ui-sref="showSchool.review()">See all {{school.reviewCount}} reviews</a>
 	      <div>
-		      区域: {{province}} {{city}} {{area}}
+		      区域: {{school.province}} {{school.city}} {{school.area}}
 		      </br>
-		      地址: {{ address }}
+		      地址: {{ school.address }}
 		      </br>
-		      电话: {{ phone}}
+		      电话: {{ school.phone}}
 		      </br> 
-		      标签: {{ catagery }} {{schoolType}} {{level}}
+		      标签: {{ school.catagery }} {{school.schoolType}} {{school.level}}
 	      </div>
 	    </div>
 	</div>

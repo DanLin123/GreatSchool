@@ -14,7 +14,7 @@
 
     		<div class="col-md-8">
     			<a ui-sref="showSchool({schoolId:school._id})"><h4>{{school.name}}</h4></a>
-                <static-star score="school.score" max="5" style="margin-left:-25px"></static-star> 
+                <static-star ng-if="school.score" score="school.score" max="5" style="margin-left:-25px"></static-star> 
                 <a ui-sref="showSchool.review({schoolId:school._id})">See all {{getReviewsCount(school.review)}} reviews</a>
                 <p> {{school.address}}</p>
 

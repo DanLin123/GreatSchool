@@ -108,12 +108,10 @@ rating.directive("staticStar",function() {
     max: '=', 
   };
 
-
   directive.templateUrl = "common/templates/stars.html";
-  
   directive.link = function(scope, elements, attr) {
-
-    scope.updateStars = function() {
+    console.log(scope.score);
+  scope.updateStars = function() {
       var idx = 0;
       scope.stars = [ ];
       for (idx = 0; idx < scope.max; idx += 1) {
@@ -123,7 +121,6 @@ rating.directive("staticStar",function() {
       }
     };
    
- 
     scope.starClass = function(/** Star */ star, /** Integer */ idx) {
       var starClass = 'fa-star-o';
       if (star.full || idx <= scope.hoverid) {
@@ -134,7 +131,7 @@ rating.directive("staticStar",function() {
 
     scope.$watch(attr.score,function(newValue,oldValue){
                 //check new value to be what you expect.
-        if (newValue){           
+        if (newValue != oldValue){     
             scope.updateStars();
             console.log("the score change");
          }

@@ -98,7 +98,6 @@ router.route('/schools/:id')
         }, function(err, bear) {
             if (err)
                 res.send(err);
-
             res.json({ message: 'Successfully deleted' });
         });
     });

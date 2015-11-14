@@ -22,7 +22,7 @@ angular.module('myApp.showSchools', ['myApp.schoolServices'])
             $scope.schools = data;
             for(var i =0; i < $scope.schools.length; i++)
             {
-            	$scope.schools[i].score = schoolReviewService.getScore($scope.schools[i]);
+            	$scope.schools[i].score = schoolReviewService.getScore($scope.schools[i].review);
             }
         })
         .error(function(data) {
