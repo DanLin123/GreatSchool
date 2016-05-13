@@ -26,3 +26,5 @@ app.use(express.static(publicDir));
 // =============================================================================
 app.listen(port);
 console.log('Magic happens on port ' + port);
+
+//test
