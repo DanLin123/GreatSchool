@@ -19,7 +19,7 @@ angular.module('myApp', [
 
   $stateProvider
     .state('showSchools', {
-      url: "/showSchools?name?province?city?area?schoolType",
+      url: "/showSchools?name?area?schoolType",
       templateUrl: "showSchools/showSchools.html",
       controller: 'showSchoolsController'
     })

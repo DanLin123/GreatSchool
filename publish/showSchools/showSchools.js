@@ -4,10 +4,8 @@
 
 
 angular.module('myApp.showSchools', ['myApp.schoolServices'])
-.controller('showSchoolsController', function ($scope, $http, schoolReviewService,  $stateParams) {
+.controller('showSchoolsController', function ($scope, $http, schoolReviewService,  $stateParams, dataFactory) {
     $scope.name = $stateParams.name;
-    $scope.province = $stateParams.province;
-    $scope.city = $stateParams.city
     $scope.area = $stateParams.area
     $scope.schoolType = $stateParams.schoolType
 
@@ -16,18 +14,14 @@ angular.module('myApp.showSchools', ['myApp.schoolServices'])
     $scope.pageSize = 10;
     $scope.maxSize= 10;
 
-    $http.get('/api/schools',{params:{name:$scope.name, province: $scope.province, city:$scope.city, 
-                        area:$scope.area, schoolType:$scope.schoolType, category:$scope.category, level: $scope.level}})
-        .success(function(data) {
-            $scope.schools = data;
-            for(var i =0; i < $scope.schools.length; i++)
-            {
-            	$scope.schools[i].score = schoolReviewService.getScore($scope.schools[i].review);
-            }
-        })
-        .error(function(data) {
-            console.log('Error: ' + data);
-        });
+    dataFactory.schools($scope.name, $scope.area, $scope.category)
+    .then(function(response) {
+        $scope.schools = response.data;
+        for(var i =0; i < $scope.schools.length; i++)
+        {
+            $scope.schools[i].score = schoolReviewService.getScore($scope.schools[i].review);
+        }
+    });
 
 	 $scope.getLogo = function(logo){
 	 	if(logo== "")

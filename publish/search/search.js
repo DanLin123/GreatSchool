@@ -1,43 +1,29 @@
 'use strict';
 
-angular.module('myApp.search', ['ngAnimate', 'ui.bootstrap'
+angular.module('myApp.search', ['ngAnimate', 'ui.bootstrap', 'myApp.schoolServices'
 ])
-.controller('searchController', function ($scope, $http) {
-	$scope.selectedSchoolType="全部"
-	$scope.selectedArea = "全部"
-	$scope.selectedCategory ="全部"
-	$scope.selectedLevel = "全部"
- 	$http.get('/api/schoolField/name')
-        .success(function(data) {
-            $scope.schoolNames = data;
-        })
-        .error(function(data) {
-            console.log('Error get schools names: ' + data);
-        });
-      $http.get('/api/schoolField/area')
-        .success(function(data) {
-             data.unshift("全部")
-             $scope.schoolAreas = data;
-        })
-        .error(function(data) {
-            console.log('Error get areas: ' + data);
-      });
+.controller('searchController', function ($scope, $http, dataFactory) {
+	$scope.selectedArea;
 
-       $http.get('/api/schoolField/schoolType')
-        .success(function(data) {
-             data.unshift("全部")
-             $scope.schoolTypes = data;
-        })
-        .error(function(data) {
-            console.log('Error get schoolType: ' + data);
-      });
- 	  $scope.province = "福建省"
- 	  $scope.city = "福州市"
-	   
-    $scope.beautyEncode = function(string){
-      string = string.replace();
-      return string;
-    };
+  dataFactory.areas()
+  .then(function(response) {
+      $scope.schoolAreas = response.data;
+    });
+
+  dataFactory.schoolTypes()
+  .then( function(response) {
+       $scope.schoolTypes = response.data;
+  });
+
+  dataFactory.schoolNames()
+  .then(function(response){
+      $scope.schoolNames = response.data;
+  });
+   
+  $scope.beautyEncode = function(string){
+    string = string.replace();
+    return string;
+  };
 })
 .filter("getAdvancedSearch", function(){
    return function(input){
@@ -50,7 +36,6 @@ angular.module('myApp.search', ['ngAnimate', 'ui.bootstrap'
 	   	 };
 	  }
 	}
-   
     return output; 
    }
 })

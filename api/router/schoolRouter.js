@@ -8,9 +8,9 @@ router.use(function(req, res, next) {
     next(); // make sure we go to the next routes and don't stop here
 });
 mongoose = require('mongoose');
-var uri = 'mongodb://127.0.01:27017/greatschool';
+var uri = 'mongodb://127.0.0.1:27017/greatschool';
 
-var testUri = 'mongodb://127.0.01:12345/greatschool';  // this is test db
+var testUri = 'mongodb://127.0.0.1:12345';  // this is test db
 db = mongoose.connect(testUri);
 
 var School     = require('../models/school');

@@ -18,7 +18,7 @@ var port = process.env.PORT || 8080;        // set our port
 
 
 var schoolApiRouter = require('./api/router/schoolRouter');
-app.use('/api', schoolApiRouter);
+//app.use('/api', schoolApiRouter);
 app.use(express.static(publicDir));
 
 
