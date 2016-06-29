@@ -1,8 +1,12 @@
-angular.module('myApp.showSchool.review', [])
-.controller('review', function($scope,$stateParams,$location, $http, $window){
+angular.module('myApp.showSchool.review', ['myApp.schoolServices'])
+.controller('review', function($scope,$stateParams,$location, $http, $window, dataFactory){
 
   $scope.submitButtonText = "提交点评";
   $scope.schoolId = $stateParams.schoolId;
+  dataFactory.reviews($stateParams.schoolId).then(
+    function(response){
+      $scope.reviews = response.data.reviews;
+    });
   $scope.getDatetime = function() {
     return (new Date).toLocaleFormat("%A, %B %e, %Y");
   };
@@ -22,7 +26,6 @@ angular.module('myApp.showSchool.review', [])
   }
 
   $scope.commentClass = function(){
-
     if( $scope.newReview.content == "点评不能为空" )
     {
       return 'emptyComment';

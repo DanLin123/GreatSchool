@@ -1,5 +1,5 @@
 angular.module('myApp.schoolServices', [])
-.factory("schoolReviewService", function(){
+.factory("commonFactory", function(){
 	var factory = [];
 	factory.getScore = function(reviews){
 		var schoolScore = 0;
@@ -13,6 +13,14 @@ angular.module('myApp.schoolServices', [])
 			schoolScore = Math.round(schoolScore/reviewLength);
 	 	}
 	 	return schoolScore;
+	}
+	factory.getLogo = function(logo) {
+		debugger;
+		if( logo === '') {
+			return 'asset/no-school-photo.png';
+		} else {
+			return logo;
+		}
 	}
 	return factory;
 })
@@ -49,5 +57,16 @@ angular.module('myApp.schoolServices', [])
 		var promise = $http.get(api);
 		return promise;
 	}
+
+	factory.reviews = function(id){
+		let promise = $http.get(restAPI + '/schools/' + id);
+		return promise;
+	}
+
+	factory.school = function (id) {
+		let promise = $http.get(restAPI + '/schools/' + id);
+        return promise;
+    };
+
 	return factory;
 })

@@ -6,7 +6,7 @@ describe('schoolInfoController', function() {
   beforeEach(angular.mock.module("myApp.showSchool.gallery"));
 
   beforeEach(function(){
-    schoolReviewServiceFake = {
+    commonFactoryFake = {
       getScore: function(data){
         return 2;
       }
@@ -25,7 +25,7 @@ describe('schoolInfoController', function() {
                                     "phone":["83285513"]});
  
     ctrl = $controller("schoolInfoController", {$scope:scope, $stateParams:stateparams, $state:state,
-                                      schoolReviewService: schoolReviewServiceFake}); 
+                                      commonFactory: commonFactoryFake}); 
   }));
 
   it('should get schoool name', function() {

@@ -1,23 +1,17 @@
 <div class="container">
-
     <div style="margin-left:15px" >
         找到{{schools.length}}所学校
     </div>
-
-
     <div ng-repeat="school in schools | startFrom:(currentPage-1)*pageSize | limitTo:pageSize" class="row">
-
     	<div class="col-xs-8 col-sm-8 col-md-8 searchResult">
             <div class="col-md-3">
-    			<img ng-src="{{ getLogo(school.logo) }}" class="img-thumbnail" alt="Cinque Terre" width="250" height="250"> 
-    		</div>
-
+    			<img ng-src="{{school.logo}}" class="img-thumbnail" alt="Cinque Terre" width="250" height="250"> 
+    		</div>         
     		<div class="col-md-8">
-    			<a ui-sref="showSchool({schoolId:school._id})"><h4>{{school.name}}</h4></a>
+    			<a ui-sref="showSchool({schoolId:school.id})"><h4>{{school.name}}</h4></a>
                 <static-star ng-if="school.score" score="school.score" max="5" style="margin-left:-25px"></static-star> 
-                <a ui-sref="showSchool.review({schoolId:school._id})">See all {{getReviewsCount(school.review)}} reviews</a>
+                <a ui-sref="showSchool.review({schoolId:school.id})">See all {{getReviewsCount(school.review)}} reviews</a>
                 <p> {{school.address}}</p>
-
     		</div>
     	
     	</div>
@@ -25,6 +19,5 @@
     <div style="text-align:right">
          <div>Page: {{currentPage}} / {{numPages}} </div>
          <pagination total-items="schools.length" ng-model="currentPage" max-size="maxSize" num-pages="numPages"></pagination >
-        
     </div>
 </div>

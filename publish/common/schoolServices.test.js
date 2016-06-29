@@ -1,4 +1,4 @@
-describe('schoolReviewService', function() {
+describe('commonFactory', function() {
   beforeEach(module('myApp.showSchools'));
   var schoolReviewServiceObj;
 

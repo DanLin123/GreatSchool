@@ -4,12 +4,10 @@
 
 
 angular.module('myApp.showSchools', ['myApp.schoolServices'])
-.controller('showSchoolsController', function ($scope, $http, schoolReviewService,  $stateParams, dataFactory) {
+.controller('showSchoolsController', function ($scope, $http, $stateParams, commonFactory,dataFactory) {
     $scope.name = $stateParams.name;
     $scope.area = $stateParams.area
     $scope.schoolType = $stateParams.schoolType
-
-
 	$scope.currentPage = 1;
     $scope.pageSize = 10;
     $scope.maxSize= 10;
@@ -19,21 +17,11 @@ angular.module('myApp.showSchools', ['myApp.schoolServices'])
         $scope.schools = response.data;
         for(var i =0; i < $scope.schools.length; i++)
         {
-            $scope.schools[i].score = schoolReviewService.getScore($scope.schools[i].review);
+            $scope.schools[i].score = commonFactory.getScore($scope.schools[i].review);
+            $scope.schools[i].logo = commonFactory.getLogo($scope.schools[i].logo);
         }
     });
-
-	 $scope.getLogo = function(logo){
-	 	if(logo== "")
-	 	{
-	 		return "asset/no-school-photo.png"
-	 	}
-	 	else{
-	 		return logo
-	 	}
-	 }
-
-
+   
 	 $scope.getReviewsCount = function(reviews){
 	 	if(reviews)
 	 	{
