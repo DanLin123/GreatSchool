@@ -15,7 +15,6 @@ angular.module('myApp.schoolServices', [])
 	 	return schoolScore;
 	}
 	factory.getLogo = function(logo) {
-		debugger;
 		if( logo === '') {
 			return 'asset/no-school-photo.png';
 		} else {
@@ -67,6 +66,12 @@ angular.module('myApp.schoolServices', [])
 		let promise = $http.get(restAPI + '/schools/' + id);
         return promise;
     };
+
+    factory.update = function(id, instroction){
+    	let data = instroction;
+    	let promise = $http.patch(restAPI + '/schools/' + id, data);
+    	return promise;
+    }
 
 	return factory;
 })

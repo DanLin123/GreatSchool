@@ -3,7 +3,8 @@
   <h2>校园生活</h2>
   <br>
 
-  <div id="gallery" ng-show="gallery" class="carousel slide" style="width:{{width}}px;height:{{height}}px; margin: 0 auto">
+  <div id="gallery" ng-show="gallery" class="carousel slide" 
+        style="width:{{width}}px;height:{{height}}px; margin: 0 auto">
     <div style="width: {{width}}px;height:{{height}}px; margin: 0 aut">
       <carousel interval="myInterval" no-wrap="noWrapSlides">
         <slide ng-repeat="pic in gallery" active="pic.active">
@@ -25,7 +26,6 @@
               <a class="btn btn-info btn-lg" >
                 <span class="glyphicon glyphicon-camera" aria-hidden="true"></span> 上传照片
               </a>
-       
               </div>
         </div>
   </div>

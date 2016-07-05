@@ -1,37 +1,146 @@
 {
   "schools": [
-  	{"id":1, "province": "福建省", "city": "福州市", "name": "福州市台江区私立欢乐幼儿园", 
-  	"schoolType": "幼儿园", "area": "", "level": "普通", "phone": ["83285513"], 
-  	"address": "尚进街排尾新村４号楼二层", "logo": "", "catagery":"", "introduction":"福建省福州实验小学地处福州市东街繁华地段，办学历史悠久实小前身为府立东城小学堂",
-  	"reviews": [
-        { "reviewer": "父母", "content": "不错的学校,老师很好"}, 
-        { "reviewer": "学生", "content": "幼儿园科研部门对各年龄阶段的孩子提出了体能测试的要求"},
-        { "reviewer": "父母", "content": "幼儿园科研部门对各年龄阶段的孩子提出了体能测试的要求"},
-        { "reviewer": "老师", "content": "幼儿园科研部门对各年龄阶段的孩子提出了体能测试的要求"}
+    {
+      "id": 4,
+      "province": "福建省",
+      "city": "福州市",
+      "name": "福州晋安区私立东华幼儿园",
+      "schoolType": "幼儿园",
+      "area": "ddd",
+      "level": "普通",
+      "phone": [
+        "83921186"
       ],
-	 "gallery": [
-	    {"src": "gallery0.jpg", "desc": "school0"},
-	    {"src": "gallery1.jpg", "desc": "school1"},
-	    {"src": "gallery2.jpg", "desc": "school2"}
-	  ]
+      "address": "连江北路５８２号（法定代表人：徐毓萍）",
+      "logo": "",
+      "catagery": "",
+      "reviews": [
+        {
+          "userName": "lindan"
+        }
+      ]
     },
-	{"id":2, "province": "福建省", "city": "福州市", "name": "长乐市江田私立贝贝幼儿园", "schoolType": "幼儿园", "area": "", "level": "普通", "phone": ["28708344"], "address": "江田镇街北大兴路１０５号", "logo": "", "catagery": ""},
-	{"id":3, "province": "福建省", "city": "福州市", "name": "福州晋安区私立大名城小金星幼儿园", "schoolType": "幼儿园", "area": "", "level": "普通", "phone": ["87485383"], "address": "福马路１６８号（大名城内）", "logo": "", "catagery": ""},
-	{"id":4, "province": "福建省", "city": "福州市", "name": "福州晋安区私立东华幼儿园", "schoolType": "幼儿园", "area": "", "level": "普通", "phone": ["83921186"], "address": "连江北路５８２号（法定代表人：徐毓萍）", "logo": "", "catagery": ""},
-	{"id":5, "province": "福建省", "city": "福州市", "name": "福清渔溪星验幼儿园", "schoolType": "幼儿园", "area": "", "level": "普通", "phone": ["85672158"], "address": "", "logo": "http://img.51sxue.com/upload8/19329/201011221214432429_s.jpg", "catagery": ""},
-	{"id":6, "province": "福建省", "city": "福州市", "name": "福州实验小学", "schoolType": "小学", "area": "鼓楼区", 
-		"level": "省重点", "phone": ["0591-87674145"], "address": "福建省福州市鼓楼区东街82号", 
-		"logo": "http://img.51sxue.com/upload6/11007/201009162134596021_s.jpg", 
-		"introduction": "福建省福州实验小学地处福州市东街繁华地段，办学历史悠久实小前身为府立东城小学堂,创建于1906年1915年升格为福建省立第一小学。后更名为福州实验小学。1980年被省人民政府确定为全省首批办好的16所重点小学之一。1996年5月,经省教育委员会验收,确认为福建省示范小学。", 
-		"catagery": "公办"},
-	{"id":7, "province": "福建省", "city": "福州市", "name": "福建师范大学附属小学（福建师大附小）", "schoolType": "小学", "area": "仓山区", "level": "省重点", "phone": ["（0591）83470050"], "address": "福州市仓山区岭下路25号", "logo": "http://img.51sxue.com/upload17/50237/201312161131262278_s.jpg", "introduction": "　　福建师范大学附属小学位于福州仓山望北台南麓，依山傍水，是福建省示范小学、福建省文明学校、福建省平安校园、福建省依法治校示范校、又是福建师范大学教育科学与技术学院、美术学院、海外教育学院以及华南女子学院的实习基地，被福州市人民政府授予花园式单位。", 
-		"catagery": "公办"},
-	{"id":8, "province": "福建省", "city": "福州市", "name": "长乐市松下小星星幼儿园", "schoolType": "幼儿园", "area": "", "level": "普通", "phone": [], "address": "", "logo": "http://img.51sxue.com/upload8/19988/201011231556545456_s.jpg", "catagery": ""},
-	{"id":9, "province": "福建省", "city": "福州市", "name": "长乐市梅花私立梅花鹿双语幼儿园", "schoolType": "幼儿园", "area": "", "level": "普通", "phone": ["28751169"], "address": "梅花镇梅城村城下新村１号", "logo": "", "catagery": ""},
-	{"id":10, "province": "福建省", "city": "福州市", "name": "福州黎明幼儿园", "schoolType": "幼儿园", "area": "", "level": "普通", "phone": ["83736014"], "address": "黎明街１２号（法定代表人：郑庭富）", "logo": "", "catagery": ""},
-	{"id":11, "province": "福建省", "city": "福州市", "name": "长乐第六中学", "schoolType": "中学", "area": "长乐市", "level": "普通", "phone": ["电话"], "address": "长乐", "logo": "", "catagery": "公办"}
+    {
+      "id": 5,
+      "province": "福建省",
+      "city": "福州市",
+      "name": "福清渔溪星验幼儿园",
+      "schoolType": "幼儿园",
+      "area": "",
+      "level": "普通",
+      "phone": [
+        "85672158"
+      ],
+      "address": "",
+      "logo": "http://img.51sxue.com/upload8/19329/201011221214432429_s.jpg",
+      "catagery": "",
+      "introduction": "dfdsag"
+    },
+    {
+      "id": 6,
+      "province": "福建省",
+      "city": "福州市",
+      "name": "福州实验小学",
+      "schoolType": "小学",
+      "area": "鼓楼区",
+      "level": "省重点",
+      "phone": [
+        "0591-87674145"
+      ],
+      "address": "福建省福州市鼓楼区东街82号",
+      "logo": "http://img.51sxue.com/upload6/11007/201009162134596021_s.jpg",
+      "introduction": "福建省福州实验小学地处福州市东街繁华地段，办学历史悠久实小前身为府立东城小学堂,创建于1906年1915年升格为福建省立第一小学。后更名为福州实验小学。1980年被省人民政府确定为全省首批办好的16所重点小学之一。1996年5月,经省教育委员会验收,确认为福建省示范小学。",
+      "catagery": "公办"
+    },
+    {
+      "id": 7,
+      "province": "福建省",
+      "city": "福州市",
+      "name": "福建师范大学附属小学（福建师大附小）",
+      "schoolType": "小学",
+      "area": "仓山区",
+      "level": "省重点",
+      "phone": [
+        "（0591）83470050"
+      ],
+      "address": "福州市仓山区岭下路25号",
+      "logo": "http://img.51sxue.com/upload17/50237/201312161131262278_s.jpg",
+      "introduction": "　　福建师范大学附属小学位于福州仓山望北台南麓，依山傍水，是福建省示范小学、福建省文明学校、福建省平安校园、福建省依法治校示范校、又是福建师范大学教育科学与技术学院、美术学院、海外教育学院以及华南女子学院的实习基地，被福州市人民政府授予花园式单位。",
+      "catagery": "公办"
+    },
+    {
+      "id": 8,
+      "province": "福建省",
+      "city": "福州市",
+      "name": "长乐市松下小星星幼儿园",
+      "schoolType": "幼儿园",
+      "area": "",
+      "level": "普通",
+      "phone": [],
+      "address": "",
+      "logo": "http://img.51sxue.com/upload8/19988/201011231556545456_s.jpg",
+      "catagery": ""
+    },
+    {
+      "id": 9,
+      "province": "福建省",
+      "city": "福州市",
+      "name": "长乐市梅花私立梅花鹿双语幼儿园",
+      "schoolType": "幼儿园",
+      "area": "",
+      "level": "普通",
+      "phone": [
+        "28751169"
+      ],
+      "address": "梅花镇梅城村城下新村１号",
+      "logo": "",
+      "catagery": ""
+    },
+    {
+      "id": 10,
+      "province": "福建省",
+      "city": "福州市",
+      "name": "福州黎明幼儿园",
+      "schoolType": "幼儿园",
+      "area": "",
+      "level": "普通",
+      "phone": [
+        "83736014"
+      ],
+      "address": "黎明街１２号（法定代表人：郑庭富）",
+      "logo": "",
+      "catagery": ""
+    },
+    {
+      "id": 11,
+      "province": "福建省",
+      "city": "福州市",
+      "name": "长乐第六中学",
+      "schoolType": "中学",
+      "area": "长乐市",
+      "level": "普通",
+      "phone": [
+        "电话"
+      ],
+      "address": "长乐",
+      "logo": "",
+      "catagery": "公办"
+    },
+    {
+      "area": "测试测试",
+      "id": 12
+    }
   ],
-  "areas": ["长乐市","鼓楼区"],
-  "schoolTypes": ["公办","私立"],
-  "schoolNames": ["福州市台江区私立欢乐幼儿园","长乐市梅花私立梅花鹿双语幼儿园"]
+  "areas": [
+    "长乐市",
+    "鼓楼区"
+  ],
+  "schoolTypes": [
+    "公办",
+    "私立"
+  ],
+  "schoolNames": [
+    "福州市台江区私立欢乐幼儿园",
+    "长乐市梅花私立梅花鹿双语幼儿园"
+  ]
 }

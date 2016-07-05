@@ -53,13 +53,12 @@ angular.module('myApp.showSchool', ['ui.bootstrap','dialogs.main',
           });
   }
   var saveIntroductionToDb = function(newIntroduction){
-        $http.put('/api/schools/'+ $rootScope.school.id,{ 'introduction': newIntroduction})
-          .success(function(data) {
-              $window.location.reload();
-          })
-          .error(function(data) {
-              $window.alert("提交失败，请联系lindan_xmu@126.com");
-          });
+        dataFactory.update($rootScope.school.id, { 'introduction': newIntroduction})
+        .then(function(data){
+          $window.location.reload();
+        },function(error){
+          $window.alert("提交失败，请联系lindan_xmu@126.com");
+        });
   }
 
   $scope.isActive = function(route) {
@@ -68,7 +67,7 @@ angular.module('myApp.showSchool', ['ui.bootstrap','dialogs.main',
 })
 
 //controller for add introduction dialog. share school with schoolInfoController 
-.controller('customDialogCtrl',function($rootScope, $scope,$modalInstance,schoolServices){
+.controller('customDialogCtrl',function($rootScope, $scope,$modalInstance){
   $scope.introduction = $rootScope.school.introduction;
   $scope.cancel = function(){
     $modalInstance.dismiss('canceled');  
