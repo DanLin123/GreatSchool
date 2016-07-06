@@ -1,10 +1,9 @@
-angular.module('myApp.showSchool', ['ui.bootstrap','dialogs.main',
+angular.module('myApp.showSchool', ['ui.bootstrap',
   'myApp.showSchool.review', 'myApp.showSchool.gallery', 'myApp.schoolServices'
 ])
-.controller('schoolInfoController', function($rootScope, $scope,$stateParams,$state,$location, $http, $window,
-        dialogs, dataFactory,commonFactory){
+.controller('schoolInfoController', function($rootScope, $scope,$stateParams,$state,
+  $location, $window, $uibModal, dataFactory,commonFactory){
 
-  //default state set to showSchool.Info
   if($state && $state.current && $state.current.name == "showSchool")
   {
       $state.transitionTo('showSchool.Info', {schoolId:$stateParams.schoolId});
@@ -46,37 +45,47 @@ angular.module('myApp.showSchool', ['ui.bootstrap','dialogs.main',
     return this;
   };
 
-  $scope.addIntroduction = function(){
-    var dlg = dialogs.create('/common/templates/customDialog.html','customDialogCtrl',{},'lg');
-    dlg.result.then(
-          function(newIntroduction){
-             saveIntroductionToDb(newIntroduction);
-          });
-  }
-
-  var saveIntroductionToDb = function(newIntroduction){
-        dataFactory.update($rootScope.school.id, { 'introduction': newIntroduction})
-        .then(function(data){
-          $window.location.reload();
-        },function(error){
-          $window.alert("提交失败，请联系lindan_xmu@126.com");
-        });
-  }
-
   $scope.isActive = function(route) {
         return route === $location.path().split(/[\s/]+/).pop();
   };
+
+  var saveIntroductionToDb = function(newIntroduction){
+    dataFactory.update($rootScope.school.id, { 'introduction': newIntroduction})
+    .then(function(){
+      $window.location.reload();
+    },function(){
+      $window.alert("提交失败，请联系lindan_xmu@126.com");
+    });
+  }
+
+  $scope.addIntroduction = function (size) {
+
+    var modalInstance = $uibModal.open({
+      templateUrl: '/common/templates/customDialog.html',
+      controller: 'customDialogCtrl',
+      size: size,
+      resolve: {
+        introduction: function () {
+          return  $rootScope.school.introduction;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (introduction) {
+      saveIntroductionToDb(introduction);
+    });
+  };
 })
 
-//controller for add introduction dialog. share school with schoolInfoController 
-.controller('customDialogCtrl',function($rootScope, $scope,$modalInstance){
-  $scope.introduction = $rootScope.school.introduction;
-  $scope.cancel = function(){
-    $modalInstance.dismiss('canceled');  
-  }; 
-  $scope.save = function(){
-    $modalInstance.close($scope.introduction);
-  }; 
+.controller('customDialogCtrl',function($scope,$uibModalInstance,introduction){
+  $scope.introduction = introduction;
+  $scope.ok = function () {
+    $uibModalInstance.close($scope.introduction);
+  };
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
 })
 
 .filter('getScore', function() {
