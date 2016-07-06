@@ -1,5 +1,5 @@
 angular.module('myApp.showSchool.gallery',['myApp.schoolServices'])
-.controller('galleryCtrl', function($rootScope, $scope,$stateParams,$location,$http, dataFactory) {
+.controller('galleryCtrl', function($scope, dataFactory) {
     $scope.myInterval = 5000;
     $scope.noWrapSlides = false;
     $scope.active = 0;
@@ -14,7 +14,7 @@ angular.module('myApp.showSchool.gallery',['myApp.schoolServices'])
         });
     };
 
-    var gallery = $rootScope.school.gallery;
+    var gallery = dataFactory.school().gallery;
     for (var i = 0; i < gallery.length; i++) {
         $scope.addSlide(gallery[i]);
     }

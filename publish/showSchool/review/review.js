@@ -1,6 +1,6 @@
 angular.module('myApp.showSchool.review', ['myApp.schoolServices'])
 .controller('review', function($rootScope, $scope,$stateParams,$location, $window, dataFactory){
-  $scope.reviews =  $rootScope.school.reviews;
+  $scope.reviews =  dataFactory.school().reviews;
   $scope.submitButtonText = "提交点评";
   $scope.schoolId = $stateParams.schoolId;
   

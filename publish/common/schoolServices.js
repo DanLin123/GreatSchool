@@ -23,9 +23,42 @@ angular.module('myApp.schoolServices', [])
 	}
 	return factory;
 })
-.factory("dataFactory", function($http){
+.factory("dataFactory", function($http, commonFactory){
 	var factory = [];
 	let restAPI = "http://localhost:12345";
+	var schoolInfo = {};
+
+	factory.getSchool = function (id) {
+		var promise = $http.get(restAPI + '/schools/' + id)
+		.then(function(response){
+			let data = response.data;
+	        schoolInfo.name = data.name;
+	        schoolInfo.address = data.address;
+	        schoolInfo.id = data.id;
+
+	        schoolInfo.catagery = (data.catagery) ? data.catagery :"";
+	        schoolInfo.schoolType = (data.schoolType) ? data.schoolType :"";
+	        schoolInfo.level =  (data.level) ? data.level :"";
+
+	        schoolInfo.province = (data.province) ? data.province :""; 
+	        schoolInfo.city = (data.city) ? data.city :"";
+	        schoolInfo.area = (data.area) ? data.area :"";
+	  
+	        schoolInfo.logo = commonFactory.getLogo(data.logo); 
+	        schoolInfo.phone = (data.phone) ? data.phone.join(" ") :"";
+	        schoolInfo.introduction = data.introduction ? data.introduction : "" ;
+	        schoolInfo.score = commonFactory.getScore(data.review);
+	        schoolInfo.reviews = data.reviews ? data.reviews : [];
+	        schoolInfo.reviewCount = data.reviews ? data.reviews.length : 0;
+	        schoolInfo.gallery = data.gallery;
+	        return schoolInfo;
+		})
+		return promise;
+    };
+
+    factory.school = function(){
+    	return schoolInfo;
+    }
 
 	factory.areas = function() {
 		var promise = $http.get(restAPI + '/areas');
@@ -56,11 +89,6 @@ angular.module('myApp.schoolServices', [])
 		var promise = $http.get(api);
 		return promise;
 	}
-
-	factory.school = function (id) {
-		let promise = $http.get(restAPI + '/schools/' + id);
-        return promise;
-    };
 
     factory.update = function(id, content){
     	let promise = $http.patch(restAPI + '/schools/' + id, content);
