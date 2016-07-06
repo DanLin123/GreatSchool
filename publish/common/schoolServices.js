@@ -57,21 +57,14 @@ angular.module('myApp.schoolServices', [])
 		return promise;
 	}
 
-	factory.reviews = function(id){
-		let promise = $http.get(restAPI + '/schools/' + id);
-		return promise;
-	}
-
 	factory.school = function (id) {
 		let promise = $http.get(restAPI + '/schools/' + id);
         return promise;
     };
 
-    factory.update = function(id, instroction){
-    	let data = instroction;
-    	let promise = $http.patch(restAPI + '/schools/' + id, data);
+    factory.update = function(id, content){
+    	let promise = $http.patch(restAPI + '/schools/' + id, content);
     	return promise;
     }
-
 	return factory;
 })

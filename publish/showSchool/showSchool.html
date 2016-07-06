@@ -1,33 +1,40 @@
 <div class="container">
-<div  class="jumbotron">
-    <div class="row center-content-row">
-	    <div class="col-md-3">
-	       <img ng-src="{{ school.logo }}" class="img-thumbnail" alt="Cinque Terre" > 
-	    </div>
-	   <div class="col-md-9">
-	      <h2>{{  school.name }}</h2>
-	   
-	      <static-star ng-if="school.score" score="school.score" max="5" style="margin-left:-25px"></static-star>
-          <a ui-sref="showSchool.review()">See all {{school.reviewCount}} reviews</a>
-	      <div>
-		      区域: {{school.province}} {{school.city}} {{school.area}}
-		      </br>
-		      地址: {{ school.address }}
-		      </br>
-		      电话: {{ school.phone}}
-		      </br> 
-		      标签: {{ school.catagery }} {{school.schoolType}} {{school.level}} {{school.logo}}
-	      </div>
-	    </div>
+	<div  class="jumbotron">
+	    <div class="row center-content-row">
+		    <div class="col-md-3">
+		       <img ng-src="{{ school.logo }}" class="img-thumbnail" alt="Cinque Terre" > 
+		    </div>
+		   <div class="col-md-9">
+		      <h2>{{  school.name }}</h2>
+		   
+		      <static-star ng-if="school.score" score="school.score" max="5" style="margin-left:-25px"></static-star>
+	          <a ui-sref="showSchool.review()">See all {{school.reviewCount}} reviews</a>
+		      <div>
+			      区域: {{school.province}} {{school.city}} {{school.area}}
+			      </br>
+			      地址: {{ school.address }}
+			      </br>
+			      电话: {{ school.phone}}
+			      </br> 
+			      标签: {{ school.catagery }} {{school.schoolType}} {{school.level}} {{school.logo}}
+		      </div>
+		    </div>
+		</div>
 	</div>
-</div>
 
-<ul class="nav nav-tabs">
-  <li ng-class="{active:isActive('/info')}"><a ui-sref="showSchool.Info">学校介绍</a></li>
-  <li ng-class="{active:isActive('/review')}"><a ui-sref="showSchool.review">评价</a></li>
-  <li ng-class="{active:isActive('/gallery')}"><a ui-sref="showSchool.gallery">校园生活</a></li>
-</ul>
-        
-<div ui-view></div>
+	<uib-tabset justified="true">
+	    <uib-tab index="0" heading="学校介绍">
+	    	<div ng-include="'showSchool/info/info.html'">
+	    	</div>
+	    </uib-tab>
+	    <uib-tab index="1" heading="评价">
+	    	<div ng-include="'showSchool/review/review.html'">
+	    	</div>
+	    </uib-tab>
+	    <uib-tab index="2" heading="相册">
+	    	<div ng-include="'showSchool/gallery/gallery.html'">
+	    	</div>
+	    </uib-tab>
+	</uib-tabset>
 
 </div>

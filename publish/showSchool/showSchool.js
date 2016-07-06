@@ -4,10 +4,6 @@ angular.module('myApp.showSchool', ['ui.bootstrap',
 .controller('schoolInfoController', function($rootScope, $scope,$stateParams,$state,
   $location, $window, $uibModal, dataFactory,commonFactory){
 
-  if($state && $state.current && $state.current.name == "showSchool")
-  {
-      $state.transitionTo('showSchool.Info', {schoolId:$stateParams.schoolId});
-  }
 
   $rootScope.school={"logo":"asset/no-school-photo.pn"};
   dataFactory.school($stateParams.schoolId)
@@ -29,10 +25,10 @@ angular.module('myApp.showSchool', ['ui.bootstrap',
         $rootScope.school.phone = (data.phone) ? data.phone.join(" ") :"";
         $rootScope.school.introduction = data.introduction ? data.introduction : "" ;
         $rootScope.school.score = commonFactory.getScore(data.review);
-        $rootScope.school.reviews = data.reviews ? data.reviews.clean(null) : null;
+        $rootScope.school.reviews = data.reviews ? data.reviews.clean(null) : [];
         $rootScope.school.reviewCount = data.reviews ? data.reviews.length : 0;
         $rootScope.school.gallery = data.gallery;
-      });
+  });
 
 
   Array.prototype.clean = function(deleteValue) {
@@ -43,10 +39,6 @@ angular.module('myApp.showSchool', ['ui.bootstrap',
       }
     }
     return this;
-  };
-
-  $scope.isActive = function(route) {
-        return route === $location.path().split(/[\s/]+/).pop();
   };
 
   var saveIntroductionToDb = function(newIntroduction){
