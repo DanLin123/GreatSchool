@@ -32,6 +32,7 @@ angular.module('myApp.showSchool', ['ui.bootstrap','dialogs.main',
         $rootScope.school.score = commonFactory.getScore(data.review);
         $rootScope.school.reviews = data.reviews ? data.reviews.clean(null) : null;
         $rootScope.school.reviewCount = data.reviews ? data.reviews.length : 0;
+        $rootScope.school.gallery = data.gallery;
       });
 
 
@@ -52,6 +53,7 @@ angular.module('myApp.showSchool', ['ui.bootstrap','dialogs.main',
              saveIntroductionToDb(newIntroduction);
           });
   }
+
   var saveIntroductionToDb = function(newIntroduction){
         dataFactory.update($rootScope.school.id, { 'introduction': newIntroduction})
         .then(function(data){

@@ -18,7 +18,18 @@
         {
           "userName": "lindan"
         }
-      ]
+      ],
+      "gallery": [
+        {
+          "image": "http://lorempixel.com/602/300/",
+          "text": "good school"
+        },
+        {
+          "image": "http://lorempixel.com/603/300/",
+          "text": "student"
+        }
+      ],
+      "introduction": "hhghg"
     },
     {
       "id": 5,

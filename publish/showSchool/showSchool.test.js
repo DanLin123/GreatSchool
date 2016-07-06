@@ -19,7 +19,7 @@ describe('schoolInfoController', function() {
     httpBackend = $httpBackend;
     stateparams = { schoolId: 1 }; //mock your stateparams object with your id
     state = { };
-    httpBackend.expectGET('/api/schools/' + (stateparams.schoolId)).respond({"_id":"55e16c8ddceee257ba2c8e46",
+    httpBackend.expectGET('/apis/schools/' + (stateparams.schoolId)).respond({"_id":"55e16c8ddceee257ba2c8e46",
                                     "province":"福建省","city":"福州市","name":"fuzhouyoueryuan","schoolType":"幼儿园",
                                     "area":"","level":"普通","address":"尚进街排尾新村４号楼二层","logo":"","catagery":"",
                                     "phone":["83285513"]});

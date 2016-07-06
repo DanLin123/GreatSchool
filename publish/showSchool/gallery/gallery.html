@@ -3,21 +3,19 @@
   <h2>校园生活</h2>
   <br>
 
-  <div id="gallery" ng-show="gallery" class="carousel slide" 
-        style="width:{{width}}px;height:{{height}}px; margin: 0 auto">
-    <div style="width: {{width}}px;height:{{height}}px; margin: 0 aut">
-      <carousel interval="myInterval" no-wrap="noWrapSlides">
-        <slide ng-repeat="pic in gallery" active="pic.active">
-          <img ng-src="{{pic.src}}?imageView2/1/w/{{width}}/h/{{height}}" class="img-responsive">
-          <div class="carousel-caption">
-            <p>{{pic.desc}}</p>
-          </div>
-        </slide>
-      </carousel>
-    </div>
+   <div style="height: 305px" ng-show="school.gallery">
+    <uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+      <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+        <img ng-src="{{slide.image}}" style="margin:auto;">
+        <div class="carousel-caption">
+          <h4>Slide {{slide.id}}</h4>
+          <p>{{slide.text}}</p>
+        </div>
+      </uib-slide>
+    </uib-carousel>
   </div>
 
-   <div id="share-pic" ng-hide="gallery" class="center-content-row">
+   <div id="share-pic" ng-hide="school.gallery" class="center-content-row">
         <div class="hidden-xs" >
           <img src="asset/upload-pic.png" style="height:150px" class="img-responsive" alt="Responsive image">
         </div>
