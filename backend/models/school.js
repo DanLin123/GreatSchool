@@ -7,12 +7,10 @@ var SchoolSchema   = new Schema({
     name: String,
     schoolType: String,
     area: String,
-    level: String,
     phone: [],
     reviews: [],
     address: String,
     logo: String,
-    catagery: String,
     introduction: String 
 });
 

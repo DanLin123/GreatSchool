@@ -19,6 +19,7 @@ angular.module('myApp.showSchools', ['myApp.schoolServices'])
         {
             $scope.schools[i].score = commonFactory.getScore($scope.schools[i].review);
             $scope.schools[i].logo = commonFactory.getLogo($scope.schools[i].logo);
+            $scope.schools[i].id = $scope.schools[i]._id;
         }
     });
    

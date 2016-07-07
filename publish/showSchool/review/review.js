@@ -71,6 +71,7 @@ angular.module('myApp.showSchool.review', ['myApp.schoolServices'])
             dataFactory.update($scope.schoolId, { 'reviews':$scope.reviews})
             .then(function(){
               $scope.reset();
+              $scope.submitButtonText ="提交点评";
             }, function(){
               $window.alert("提交失败，请联系lindan_xmu@126.com");
               $scope.submitButtonText = "提交点评";

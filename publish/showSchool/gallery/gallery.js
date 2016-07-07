@@ -14,7 +14,7 @@ angular.module('myApp.showSchool.gallery',['myApp.schoolServices'])
         });
     };
 
-    var gallery = dataFactory.school().gallery;
+    var gallery = dataFactory.school().gallery || [] ;
     for (var i = 0; i < gallery.length; i++) {
         $scope.addSlide(gallery[i]);
     }
