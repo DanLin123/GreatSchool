@@ -25,7 +25,7 @@ angular.module('myApp.schoolServices', [])
 })
 .factory("dataFactory", function($http, commonFactory){
 	var factory = [];
-	let restAPI = "http://localhost:12345";
+	var restAPI = "http://localhost:12345";
 	var schoolInfo = {};
 
 	factory.getSchool = function (id) {

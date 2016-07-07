@@ -1,15 +1,20 @@
 angular.module('myApp.showSchool', ['ui.bootstrap', 'myApp.schoolServices',
   'myApp.showSchool.review', 'myApp.showSchool.gallery', 'myApp.showSchool.info'
 ])
-.controller('schoolInfoController',function($scope,$stateParams, dataFactory){
+.controller('schoolInfoController',function($scope,$stateParams, $location, $anchorScroll, dataFactory){
   $scope.school = dataFactory.school();
   $scope.activeIndex = 0;
-
   dataFactory.getSchool($stateParams.schoolId);
-  $scope.checkReviews = function() {
+
+  $scope.addReview = function() {
     $scope.activeIndex = 1;
   }
 
+  $scope.checkReviews = function() {
+      $scope.activeIndex = 0;
+      $location.hash('reviews');
+      $anchorScroll('reviews');
+  }
 })
 .filter('getScore', function() {
   return function(reviews) {

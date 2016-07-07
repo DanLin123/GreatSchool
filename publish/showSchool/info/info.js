@@ -1,7 +1,7 @@
 angular.module('myApp.showSchool.info',['myApp.schoolServices'])
 .controller('infoCtrl', function($scope, dataFactory, $window, $uibModal) {
     $scope.school = dataFactory.school();
-  
+
     var saveIntroductionToDb = function(newIntroduction){
         dataFactory.update($scope.school.id, { 'introduction': newIntroduction})
         .then(function(){
@@ -27,10 +27,6 @@ angular.module('myApp.showSchool.info',['myApp.schoolServices'])
       saveIntroductionToDb(introduction);
     });
   };
-
-  $scope.checkReviews = function() {
-
-  }
 
 })
 .controller('customDialogCtrl',function($scope,$uibModalInstance,introduction){
