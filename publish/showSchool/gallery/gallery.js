@@ -18,6 +18,4 @@ angular.module('myApp.showSchool.gallery',['myApp.schoolServices'])
     for (var i = 0; i < gallery.length; i++) {
         $scope.addSlide(gallery[i]);
     }
-
-
 });

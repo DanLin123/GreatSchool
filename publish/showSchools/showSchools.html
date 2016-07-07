@@ -10,8 +10,8 @@
     		<div class="col-md-8">
     			<a ui-sref="showSchool({schoolId:school.id})"><h4>{{school.name}}</h4></a>
                 <static-star ng-if="school.score" score="school.score" max="5" style="margin-left:-25px"></static-star> 
-                <a ui-sref="showSchool.review({schoolId:school.id})">See all {{getReviewsCount(school.review)}} reviews</a>
-                <p> {{school.address}}</p>
+                <p> {{getReviewsCount(school.reviews)}}条评论</p>
+                <p> 地址: {{school.address}}</p>
     		</div>
     	
     	</div>

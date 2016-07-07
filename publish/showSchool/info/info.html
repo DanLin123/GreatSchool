@@ -1,4 +1,4 @@
-<div ng-controller="schoolInfoController">
+<div ng-controller="infoCtrl">
     	<h2>学校介绍</h2>
       <div class="row">
           <div ng-show="school.introduction" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -30,26 +30,21 @@
 </div>
 
 <div id="reviews">	
-   <hr>
+  <hr>
   <h2>评价</h2>
-  <a class="pull-right" ng-show="school.reviews" ui-sref="showSchool.review({schoolId:id})">See all {{school.reviewCount}} reviews</a>
-  <br>
-
-   <div ng-show="school.reviews" ng-repeat="item in school.reviews.slice(0,3)" class="row comment">    
+   <div ng-show="school.reviews" ng-repeat="item in school.reviews" class="row comment">    
       <show-one-review review="item"></show-one-review>
   </div>
 
- <div ng-hide="school.reviews" class="center-content-row">
-              <div class="hidden-xs" >
-                <img src="asset/review.png" style="height:150px" class="img-responsive" alt="Responsive image">
-              </div>
-              <div class="center-content-column" style="margin-left:20px">
-                 <p>暂无评价...快分享评价，帮助别人找到好学校吧！</p>
+  <div ng-hide="school.reviews" class="center-content-row">
+    <div class="hidden-xs" >
+      <img src="asset/review.png" style="height:150px" class="img-responsive" alt="Responsive image">
+    </div>
+    <div class="center-content-column" style="margin-left:20px">
+       <p>暂无评价...快分享评价，帮助别人找到好学校吧！</p>
 
-                  <a ui-sref="showSchool.review" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> 我要评价</a>
-                
-              </div>
-          </div>
-
+        <a ui-sref="showSchool.review" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> 我要评价</a>
+    </div>
+  </div>
 </div>
 
