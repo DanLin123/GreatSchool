@@ -9,7 +9,7 @@ var SchoolSchema   = new Schema({
     area: String,
     level: String,
     phone: [],
-    review: [],
+    reviews: [],
     address: String,
     logo: String,
     catagery: String,
