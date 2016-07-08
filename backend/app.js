@@ -33,6 +33,8 @@ router.route('/')
 
 router.route('/schools')
     .get(function(req, res) {
+        console.log(req.query.schoolType + "*****");
+        console.log(req.query.name + "name*****");
         var queryParam ={};
         if(req.query.name ) { queryParam.name = req.query.name;    }
         if(req.query.province) { queryParam.province = req.query.province;    }
@@ -40,7 +42,6 @@ router.route('/schools')
         if(req.query.area) { queryParam.area = req.query.area;    }
         if(req.query.schoolType) { queryParam.schoolType = req.query.schoolType;    }
         if(req.query.category) { queryParam.catagery = req.query.category;    } //todo , change catagery to category in mongodb
-        if(req.query.level) { queryParam.level = req.query.level;    }
         var query = School.find(queryParam);
         query.exec(function (err, docs) {
             res.send(docs);
@@ -94,40 +95,26 @@ router.route('/schools/:id')
         });
     });
 
-router.route('/schools/:id/:field')
-    .get(function(req, res){
-        var field = req.params.field;
-        var query = School.findById(req.params._id).select(req.params.field);
-        query.exec(function (err, docs) {
-           res.send(docs);
-        });
-    });
-
-function notInclude(arr,obj) {
-    return (arr.indexOf(obj) == -1);
-}
-
-router.route('/schoolField/:queryField')
+router.route('/schoolNames')
     .get(function(req, res) {
-        var field = req.params.queryField
-        var query = School.find({}).select(field);
-        query.exec(function (err, result) {
-            if (err) return next(err);
-             var arr =[]
-            for (var i =0; i < result.length; i++)
-            {
-                var value = result[i][field]
-                if(value && notInclude(arr, value))
-                {
-                    arr.push( value );
-                }
-            }
-        
-            res.send(arr);
+        School.find().distinct('name', function(err, names){
+            res.send(names);
         });
     });
 
+router.route('/areas')
+    .get(function(req, res) {
+        School.find().distinct('area', function(err, areas){
+            res.send(areas);
+        });     
+    })
 
+router.route('/schoolTypes')
+    .get(function(req, res) {
+        School.find().distinct('schoolType', function(err, schoolTypes){
+            res.send(schoolTypes);
+        });     
+    })
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
