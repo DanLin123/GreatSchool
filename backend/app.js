@@ -102,9 +102,17 @@ router.route('/schoolNames')
         });
     });
 
-router.route('/areas')
+router.route('/cities')
     .get(function(req, res) {
-        School.find().distinct('area', function(err, areas){
+        School.find().distinct('city', function(err, cities){
+            res.send(cities);
+        });     
+    })
+
+router.route('/areas/:city')
+    .get(function(req, res) {
+        var query = req.params.city ? {city:req.params.city} : null;
+        School.find(query).distinct('area', function(err, areas){
             res.send(areas);
         });     
     })

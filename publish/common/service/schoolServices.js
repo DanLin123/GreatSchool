@@ -60,10 +60,15 @@ angular.module('myApp.schoolServices', [])
     	return schoolInfo;
     }
 
-	factory.areas = function() {
-		var promise = $http.get(restAPI + '/areas');
+	factory.areas = function(city) {
+		var promise = $http.get(restAPI + '/areas/' + city);
         return promise;
 	};
+
+	factory.cities = function(){
+		var promise = $http.get(restAPI + '/cities');
+        return promise;
+	}
 
 	factory.schoolTypes = function() {
 		var promise = $http.get(restAPI + '/schoolTypes');
@@ -75,17 +80,12 @@ angular.module('myApp.schoolServices', [])
 		return promise;
 	}
 
-	factory.schools = function(name, area, schoolType) {
+	factory.schools = function(city, name, area, schoolType) {
 		let api = restAPI + '/schools?';
-		if(name != null) {
-			api += ("name=" + name + "&");
-		}
-		if(area != null) {
-			api += ("area=" + area + "&");
-		}
-		if(schoolType != null) {
-			api += ("schoolType=" + schoolType +"&");
-		}
+		api += city ? ('city=' + city + '&') : '';
+		api += name ? ("name=" + name + "&") : '';
+		api += area ? ("area=" + area + "&") : '';
+		api += schoolType ? ("schoolType=" + schoolType +"&") : '';
 		var promise = $http.get(api);
 		return promise;
 	}

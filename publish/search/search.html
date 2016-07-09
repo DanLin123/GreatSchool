@@ -1,41 +1,8 @@
 <div class="bgimage" style="margin-top:-20px">
-	<div  style="padding-top:10%" class="container col-xs-10 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2  col-lg-8  col-lg-offset-2">
+	<div  style="padding-top:10%" class="container col-xs-10 col-sm-6 col-sm-offset-3 
+									col-md-6 col-md-offset-3  col-lg-6  col-lg-offset-3">
 		<h1 style="color:white">查找学校</h1>
-		<fieldset class="panel panel-default form-wrapper" >
-	      <div class="panel-body">
-			<form role="form">
-			    <div class="form-group col-sm-3">
-			      <label for="sel1">地区</label>
-			      <select class="form-control form-select" ng-model="selectedArea">
-			        <option  ng-repeat="area in schoolAreas">{{area}}</option>
-			      </select>
-			    </div>
-
-			    <div class="form-group col-sm-3">
-			      <label for="sel1">学校类型</label>
-			      <select class="form-control" ng-model="selectedSchoolType">
-			        <option  ng-repeat="schoolType in schoolTypes">{{schoolType}}</option>
-			      </select>
-			    </div>
-
-			    <div class="form-group col-sm-4">
-			    	<label for="sel1">学校名字</label>
-			     	<input type="text" style="width:100%;" ng-model="schoolName" placeholder="输入学校名字" class="input-lg form-control form-text ui-autocomplete-input" typeahead="name for name in schoolNames | filter:$viewValue"
-		 			aria-autocomplete="list" aria-haspopup="true">
-			    </div>
-
-			    <div class="form-group col-sm-2">
-			    	<div style="margin-top:25px">
-			     	<a class="btn btn-info btn-lg" ui-sref="showSchools({name:schoolName,area:selectedArea, schoolType:selectedSchoolType})" > 
-			     	<span class="glyphicon glyphicon-search"></span> 查找</a>
-			     	</div>
-			    </div>
-			</form>
-			
-			<em>提示：默认搜索所有学校</em>
-			</div>
-		</fieldset>
+		<div ng-include="'/common/searchPanel/searchPanel.html'" >
+		</div>
 	</div>	
 </div>
-
-

@@ -6,9 +6,10 @@
 angular.module('myApp', [
   'ui.router',
   'ui.bootstrap',
+  'angularCSS',
   'myApp.schoolServices',
   'checklist-model',
-  'myApp.search',
+  'myApp.common.searchPanel',
   'myApp.showSchools',
   'myApp.showSchool',
   'myApp.common.rating',
@@ -19,15 +20,15 @@ angular.module('myApp', [
 
   $stateProvider
     .state('showSchools', {
-      url: "/showSchools?name?area?schoolType",
+      url: "/showSchools?city?name?area?schoolType",
       templateUrl: "showSchools/showSchools.html",
-      controller: 'showSchoolsController'
+      controller: 'showSchoolsController',
+      css: "showSchools/showSchools.css"
     })
 
     .state('search', {
       url: "/search",
       templateUrl: "search/search.html",
-      controller: 'searchController'
     })
 
     .state('showSchool', {

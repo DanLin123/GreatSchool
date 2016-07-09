@@ -1,0 +1,30 @@
+<fieldset  ng-controller="searchPanelController" class="panel panel-default form-wrapper">
+  	<div class="panel-body">
+		<form role="form">
+		    <div class="form-group col-sm-5 col-md-5">
+		      <label for="sel1">城市</label>
+		      <select class="form-control form-select" ng-model="selectedCity">
+		        <option  ng-repeat="city in schoolCities">{{city}}</option>
+		      </select>
+		    </div>
+		    <div class="form-group col-sm-5 col-md-5">
+		    	<label for="sel1">学校名字</label>
+		     	<input type="text" style="width:100%;" ng-model="schoolName" placeholder="输入学校名字" class="input-lg form-control form-text ui-autocomplete-input" typeahead="name for name in schoolNames | filter:$viewValue"
+	 			aria-autocomplete="list" aria-haspopup="true">
+		    </div>
+		    <div class="form-group col-sm-2">
+		    	<div style="margin-top:25px">
+		     	<a class="btn btn-info btn-lg" ui-sref="showSchools({name:schoolName,city:selectedCity})" > 
+		     	<span class="glyphicon glyphicon-search"></span> 查找</a>
+		     	</div>
+		    </div>
+		</form>
+		<div>
+			区域:
+			<input type="checkbox" name="vehicle" value="Bike"> 
+		</div>
+	</div>
+</fieldset>
+
+
+

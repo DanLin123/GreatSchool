@@ -72,7 +72,7 @@ min-height: 700px;
   height: 46px; 
 }
 
-label[for=sel1]{
+[for=sel1]{
   color: #337ab7;
 }
 
