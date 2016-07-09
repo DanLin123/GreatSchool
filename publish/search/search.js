@@ -25,19 +25,4 @@ angular.module('myApp.search', ['ngAnimate', 'ui.bootstrap', 'myApp.schoolServic
     return string;
   };
 })
-.filter("getAdvancedSearch", function(){
-   return function(input){
-	var output = "其他查找条件: ";
-   	for (var key in input) {
-	  if (input.hasOwnProperty(key)) {
-	     var options = input[key];
-	     for (var i = options.length - 1; i >= 0; i--) {
-	   	 	output += options[i] + " ";
-	   	 };
-	  }
-	}
-    return output; 
-   }
-})
-
 

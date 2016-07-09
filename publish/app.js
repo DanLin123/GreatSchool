@@ -11,7 +11,7 @@ angular.module('myApp', [
   'myApp.search',
   'myApp.showSchools',
   'myApp.showSchool',
-  'myApp.directives',
+  'myApp.common.rating',
   'rt.encodeuri'
 ])
 .config(function($stateProvider, $urlRouterProvider) {

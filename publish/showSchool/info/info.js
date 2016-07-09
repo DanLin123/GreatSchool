@@ -1,4 +1,4 @@
-angular.module('myApp.showSchool.info',['myApp.schoolServices'])
+angular.module('myApp.showSchool.info',['myApp.schoolServices', 'myApp.common.dialog'])
 .controller('infoCtrl', function($scope, dataFactory, $window, $uibModal) {
     $scope.school = dataFactory.school();
 
@@ -13,8 +13,8 @@ angular.module('myApp.showSchool.info',['myApp.schoolServices'])
 
   $scope.addIntroduction = function (size) {
     var modalInstance = $uibModal.open({
-      templateUrl: '/common/templates/customDialog.html',
-      controller: 'customDialogCtrl',
+      templateUrl: '/common/dialog/dialog.html',
+      controller: 'dialogCtrl',
       size: size,
       resolve: {
         introduction: function () {
@@ -28,14 +28,4 @@ angular.module('myApp.showSchool.info',['myApp.schoolServices'])
     });
   };
 
-})
-.controller('customDialogCtrl',function($scope,$uibModalInstance,introduction){
-  $scope.introduction = introduction;
-  $scope.ok = function () {
-    $uibModalInstance.close($scope.introduction);
-  };
-
-  $scope.cancel = function () {
-    $uibModalInstance.dismiss('cancel');
-  };
 });

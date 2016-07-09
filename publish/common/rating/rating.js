@@ -1,5 +1,5 @@
 "use strict";
-var rating = angular.module("myApp.directives", []);
+var rating = angular.module("myApp.common.rating", []);
 
 rating.directive("myrating", function() {
   var directive = { };
@@ -11,7 +11,7 @@ rating.directive("myrating", function() {
     max: '=', 
   };
 
-  directive.templateUrl = "common/templates/rating.html";
+  directive.templateUrl = "/common/rating/rating.html";
   
   directive.link = function(scope, elements, attr) {
     scope.updateStars = function() {
@@ -108,7 +108,7 @@ rating.directive("staticStar",function() {
     max: '=', 
   };
 
-  directive.templateUrl = "common/templates/stars.html";
+  directive.templateUrl = "/common/rating/stars.html";
   directive.link = function(scope, elements, attr) {
     console.log(scope.score);
   scope.updateStars = function() {
@@ -145,7 +145,7 @@ rating.directive("showOneReview", function(){
   return{
     restrict:'AE',
     scope:{review: '='},
-    templateUrl: "common/templates/review.html",
+    templateUrl: "/common/rating/review.html",
     link:function(scope, elements, attr) {
       console.log(scope.review);
     }
