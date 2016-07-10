@@ -20,7 +20,7 @@ angular.module('myApp', [
 
   $stateProvider
     .state('showSchools', {
-      url: "/showSchools?city?name?area?schoolType",
+      url: "/showSchools?city?name?area?level?type",
       templateUrl: "showSchools/showSchools.html",
       controller: 'showSchoolsController',
       css: "showSchools/showSchools.css"
@@ -30,7 +30,7 @@ angular.module('myApp', [
       url: "/search",
       templateUrl: "search/search.html",
     })
-
+    
     .state('showSchool', {
       url: "/showSchool/:schoolId",
       templateUrl: "showSchool/showSchool.html",

@@ -33,33 +33,30 @@ router.route('/')
 
 router.route('/schools')
     .get(function(req, res) {
-        console.log(req.query.schoolType + "*****");
-        console.log(req.query.name + "name*****");
-        var queryParam ={};
-        if(req.query.name ) { queryParam.name = req.query.name;    }
-        if(req.query.province) { queryParam.province = req.query.province;    }
-        if(req.query.city) { queryParam.city = req.query.city;    }
-        if(req.query.area) { queryParam.area = req.query.area;    }
-        if(req.query.schoolType) { queryParam.schoolType = req.query.schoolType;    }
-        if(req.query.category) { queryParam.catagery = req.query.category;    } //todo , change catagery to category in mongodb
-        var query = School.find(queryParam);
-        query.exec(function (err, docs) {
-            res.send(docs);
+        var p = School.find();
+        if(req.query.name ) {p = p.where('name').equals(req.query.name)};
+        if(req.query.city) {p = p.where('city').equals(req.query.city)};
+        if(req.query.area) {p = p.where('area').in(req.query.area.split(','))};
+        if(req.query.level) {p = p.where('level').in(req.query.level.split(','))};
+        if(req.query.type) {p = p.where('type').in(req.query.type.split(','))};
+        p.exec(function (err, results) {
+            res.send(results);
         });
+
     })
     .post(function(req,res){
         var school = new School();
         var data = req.body;
         school.name = data.name;
-        school.province = data.province;
         school.city = data.city;
-        school.schoolType = data.schoolType;
+        school.type = data.type;
         school.area = data.area;
         school.phone = data.phone;
         school.reviews = data.reviews;
         school.address = data.address;
         school.logo = data.logo;
         school.introduction = data.introduction;
+        school.level = data.level;
 
         school.save(function(err){
             if(err)
@@ -95,6 +92,7 @@ router.route('/schools/:id')
         });
     });
 
+
 router.route('/schoolNames')
     .get(function(req, res) {
         School.find().distinct('name', function(err, names){
@@ -113,6 +111,13 @@ router.route('/areas/:city')
     .get(function(req, res) {
         var query = req.params.city ? {city:req.params.city} : null;
         School.find(query).distinct('area', function(err, areas){
+            res.send(areas);
+        });     
+    })
+
+router.route('/areas')
+    .get(function(req, res) {
+        School.find().distinct('area', function(err, areas){
             res.send(areas);
         });     
     })

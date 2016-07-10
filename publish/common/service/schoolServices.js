@@ -80,12 +80,13 @@ angular.module('myApp.schoolServices', [])
 		return promise;
 	}
 
-	factory.schools = function(city, name, area, schoolType) {
+	factory.schools = function(city, name, area, level, type) {
 		let api = restAPI + '/schools?';
 		api += city ? ('city=' + city + '&') : '';
 		api += name ? ("name=" + name + "&") : '';
 		api += area ? ("area=" + area + "&") : '';
-		api += schoolType ? ("schoolType=" + schoolType +"&") : '';
+		api += level ? ("level=" + level + "&") : '';
+		api += type ? ("type=" + type +"&") : '';
 		var promise = $http.get(api);
 		return promise;
 	}

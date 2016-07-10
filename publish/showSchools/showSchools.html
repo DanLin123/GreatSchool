@@ -1,45 +1,51 @@
 <div class="container">
-  <fieldset ng-controller="searchPanelController" class="panel panel-default form-wrapper">
+  <fieldset ng-controller="showSchoolsController" class="panel panel-default form-wrapper">
     <div id="search" class="panel-body">
       <form class="form-inline">
         <div class="form-group">
           <label>城市</label>
-          <select class="form-control form-select" ng-model="city">
-            <option  ng-repeat="city in schoolCities">{{city}}</option>
-          </select>
+          <select class="form-control form-select" ng-model='selected.city' ng-change='getAreas()'
+            ng-options="city for city in schoolCities"></select>
         </div>
         <div class="form-group">
           <label>学校名字</label>
-          <input type="text" ng-model="name" placeholder="输入学校名字" class="form-control form-text ui-autocomplete-input" typeahead="name for name in schoolNames | filter:$viewValue"
+          <input type="text" ng-model="selectedName" placeholder="输入学校名字" class="form-control form-text ui-autocomplete-input" typeahead="name for name in schoolNames | filter:$viewValue"
                 aria-autocompletse="list" aria-haspopup="true">
         </div>
         <div class="form-group">
-          <a class="btn btn-primary btn-lg" ui-sref="showSchools({name:name,city:city, area:area})"> 
+          <a class="btn btn-primary btn-lg" ui-sref="showSchools({name:selected.name,city:selected.city,
+          area:selected.area, level:selected.level, type: selected.type})"> 
             查找学校
           </a>
         </div>
       </form>
        <div>
           <label>区域</label>
-          <span ng-repeat='area in areas' >
-            <input type="checkbox" value="area"> {{area}}
+          <span ng-repeat='area in areas'>
+            <input type="checkbox" checklist-model="selected.area" checklist-value="area"> {{area}}
           </span>
         </div>
         <div>
           <label>阶段</label>
-          <span ng-repeat='level in levels' >
-            <input type="checkbox" value="level"> {{level}}
+          <span ng-repeat="level in levels">
+            <input type="checkbox" checklist-model="selected.level" checklist-value="level"> {{level}}
           </span>
         </div>
         <div>
           <label>属性</label>
-          <span ng-repeat='type in schoolTypes' >
-            <input type="checkbox" value="type"> {{type}}
+          <span ng-repeat='type in schoolTypes'>
+            <input type="checkbox" checklist-model="selected.type" checklist-value="type"> {{type}}
           </span>
         </div>
     </div>
   </fieldset>
 
+  {{selected.name}} 
+  {{selected.city}}
+  {{selected.area}}
+  {{selected.level}}
+
+  {{selected.type}}
     
   <div style="margin-left:15px" >
       找到{{schools.length}}所学校
