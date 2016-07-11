@@ -1,6 +1,8 @@
-angular.module('myApp.common.searchPanel', ['ngAnimate', 'ui.bootstrap', 'myApp.schoolServices'
-])
-.controller('searchPanelController', function ($scope, $http, dataFactory) {
+angular.module('myApp.common.searchPanel', ['ngAnimate', 'ui.bootstrap', 'myApp.schoolServices',])
+.controller('searchController', function ($scope, $http, dataFactory) {
+  $scope.schoolNames = [];
+  $scope.selectedCity= '';
+
   dataFactory.cities()
   .then(function(response) {
       $scope.schoolCities = response.data;
