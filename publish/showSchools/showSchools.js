@@ -13,7 +13,7 @@ angular.module('myApp.showSchools', ['myApp.schoolServices'])
 	  $scope.currentPage = 1;
     $scope.pageSize = 10;
     $scope.maxSize= 10;
-    $scope.levels = ['幼儿园', '小学', '初中', '高中'];
+    $scope.levels = ['幼儿园', '小学', '中学', '高中'];
     $scope.schoolTypes = ['公立', '私立'];
 
     dataFactory.cities()
