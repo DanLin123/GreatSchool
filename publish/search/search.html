@@ -10,14 +10,16 @@
 				      <edit-drop-down options='schoolCities' ng-model='selectedCity'></edit-drop-down>
 				    </div>
 				    <div class="form-group col-sm-5 col-md-5">
-				    	<label for="sel1">学校名字</label>
+				    	<label for="sel1">学校名字</label> 
 				     	<input type="text" style="width:100%;" 
 				     	class="input-lg form-control form-text ui-autocomplete-input" 
 				     	ng-model="schoolName" 
 				     	placeholder="输入学校名字"  
-				     	typeahead="name for name in schoolNames | filter:$viewValue"
+				     	typeahead="name for name in names | filter:$viewValue"
 			 			aria-autocomplete="list" aria-haspopup="true">
 				    </div>
+					<input type="text" ng-model="selected" uib-typeahead="user for user in users | filter:$viewValue | limitTo:8" class="form-control">
+
 				    <div class="form-group col-sm-2 col-md-2">
 				    	<div style="margin-top:25px">
 				     	<a class="btn btn-info btn-lg" ui-sref="showSchools({name:schoolName,city:selectedCity})" > 

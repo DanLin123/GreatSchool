@@ -1,7 +1,12 @@
-angular.module('myApp.common.searchPanel', ['ngAnimate', 'ui.bootstrap', 'myApp.schoolServices',])
+angular.module('myApp.common.searchPanel', ['myApp.schoolServices',])
 .controller('searchController', function ($scope, $http, dataFactory) {
-  $scope.schoolNames = [];
+  $scope.names = [];
   $scope.selectedCity= '';
+
+    $scope.users = [
+      'TestUser1',
+      'TestUser2'
+  ];
 
   dataFactory.cities()
   .then(function(response) {
@@ -10,7 +15,7 @@ angular.module('myApp.common.searchPanel', ['ngAnimate', 'ui.bootstrap', 'myApp.
 
   dataFactory.schoolNames()
   .then(function(response){
-      $scope.schoolNames = response.data;
+      $scope.names = response.data;
   });
    
   $scope.beautyEncode = function(string){
