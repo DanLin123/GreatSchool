@@ -3,11 +3,6 @@ angular.module('myApp.common.searchPanel', ['myApp.schoolServices',])
   $scope.names = [];
   $scope.selectedCity= '';
 
-    $scope.users = [
-      'TestUser1',
-      'TestUser2'
-  ];
-
   dataFactory.cities()
   .then(function(response) {
       $scope.schoolCities = response.data;
@@ -22,5 +17,6 @@ angular.module('myApp.common.searchPanel', ['myApp.schoolServices',])
     string = string.replace();
     return string;
   };
+
 })
 
