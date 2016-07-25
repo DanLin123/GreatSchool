@@ -11,7 +11,8 @@ var SchoolSchema   = new Schema({
     address: String,
     logo: String,
     introduction: String,
-    level:String 
+    level:String, 
+    gallery: []
 });
 
 module.exports = mongoose.model('School', SchoolSchema);

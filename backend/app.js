@@ -2,6 +2,7 @@ var express = require('express');
 var School = require('./models/school');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser')
+var multer  = require('multer')
 
 var app = express();
 var router = express.Router(); 
@@ -129,8 +130,33 @@ router.route('/schoolTypes')
         });     
     })
 
+router.route('/gallery/:id')
+    .post(function (req, res, next) {
+    var sub_folder = req.params.id;
+    var storage = multer.diskStorage({
+        destination: 'uploads/' + sub_folder
+    });
+    var upload = multer({ storage : storage}).any();
+
+    upload(req,res,function(err) {
+        if(err) {
+            console.log(err);
+            return res.end("Error uploading file.");
+        } else {
+            var f_paths = [];
+            req.files.forEach( function(f) {
+                console.log(f);
+                f_paths.push(f.path);
+                 // and move file to final destination...
+            });
+            res.end(JSON.stringify(f_paths));
+        }
+    });
+})
+
+
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(bodyParser.json({limit: '50mb'}));
 app.use('/api',router);
 
 app.listen(3000, function () {
