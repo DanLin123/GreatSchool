@@ -21,10 +21,4 @@ class SchoolItem(Item):
 	phone = Field()
 	schoolIntroduction = Field()
 	score = Field()
-   
-   
-	
-
-
-
 	

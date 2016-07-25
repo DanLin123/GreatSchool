@@ -25,7 +25,7 @@
             <label>学校名字</label>
             <input type="text" ng-model="selected.name" placeholder="输入学校名字" 
             class="form-control form-text ui-autocomplete-input" 
-            typeahead="name for name in schoolNames | filter:$viewValue" aria-autocompletse="list" aria-haspopup="true">
+            uib-typeahead="name for name in schoolNames | filter:$viewValue" aria-autocompletse="list" aria-haspopup="true">
           </div>
           <div class="form-group">
             <a class="btn btn-primary btn-lg" ui-sref="showSchools({name:selected.name,city:selected.city,
@@ -37,10 +37,17 @@
 
     </div>
   </fieldset>
-    
-  <div style="margin-left:15px" >
-      找到{{schools.length}}所学校
+  <div class="right">
+     <div class="right">
+        找到{{schools.length}}所学校
+      </div>
+      <div>
+        <ul uib-pagination total-items="schools.length" ng-model="currentPage" max-size="pageSize" 
+        class="pagination-sm" boundary-link-numbers="true" rotate="false" boundary-links="true"
+        previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>  
+      </div>
   </div>
+ 
   <div ng-repeat="school in schools | startFrom:(currentPage-1)*pageSize | limitTo:pageSize" class="row">
   	<div class="col-xs-8 col-sm-8 col-md-8 searchResult">
           <div class="col-md-3">
@@ -55,8 +62,9 @@
   	
   	</div>
   </div>
-  <div style="text-align:right">
-       <div>Page: {{currentPage}} / {{numPages}} </div>
-       <pagination total-items="schools.length" ng-model="currentPage" max-size="maxSize" num-pages="numPages"></pagination >
+  <div style="text-align:center">
+        <ul uib-pagination total-items="schools.length" ng-model="currentPage" max-size="pageSize" 
+        class="pagination-sm" boundary-link-numbers="true" rotate="false" boundary-links="true"
+        previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
   </div>
 </div>

@@ -12,9 +12,10 @@ angular.module('myApp.showSchools', ['myApp.schoolServices'])
 
 	  $scope.currentPage = 1;
     $scope.pageSize = 10;
-    $scope.maxSize= 10;
+    $scope.numPages = 0;
     $scope.levels = ['幼儿园', '小学', '中学', '高中'];
     $scope.schoolTypes = ['公立', '私立'];
+
 
     dataFactory.cities()
     .then(function(response) {
@@ -34,6 +35,7 @@ angular.module('myApp.showSchools', ['myApp.schoolServices'])
       $scope.selected.area, $scope.selected.level, $scope.selected.type)
     .then(function(response) {
         $scope.schools = response.data;
+        $scope.numPages = Math.floor($scope.schools.length/$scope.pageSize) + 1;
         for(var i =0; i < $scope.schools.length; i++)
         {
             $scope.schools[i].score = commonFactory.getScore($scope.schools[i].review);

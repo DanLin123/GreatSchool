@@ -31,9 +31,9 @@ class DmozSpider(Spider):
 			item['city'] = location[1] if len(location) > 1 else "" 
 			item['area'] = location[2] if len(location) > 2 else ""
 		
-		level = school_main.xpath('li[3]/b/text()').extract()
-		catagery = school_main.xpath('li[4]/ol[1]/b/text()').extract()
-		schoolType = school_main.xpath('li[4]/ol[2]/b/text()').extract()
+		catagery = school_main.xpath('li[3]/b/text()').extract()
+		schoolType = school_main.xpath('li[4]/ol[1]/b/text()').extract()
+		level = school_main.xpath('li[4]/ol[2]/b/text()').extract()
 		item['level'] = level[0] if level else ""
 		item['catagery'] = catagery[0] if catagery else ""
 		item['schoolType'] = schoolType[0] if schoolType else ""
