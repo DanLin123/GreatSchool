@@ -91,8 +91,18 @@ angular.module('myApp.schoolServices', [])
 		return promise;
 	}
 
-    factory.update = function(id, content){
+    factory.update = function(id, content) {
     	let promise = $http.patch(restAPI + '/schools/' + id, content);
+    	return promise;
+    }
+
+    //content type is form-data
+    factory.upload = function(id, fd) {
+    	let promise = $http.post(restAPI + '/gallery/' + id, fd, {
+            withCredentials: true,
+            headers: {'Content-Type': undefined },
+            transformRequest: angular.identity
+        });
     	return promise;
     }
 	return factory;

@@ -51,7 +51,7 @@ angular.module('myApp', [
 
     .state('showSchool.gallery', {
       url: "/gallery",
-      templateUrl: "showSchool/gallery/gallery.html",
+      templateUrl: "showSchool/gallery/gallery.html"
     })   
     
     $urlRouterProvider.otherwise("/search") 

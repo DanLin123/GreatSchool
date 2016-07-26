@@ -22,8 +22,7 @@
     "angular-touch": "1.4.7",
     "angular-bootstrap": "2.0.0",
     "angular-encode-uri": "1.0.0",
-    "angular-css": "^1.0.8",
-    "angular-bootstrap-file-field": "^0.1.3"
+    "angular-css": "^1.0.8"
   },
   "main": "",
   "moduleType": [],
@@ -35,7 +34,9 @@
     "tests"
   ],
   "resolutions": {
-    "angular": "1.5.8",
-    "angular-bootstrap": "^2.0.0"
+    "angular": "^1.5.8",
+    "angular-bootstrap": "^2.0.0",
+    "angular-animate": "^1.5.8",
+    "bootstrap": "^3.3.7"
   }
 }

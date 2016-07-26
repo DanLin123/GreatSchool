@@ -1,30 +1,37 @@
 <div ng-controller="galleryCtrl">
 
   <h2>校园生活</h2>
-  <br>
 
-   <div style="height: 305px" ng-show="school.gallery != null">
-    <uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
-      <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
-        <img ng-src="{{slide.image}}" style="margin:auto;">
+  <div style="height: 350px" ng-show="slides.length != 0">
+    <div style="margin:10px" uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+      <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+        <img ng-src="{{slide.image}}" style="margin:auto;width:300px;height:300px">
         <div class="carousel-caption">
-          <h4>Slide {{slide.id}}</h4>
+          <h4>第{{slide.id}}张</h4>
           <p>{{slide.text}}</p>
         </div>
-      </uib-slide>
-    </uib-carousel>
+      </div>
+    </div>
+    <div style="text-align:center">
+        <label class="btn btn-info btn-lg">上传照片   
+            <input type="file" style="display: none;" 
+              name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
+    </label>
+    </div>
+  
   </div>
 
-   <div id="share-pic" ng-hide="school.gallery" class="center-content-row">
+   <div id="share-pic" ng-hide="slides.length != 0" class="center-content-row">
         <div class="hidden-xs" >
-          <img src="asset/upload-pic.png" style="height:150px" class="img-responsive" alt="Responsive image">
+          <img ng-src="{{previewImage}}" style="height:150px" class="img-responsive" alt="Responsive image">
         </div>
+
         <div class="center-content-column" style="margin-left:20px">
             <p>还没有学校照片哦...快和大家分享吧！ </p>
-              <a class="btn btn-info btn-lg" >
-                <span class="glyphicon glyphicon-camera" aria-hidden="true"></span> 上传照片
-              </a>
-              </div>
+            <label class="btn btn-info btn-lg">上传照片   
+              <input type="file" style="display: none;" 
+                name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
+            </label>
         </div>
   </div>
 

@@ -10,6 +10,7 @@ var router = express.Router();
 var uri = 'mongodb://127.0.0.1:27017/test';
 mongoose.connect(uri);
 
+
 // middleware to use for all requests
 router.use(function(req, res, next) {
     // Website you wish to allow to connect
@@ -19,7 +20,7 @@ router.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
     // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 
     // Set to true if you need the website to include cookies in the requests sent
     // to the API (e.g. in case you use sessions)
@@ -132,35 +133,37 @@ router.route('/schoolTypes')
 
 router.route('/gallery/:id')
     .post(function (req, res, next) {
-    var sub_folder = req.params.id;
-    var storage = multer.diskStorage({
-        destination: 'uploads/' + sub_folder
-    });
-    var upload = multer({ storage : storage}).any();
+        var sub_folder = req.params.id;
+        var storage = multer.diskStorage({
+            destination: 'uploads/' + sub_folder
+        });
+        var upload = multer({ storage : storage}).any();
 
-    upload(req,res,function(err) {
-        if(err) {
-            console.log(err);
-            return res.end("Error uploading file.");
-        } else {
-            var f_paths = [];
-            req.files.forEach( function(f) {
-                console.log(f);
-                f_paths.push(f.path);
-                 // and move file to final destination...
-            });
-            res.end(JSON.stringify(f_paths));
-        }
+        upload(req,res,function(err) {
+            if(err) {
+                console.log(err);
+                return res.end("Error uploading file.");
+            } else {
+                var f_paths = [];
+                req.files.forEach( function(f) {
+                    console.log(f);
+                    f_paths.push({'image':f.path});
+                     // and move file to final destination...
+                });
+                res.end(JSON.stringify(f_paths));
+            }
     });
 })
 
 
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.json({limit: '5mb'}));
 app.use('/api',router);
+app.use(express.static(__dirname + '/'));
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
 
 module.exports = router;
+
