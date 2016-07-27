@@ -93,14 +93,24 @@ router.route('/schools/:id')
             res.json({ message: 'Successfully deleted' });
         });
     });
-
-
+    
 router.route('/schoolNames')
     .get(function(req, res) {
         School.find().distinct('name', function(err, names){
             res.send(names);
         });
     });
+
+router.route('/schoolNames/:city')
+    .get(function(req, res) {
+        console.log(req.params)
+        var query = req.params.city ? {city:req.params.city} : null;
+        School.find(query).distinct('name', function(err, names){
+            res.send(names);
+        });
+    });
+
+
 
 router.route('/cities')
     .get(function(req, res) {

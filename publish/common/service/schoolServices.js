@@ -75,8 +75,8 @@ angular.module('myApp.schoolServices', [])
 		return promise
 	}
 
-	factory.schoolNames = function() {
-		var promise = $http.get(restAPI + '/schoolNames');
+	factory.schoolNames = function(city) {
+		var promise = $http.get(restAPI + '/schoolNames/' + city);
 		return promise;
 	}
 
