@@ -8,7 +8,7 @@ angular.module('myApp', [
   'ui.bootstrap',
   'angularCSS',
   'myApp.schoolServices',
-  'myApp.common.editDropDownDir',
+  'editableDropdown',
   'checklist-model',
   'myApp.common.searchPanel',
   'myApp.showSchools',
