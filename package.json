@@ -2,6 +2,9 @@
   "name": "greatSchool",
   "private": true,
   "version": "0.0.0",
+  "engines": {
+    "node": "4.4.3"
+  },
   "description": "A starter project for AngularJS",
   "repository": "https://github.com/angular/angular-seed",
   "license": "MIT",
@@ -32,6 +35,7 @@
   },
   "dependencies": {
     "angular-sanitize": "^1.4.7",
+    "bower": "^1.7.9",
     "multer": "^1.1.0"
   }
 }
