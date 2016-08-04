@@ -110,7 +110,6 @@ rating.directive("staticStar",function() {
 
   directive.templateUrl = "/common/rating/stars.html";
   directive.link = function(scope, elements, attr) {
-    console.log(scope.score);
   scope.updateStars = function() {
       var idx = 0;
       scope.stars = [ ];
@@ -133,7 +132,6 @@ rating.directive("staticStar",function() {
                 //check new value to be what you expect.
         if (newValue != oldValue){     
             scope.updateStars();
-            console.log("the score change");
          }
     });
     scope.updateStars();
@@ -147,7 +145,6 @@ rating.directive("showOneReview", function(){
     scope:{review: '='},
     templateUrl: "/common/rating/review.html",
     link:function(scope, elements, attr) {
-      console.log(scope.review);
     }
   }
 })

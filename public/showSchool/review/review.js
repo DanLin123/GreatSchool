@@ -3,6 +3,17 @@ angular.module('myApp.showSchool.review', ['myApp.schoolServices'])
   $scope.school =  dataFactory.school();
   $scope.submitButtonText = "提交点评";
   $scope.reviews = [];
+  $scope.newReview = {
+      generalScore: "",
+      teacherScore: "",
+      facilityScore: "",
+      studentScore: "",
+      userName:"匿名",
+      role:"其他",
+      content: "写点评",
+      userImg: "asset/anony.png",
+      date: Date.now()
+  } 
 
   var schoolId = $stateParams.schoolId;
   dataFactory.getReview(schoolId).then(
@@ -15,33 +26,12 @@ angular.module('myApp.showSchool.review', ['myApp.schoolServices'])
     return (new Date).toLocaleFormat("%A, %B %e, %Y");
   };
 
-  $scope.reset = function(){
-    $scope.newReview = {
-      generalScore: "",
-      teacherScore: "",
-      facilityScore: "",
-      studentScore: "",
-      userName:"匿名",
-      role:"其他",
-      content: "写点评",
-      userImg: "asset/anony.png",
-      date: Date.now()
-    } 
-  }
-
   $scope.commentClass = function(){
     if( $scope.newReview.content == "点评不能为空" )
     {
       return 'emptyComment';
     }
     return '';
-  }
-  
-
-  $scope.reset();
-
-  $scope.clearText = function(){
-    $scope.newReview.content="";
   }
 
   $scope.canSubmitReview = function(){
@@ -77,8 +67,7 @@ angular.module('myApp.showSchool.review', ['myApp.schoolServices'])
             $scope.reviews.push($scope.newReview);
             dataFactory.update(schoolId, { 'reviews':$scope.reviews})
             .then(function(){
-              $scope.reset();
-              $scope.submitButtonText ="提交点评";
+              $window.location.reload();
             }, function(){
               $window.alert("提交失败，请联系lindan_xmu@126.com");
               $scope.submitButtonText = "提交点评";
