@@ -20,6 +20,7 @@
     "shelljs": "^0.2.6",
     "karma": "^0.13.10"
   },
+  "main": "index.js",
   "scripts": {
     "postinstall": "bower install",
     "prestart": "npm install",
@@ -36,6 +37,7 @@
   "dependencies": {
     "angular-sanitize": "^1.4.7",
     "bower": "^1.7.9",
+    "express": "^4.14.0",
     "mongodb": "^2.2.5",
     "multer": "^1.1.0"
   }
