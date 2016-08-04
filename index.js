@@ -9,42 +9,21 @@ var router = express.Router();
 
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
-var db;
-var url = process.env.MONGODB_URI || 'mongodb://heroku_4q70n482:tfo6for71jhjfqjit9bhhnlrob@ds139655.mlab.com:39655/heroku_4q70n482';
-// Connect to the database before starting the application server.
-mongodb.MongoClient.connect(url, function (err, database) {
-  if (err) {
-    console.log(err);
-    process.exit(1);
-  }
-
-  // Save database object from the callback for reuse.
-  db = database;
-  console.log("Database connection ready");
-
-  // Initialize the app.
-  var server = app.listen(process.env.PORT || 8080, function () {
+var uri = process.env.MONGODB_URI || 'mongodb://heroku_4q70n482:tfo6for71jhjfqjit9bhhnlrob@ds139655.mlab.com:39655/heroku_4q70n482';
+mongoose.connect(uri);
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+    console.log('connected to mongodb!');
+    
+    // Initialize the app.
+    var server = app.listen(process.env.PORT || 8080, function () {
     var port = server.address().port;
-    console.log("App now running on port", port);
-  });
+        console.log("App now running on port", port);
+    });
 });
 
-// middleware to use for all requests
-router.use(function(req, res, next) {
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
 
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    next(); // make sure we go to the next routes and don't stop here
-});
 
 router.route('/')
     .get(function(req, res){
