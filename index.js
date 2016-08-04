@@ -15,7 +15,7 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
     console.log('connected to mongodb!');
-    
+
     // Initialize the app.
     var server = app.listen(process.env.PORT || 8080, function () {
     var port = server.address().port;
@@ -148,14 +148,11 @@ router.route('/gallery/:id')
 
         upload(req,res,function(err) {
             if(err) {
-                console.log(err);
                 return res.end("Error uploading file.");
             } else {
                 var f_paths = [];
                 req.files.forEach( function(f) {
-                    console.log(f);
                     f_paths.push({'image':f.path});
-                     // and move file to final destination...
                 });
                 res.end(JSON.stringify(f_paths));
             }

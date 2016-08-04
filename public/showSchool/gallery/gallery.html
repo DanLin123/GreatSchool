@@ -1,7 +1,6 @@
 <div ng-controller="galleryCtrl">
 
   <h2>校园生活</h2>
-
   <div style="height: 350px" ng-show="slides.length != 0">
     <div style="margin:10px" uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
       <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">

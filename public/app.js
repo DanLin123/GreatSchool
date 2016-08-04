@@ -15,7 +15,7 @@ angular.module('myApp', [
   'myApp.showSchool',
   'myApp.common.rating',
   'rt.encodeuri'
-])
+  ])
 .config(function($stateProvider, $urlRouterProvider) {
   // Now set up the states
 

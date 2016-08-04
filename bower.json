@@ -23,7 +23,8 @@
     "angular-bootstrap": "2.0.0",
     "angular-encode-uri": "1.0.0",
     "angular-css": "^1.0.8",
-    "editable-dropdown-angularjs": "*"
+    "editable-dropdown-angularjs": "*",
+    "angular-resource": "^1.5.8"
   },
   "main": "",
   "moduleType": [],

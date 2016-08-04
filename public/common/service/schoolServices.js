@@ -56,6 +56,22 @@ angular.module('myApp.schoolServices', [])
 		return promise;
     };
 
+    factory.getGallery = function(id){
+    	var promise = $http.get(restAPI + '/schools/' + id)
+		.then(function(response){
+	        return response.data.gallery;
+		})
+		return promise;
+    }
+
+    factory.getReview = function(id){
+    	var promise = $http.get(restAPI + '/schools/' + id)
+		.then(function(response){
+	        return response.data.reviews;
+		})
+		return promise;
+    }
+
     factory.school = function(){
     	return schoolInfo;
     }

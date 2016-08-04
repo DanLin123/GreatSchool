@@ -1,8 +1,15 @@
 angular.module('myApp.showSchool.review', ['myApp.schoolServices'])
 .controller('review', function($rootScope, $scope,$stateParams,$location, $window, dataFactory){
-  $scope.reviews =  dataFactory.school().reviews;
+  $scope.school =  dataFactory.school();
   $scope.submitButtonText = "提交点评";
-  $scope.schoolId = $stateParams.schoolId;
+  $scope.reviews = [];
+
+  var schoolId = $stateParams.schoolId;
+  dataFactory.getReview(schoolId).then(
+    function(data){
+      $scope.reviews = data;
+    }
+  );
   
   $scope.getDatetime = function() {
     return (new Date).toLocaleFormat("%A, %B %e, %Y");
@@ -68,7 +75,7 @@ angular.module('myApp.showSchool.review', ['myApp.schoolServices'])
       {
             $scope.submitButtonText ="正在提交...";
             $scope.reviews.push($scope.newReview);
-            dataFactory.update($scope.schoolId, { 'reviews':$scope.reviews})
+            dataFactory.update(schoolId, { 'reviews':$scope.reviews})
             .then(function(){
               $scope.reset();
               $scope.submitButtonText ="提交点评";
