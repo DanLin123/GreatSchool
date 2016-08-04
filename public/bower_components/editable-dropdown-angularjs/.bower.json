@@ -1,0 +1,14 @@
+{
+  "name": "editable-dropdown-angularjs",
+  "homepage": "https://github.com/lindanXmu/angularjs-editable-dropdown",
+  "_release": "f6229c4a4b",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "f6229c4a4b6f2b6b3d5e29a3a1678d1e4a85d2a2"
+  },
+  "_source": "https://github.com/lindanXmu/angularjs-editable-dropdown.git",
+  "_target": "*",
+  "_originalSource": "editable-dropdown-angularjs",
+  "_direct": true
+}

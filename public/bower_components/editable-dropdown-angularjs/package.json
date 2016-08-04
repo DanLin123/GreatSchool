@@ -1,0 +1,27 @@
+{
+  "name": "angularjs-editable-dropdown",
+  "version": "1.0.0",
+  "description": "An bootstrap style editable dropdown",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:lindanXmu/angularjs-editable-dropdown.git"
+  },
+  "keywords": [
+    "angularjs",
+    "dropdown",
+    "editable",
+    "bootstrap"
+  ],
+  "author": "dlin",
+  "license": "ISC",
+  "homepage": "https://github.com/lindanXmu/angularjs-editable-dropdown",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.0.0"
+  }
+}

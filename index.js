@@ -187,6 +187,6 @@ router.route('/gallery/:id')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json({limit: '5mb'}));
 app.use('/api',router);
-app.use(express.static(__dirname + '/publish'));
+app.use(express.static(__dirname + '/public'));
 module.exports = router;
 
