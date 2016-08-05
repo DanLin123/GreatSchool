@@ -14,7 +14,7 @@
     <div style="text-align:center">
         <label class="btn btn-info btn-lg">上传照片   
             <input type="file" style="display: none;" 
-              name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
+              name="file" onchange="angular.element(this).scope().initUpload(this.files,id)"/>
     </label>
     </div>
   
@@ -29,7 +29,7 @@
             <p>还没有学校照片哦...快和大家分享吧！ </p>
             <label class="btn btn-info btn-lg">上传照片   
               <input type="file" style="display: none;" 
-                name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
+                name="file" onchange="angular.element(this).scope().initUpload(this.files, id)"/>
             </label>
         </div>
   </div>

@@ -4,41 +4,44 @@ angular.module('myApp.showSchool.gallery',['myApp.schoolServices'])
     $scope.noWrapSlides = true;
     $scope.active = 0;
     $scope.previewImage = 'asset/upload-pic.png';
-    $scope.uploadFile;
     $scope.slides = [];
+    $scope.id = $stateParams.schoolId;
 
-    dataFactory.getGallery($stateParams.schoolId).then(
+    dataFactory.getGallery($scope.id).then(
         function(data) {
             for(var i = 0; i < data.length; i++) {
                 $scope.slides.push({
-                    'image' : data[i].image,
+
+                    'image' : data[i],
                     'id' : i
                 });
             }
         }
     );
+     /*
+      Function to get the temporary signed request from the app.
+      If request successful, continue to upload the file using this signed
+      request.
+    */
+    function getSignedRequest(file){
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+      xhr.onreadystatechange = () => {
+        if(xhr.readyState === 4){
+          if(xhr.status === 200){
+            const response = JSON.parse(xhr.responseText);
+            uploadFile(file, response.signedRequest, response.url);
+          }
+          else{
+            alert('Could not get signed URL.');
+          }
+        }
+      };
+      xhr.send();
+    }
 
 
-    $scope.uploadFile = function(files) {
-        var fd = new FormData();
-        //Take the first selected file
-        fd.append("file", files[0]);
-        var schoolId = dataFactory.school().id;
-        //upload files, and save return url to mongodb
-        dataFactory.upload(schoolId, fd)
-        .then(function(res){
-            var newGallery = res.data;
-            var gallery = dataFactory.school().gallery;
-            for (var i = 0; i < newGallery.length; i++) {
-                gallery.push(newGallery[i]);
-            }
-            dataFactory.update(schoolId, { 'gallery':gallery})
-            .then(function() {
-              $window.location.reload();
-            }, function() {
-                console.log('failed');
-            });
-        });
+    $scope.initUpload = function(files, id) {
+        dataFactory.getSignedRequest(files[0]);
     };
-
 });

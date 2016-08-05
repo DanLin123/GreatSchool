@@ -6,6 +6,7 @@ var multer  = require('multer')
 var mongodb = require("mongodb");
 var app = express();
 var router = express.Router(); 
+const aws = require('aws-sdk');
 
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
@@ -158,6 +159,34 @@ router.route('/gallery/:id')
             }
     });
 })
+
+const S3_BUCKET = process.env.S3_BUCKET;
+router.route('/sign-s3')
+    .get(function(req, res) {
+        const s3 = new aws.S3();
+        const fileName = req.query['file-name'];
+        const fileType = req.query['file-type'];
+        const s3Params = {
+          Bucket: S3_BUCKET,
+          Key: fileName,
+          Expires: 60,
+          ContentType: fileType,
+          ACL: 'public-read'
+        };
+
+        s3.getSignedUrl('putObject', s3Params, (err, data) => {
+          if(err){
+            console.log(err);
+            return res.end();
+          }
+          const returnData = {
+            signedRequest: data,
+            url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+          };
+          res.write(JSON.stringify(returnData));
+          res.end();
+        });
+    })
 
 
 app.use(bodyParser.urlencoded({ extended: false }))
