@@ -5,43 +5,45 @@ angular.module('myApp.showSchool.gallery',['myApp.schoolServices'])
     $scope.active = 0;
     $scope.previewImage = 'asset/upload-pic.png';
     $scope.slides = [];
-    $scope.id = $stateParams.schoolId;
+    var id = $stateParams.schoolId;
+    var gallery = [];
 
-    dataFactory.getGallery($scope.id).then(
+    dataFactory.getGallery(id).then(
         function(data) {
-            for(var i = 0; i < data.length; i++) {
-                $scope.slides.push({
-
-                    'image' : data[i],
-                    'id' : i
-                });
-            }
+          gallery = data;
+          for(var i = 0; i < data.length; i++) {
+              $scope.slides.push({
+                  'image' : data[i],
+                  'id' : i
+              });
+          }
         }
     );
-     /*
-      Function to get the temporary signed request from the app.
-      If request successful, continue to upload the file using this signed
-      request.
+
+      /*
+      Function to carry out the actual PUT request to S3 using the signed request from the app.
     */
-    function getSignedRequest(file){
-      const xhr = new XMLHttpRequest();
-      xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
-      xhr.onreadystatechange = () => {
-        if(xhr.readyState === 4){
-          if(xhr.status === 200){
-            const response = JSON.parse(xhr.responseText);
-            uploadFile(file, response.signedRequest, response.url);
+    var uploadFile = function (file, signedRequest, url){
+        const xhr = new XMLHttpRequest();
+        xhr.open('PUT', signedRequest);
+        xhr.onreadystatechange = () => {
+          if(xhr.readyState === 4){
+            if(xhr.status === 200){
+              gallery.push(url);
+              dataFactory.update(id, {'gallery':gallery});  //save url to mongodb
+              $window.location.reload();
+            }
+            else{
+              alert('Could not upload file.');
+            }
           }
-          else{
-            alert('Could not get signed URL.');
-          }
-        }
-      };
-      xhr.send();
+        };
+        xhr.send(file);       
     }
 
-
     $scope.initUpload = function(files, id) {
-        dataFactory.getSignedRequest(files[0]);
+        dataFactory.getSignedRequest(files[0]).then(function(rep){
+          uploadFile(files[0], rep.signedRequest, rep.url);
+        });
     };
 });

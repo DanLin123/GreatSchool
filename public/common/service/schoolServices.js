@@ -112,26 +112,7 @@ angular.module('myApp.schoolServices', [])
     	return promise;
     }
 
-    /*
-      Function to carry out the actual PUT request to S3 using the signed request from the app.
-    */
-    var uploadFile = function (file, signedRequest, url){
-    	  const xhr = new XMLHttpRequest();
-	      xhr.open('PUT', signedRequest);
-	      xhr.onreadystatechange = () => {
-	        if(xhr.readyState === 4){
-	          if(xhr.status === 200){
-	          	schoolInfo.gallery.push(url);
-	          	factory.update(schoolInfo.id, {'gallery':schoolInfo.gallery});  //save url to mongodb
-	          }
-	          else{
-	            alert('Could not upload file.');
-	          }
-	        }
-	      };
-	      xhr.send(file);
-    }
- 
+  
     /*
       Function to get the temporary signed request from the app.
       If request successful, continue to upload the file using this signed
@@ -140,8 +121,7 @@ angular.module('myApp.schoolServices', [])
     factory.getSignedRequest= function(file) {
     	var promise = $http.get(restAPI + `/sign-s3?file-name=${file.name}&file-type=${file.type}`)
     	.then(function(response){
-    		var data = response.data;
-    		uploadFile(file, data.signedRequest, data.url);
+    		return response.data;
     	}, function(){
     		alert('Could not sign file.')
     	});
