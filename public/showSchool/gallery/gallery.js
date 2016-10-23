@@ -1,4 +1,4 @@
-angular.module('myApp.showSchool.gallery',['myApp.schoolServices'])
+angular.module('myApp.showSchool.gallery',['ui.bootstrap','myApp.schoolServices'])
 .controller('galleryCtrl', function($scope,$stateParams, $window, dataFactory) {
     $scope.myInterval = 3000;
     $scope.noWrapSlides = true;

@@ -1,4 +1,4 @@
-angular.module('myApp.showSchool', ['ui.bootstrap', 'myApp.schoolServices',
+angular.module('myApp.showSchool', ['myApp.schoolServices',
   'myApp.showSchool.review', 'myApp.showSchool.gallery', 'myApp.showSchool.info'
 ])
 .controller('schoolInfoController',function($scope,$stateParams, $location, $anchorScroll, dataFactory){

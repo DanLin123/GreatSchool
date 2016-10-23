@@ -11,7 +11,6 @@ from scrapy.item import Item, Field
 class SchoolItem(Item):
 	logo = Field()
 	name = Field()
-	province = Field()
 	city = Field()
 	area = Field()
 	address = Field()

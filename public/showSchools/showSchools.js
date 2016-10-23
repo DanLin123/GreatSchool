@@ -1,4 +1,3 @@
-'use strict';
 angular.module('myApp.showSchools', ['myApp.schoolServices'])
 .controller('showSchoolsController', function ($scope, $http,
                                   $stateParams, commonFactory, dataFactory) {

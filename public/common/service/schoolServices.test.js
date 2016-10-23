@@ -1,31 +1,37 @@
 describe('commonFactory', function() {
-  beforeEach(module('myApp.showSchools'));
-  var schoolReviewServiceObj;
+  var commonFac;
 
-  beforeEach(inject(function(schoolReviewService){
-    schoolReviewServiceObj=schoolReviewService;
-  }));
+  beforeEach( function(){
+    module('myApp.schoolServices');
+
+    inject(function($injector) {
+      commonFac = $injector.get('commonFactory');
+    });
+  });
 
   describe('getScore', function() {
+
     it('The score is average value of reviews', function() {
-        var school = {"_id":"55b39ad4e4b01d0a17cdd0df",
-                "reviews":[{"generalScore":1},
-                            {"generalScore":1},
-                            {"generalScore":5},
-                          
-                      ]}
-        var score = schoolReviewServiceObj.getScore(school)
+        var reviews = [
+          {"generalScore":1},
+          {"generalScore":1},
+          {"generalScore":5},
+        ];
+        var score = commonFac.getScore(reviews)
         expect(score).toEqual(2);
     });
+
     it('If only one review, the score equal the reviews score ', function() {
-      var school = {"_id":"55b39ad4e4b01d0a17cdd0df","reviews":[{"generalScore":5}]}
-      var score = schoolReviewServiceObj.getScore(school)
+      var reviews = [
+          {"generalScore":5}
+        ];
+      var score = commonFac.getScore(reviews)
       expect(score).toEqual(5);
     });
 
     it('If no review, the score equal 0', function() {
-      var school = {"_id":"55b39ad4e4b01d0a17cdd0df","reviews":[]}
-      var score = schoolReviewServiceObj.getScore(school)
+      var reviews = [];
+      var score = commonFac.getScore(reviews)
       expect(score).toEqual(0);
     });
 

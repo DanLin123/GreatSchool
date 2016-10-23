@@ -5,7 +5,6 @@
 
 angular.module('myApp', [
   'ui.router',
-  'ui.bootstrap',
   'angularCSS',
   'myApp.schoolServices',
   'editableDropdown',
@@ -17,8 +16,6 @@ angular.module('myApp', [
   'rt.encodeuri'
   ])
 .config(function($stateProvider, $urlRouterProvider) {
-  // Now set up the states
-
   $stateProvider
     .state('showSchools', {
       url: "/showSchools?city?name?area?level?type",

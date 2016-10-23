@@ -2,18 +2,20 @@ angular.module('myApp.schoolServices', [])
 .factory("commonFactory", function(){
 	var factory = [];
 	factory.getScore = function(reviews){
+		if(reviews == null || reviews.length == 0) {
+			return 0;
+		}
+
 		var schoolScore = 0;
-	 	if(reviews && reviews.length != 0)
+	 	for(var i=0; i< reviews.length; i++)
 	 	{
-	 		var reviewLength = reviews.length;
-		 	for(var i=0; i< reviewLength; i++)
-		 	{
-		 		schoolScore += reviews[i].generalScore
-		 	}
-			schoolScore = Math.round(schoolScore/reviewLength);
+	 		schoolScore += reviews[i].generalScore
 	 	}
+		schoolScore = Math.round(schoolScore/reviews.length);
+	 
 	 	return schoolScore;
 	}
+
 	factory.getLogo = function(logo) {
 		if( logo === '') {
 			return 'asset/no-school-photo.png';
@@ -23,6 +25,7 @@ angular.module('myApp.schoolServices', [])
 	}
 	return factory;
 })
+
 .factory("dataFactory", function($http, commonFactory){
 	var factory = [];
 	var restAPI = "/api";

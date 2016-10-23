@@ -85,6 +85,5 @@ class DmozSpider(Spider):
 		nextpages = [page for page in links if ('&page=' in page)]
 		if nextpages:
 			for nextpage in nextpages:
-
 				yield Request(urlparse.urljoin(self.start_urls[0], nextpage), callback=self.parse)
 	
