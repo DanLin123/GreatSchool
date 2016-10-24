@@ -1,8 +1,3 @@
-'use strict';
-
-// Declare app level module which depends on views, and components
-
-
 angular.module('myApp', [
   'ui.router',
   'angularCSS',
@@ -16,6 +11,7 @@ angular.module('myApp', [
   'myApp.common.rating',
   'rt.encodeuri'
   ])
+
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('showSchools', {
@@ -35,22 +31,6 @@ angular.module('myApp', [
       templateUrl: "showSchool/showSchool.html",
       controller: 'schoolInfoController'
     })
-
-    .state('showSchool.Info', {
-      url: "/info",
-      templateUrl: "showSchool/info/info.html",
-    })
-
-    .state('showSchool.review', {
-      url: "/review",
-      templateUrl: "showSchool/review/review.html",
-    })
-   
-
-    .state('showSchool.gallery', {
-      url: "/gallery",
-      templateUrl: "showSchool/gallery/gallery.html"
-    })   
     
     $urlRouterProvider.otherwise("/search") 
 })

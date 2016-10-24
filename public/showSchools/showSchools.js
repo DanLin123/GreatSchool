@@ -47,6 +47,7 @@ angular.module('myApp.showSchools', ['myApp.schoolServices'])
     }
 
 })
+
 .filter('indexFrom', function() {
 
     return function(input, start) {

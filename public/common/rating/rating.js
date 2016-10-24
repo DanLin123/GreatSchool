@@ -8,7 +8,7 @@ rating.directive("myrating", function() {
     topic: '@',
     note:"@",
     score: '=',
-    max: '=', 
+    max: '='
   };
 
   directive.templateUrl = "/common/rating/rating.html";
@@ -22,7 +22,6 @@ rating.directive("myrating", function() {
           full: scope.score > idx
         });
       }
-
     };
 
     var defaultNote = scope.note;
@@ -33,17 +32,10 @@ rating.directive("myrating", function() {
         4: "很好",
         5: "非常好"
     };
-    
+
     var getScoreNote= function(score){
         var scoreNote = scoreTextMap[score];
-        if(scoreNote)
-        {
-          return scoreNote;
-        }
-        else
-        {
-          return defaultNote;
-        }
+        return scoreNote ? scoreNote : defaultNote; 
     }
 
     scope.hover = function(/** Integer */ idx) {
@@ -70,17 +62,6 @@ rating.directive("myrating", function() {
         starClass = 'fa-star';
       }
       return starClass;
-    };
-
-    scope.scoreIsEmpty = function(score)
-    {
-      return (score == "无");
-    }
-
-    scope.noteClass = function(score){
-      if(scope.scoreIsEmpty(score))
-        return 'warning';
-      return 'smallNote';
     };
     
     scope.setRating = function(idx) {
@@ -130,7 +111,6 @@ rating.directive("staticStar",function() {
     };
 
     scope.$watch(attr.score,function(newValue,oldValue){
-                //check new value to be what you expect.
         if (newValue != oldValue){     
             scope.updateStars();
          }
@@ -140,11 +120,12 @@ rating.directive("staticStar",function() {
   return directive;
 });
 
+
 rating.directive("showOneReview", function(){
   return{
     restrict:'AE',
     scope:{review: '='},
-    templateUrl: "/common/rating/review.html",
+    templateUrl: "/common/rating/reviewItem.html",
     link:function(scope, elements, attr) {
     }
   }

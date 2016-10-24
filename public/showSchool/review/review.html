@@ -4,6 +4,9 @@
   <div id="newReview">
       <h2>点评</h2>
       <div class="well row">
+      <div ng-hide='canSubmit' class="alert alert-danger">
+        <strong>无法提交:</strong> {{alertText}}
+      </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 ">
             <myrating score="newReview.generalScore" max="5" topic="总体点评 *:" note="点击星星为学校打分"> </myrating>  
             <myrating score="newReview.teacherScore" max="5" topic="师资 *:" note="为老师点评"> </myrating> 
@@ -12,7 +15,7 @@
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="margin-top:20px">
-              <textarea rows="6" class="form-control" ng-model="newReview.content" ng-click="clearText()" ng-class="commentClass()"></textarea>
+              <textarea rows="6" class="form-control" ng-model="newReview.content" ng-click="clearText()"></textarea>
               <br>
               您是: 
                <label>
