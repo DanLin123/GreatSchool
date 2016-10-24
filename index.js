@@ -24,8 +24,6 @@ db.once('open', function() {
     });
 });
 
-
-
 router.route('/')
     .get(function(req, res){
         res.send('use api/schools to check all schools');

@@ -63,8 +63,6 @@ class DmozSpider(Spider):
 		else:
 			return item
 	
-	
-
 	def parse_items(self, response):
 		sel = Selector(response)
 		schoolIntroduction = sel.xpath('//div[@class="nr_m"]/p/text()').extract()

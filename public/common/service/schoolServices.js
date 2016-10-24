@@ -1,63 +1,36 @@
 angular.module('myApp.schoolServices', [])
-.factory("commonFactory", function(){
-	var factory = [];
-	factory.getScore = function(reviews){
-		if(reviews == null || reviews.length == 0) {
-			return 0;
-		}
-
-		var schoolScore = 0;
-	 	for(var i=0; i< reviews.length; i++)
-	 	{
-	 		schoolScore += reviews[i].generalScore
-	 	}
-		schoolScore = Math.round(schoolScore/reviews.length);
-	 
-	 	return schoolScore;
-	}
-
-	factory.getLogo = function(logo) {
-		if( logo === '') {
-			return 'asset/no-school-photo.png';
-		} else {
-			return logo;
-		}
-	}
-	return factory;
-})
-
-.factory("dataFactory", function($http, commonFactory){
+.factory("dataFactory", function($http, generalService, $q){
 	var factory = [];
 	var restAPI = "/api";
 	var schoolInfo = {};
 
-	factory.getSchool = function (id) {
+	factory.querySchool = function (id) {
 		var promise = $http.get(restAPI + '/schools/' + id)
 		.then(function(response){
 			let data = response.data;
 	        schoolInfo.name = data.name;
 	        schoolInfo.address = data.address;
 	        schoolInfo.id = data._id;
-
 	        schoolInfo.catagery = (data.catagery) ? data.catagery :"";
 	        schoolInfo.schoolType = (data.schoolType) ? data.schoolType :"";
 	        schoolInfo.level =  (data.level) ? data.level :"";
-
 	        schoolInfo.province = (data.province) ? data.province :""; 
 	        schoolInfo.city = (data.city) ? data.city :"";
 	        schoolInfo.area = (data.area) ? data.area :"";
-	  
-	        schoolInfo.logo = commonFactory.getLogo(data.logo); 
+	        schoolInfo.logo = generalService.getLogo(data.logo); 
 	        schoolInfo.phone = (data.phone) ? data.phone.join(" ") :"";
 	        schoolInfo.introduction = data.introduction ? data.introduction : "" ;
-	        schoolInfo.score = commonFactory.getScore(data.review);
+	        schoolInfo.score = generalService.getScore(data.review);
 	        schoolInfo.reviews = data.reviews ? data.reviews : [];
 	        schoolInfo.reviewCount = data.reviews ? data.reviews.length : 0;
 	        schoolInfo.gallery = data.gallery;
-	        return schoolInfo;
-		})
+		});
 		return promise;
     };
+
+    factory.school = function(){
+    	return schoolInfo;
+    }
 
     factory.getGallery = function(id){
     	var promise = $http.get(restAPI + '/schools/' + id)
@@ -65,18 +38,6 @@ angular.module('myApp.schoolServices', [])
 	        return response.data.gallery;
 		})
 		return promise;
-    }
-
-    factory.getReview = function(id){
-    	var promise = $http.get(restAPI + '/schools/' + id)
-		.then(function(response){
-	        return response.data.reviews;
-		})
-		return promise;
-    }
-
-    factory.school = function(){
-    	return schoolInfo;
     }
 
 	factory.areas = function(city) {
@@ -98,7 +59,7 @@ angular.module('myApp.schoolServices', [])
 		var promise = $http.get(restAPI + '/schoolNames/' + city);
 		return promise;
 	}
-
+	
 	factory.schools = function(city, name, area, level, type) {
 		let api = restAPI + '/schools?';
 		api += city ? ('city=' + city + '&') : '';
@@ -115,7 +76,6 @@ angular.module('myApp.schoolServices', [])
     	return promise;
     }
 
-  
     /*
       Function to get the temporary signed request from the app.
       If request successful, continue to upload the file using this signed

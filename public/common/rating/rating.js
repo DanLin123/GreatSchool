@@ -33,6 +33,7 @@ rating.directive("myrating", function() {
         4: "很好",
         5: "非常好"
     };
+    
     var getScoreNote= function(score){
         var scoreNote = scoreTextMap[score];
         if(scoreNote)

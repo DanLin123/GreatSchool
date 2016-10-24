@@ -7,6 +7,7 @@ angular.module('myApp', [
   'ui.router',
   'angularCSS',
   'myApp.schoolServices',
+  'myApp.generalServices',
   'editableDropdown',
   'checklist-model',
   'myApp.common.searchPanel',

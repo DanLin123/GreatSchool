@@ -48,7 +48,7 @@
       </div>
   </div>
  
-  <div ng-repeat="school in schools | startFrom:(currentPage-1)*pageSize | limitTo:pageSize" class="row">
+  <div ng-repeat="school in schools | indexFrom:(currentPage-1)*pageSize | limitTo:pageSize" class="row">
   	<div class="col-xs-8 col-sm-8 col-md-8 searchResult">
           <div class="col-md-3">
   			<img ng-src="{{school.logo}}" class="img-thumbnail" alt="Cinque Terre" width="250" height="250"> 
@@ -62,6 +62,7 @@
   	
   	</div>
   </div>
+
   <div style="text-align:center">
         <ul uib-pagination total-items="schools.length" ng-model="currentPage" max-size="pageSize" 
         class="pagination-sm" boundary-link-numbers="true" rotate="false" boundary-links="true"

@@ -1,8 +1,8 @@
 angular.module('myApp.showSchool.review', ['myApp.schoolServices'])
-.controller('review', function($rootScope, $scope,$stateParams,$location, $window, dataFactory){
-  $scope.school =  dataFactory.school();
+.controller('review', function($scope,$stateParams,$location, $window, dataFactory){
+  $scope.school = dataFactory.school();
   $scope.submitButtonText = "提交点评";
-  $scope.reviews = [];
+
   $scope.newReview = {
       generalScore: "",
       teacherScore: "",
@@ -15,26 +15,15 @@ angular.module('myApp.showSchool.review', ['myApp.schoolServices'])
       date: Date.now()
   } 
 
-  var schoolId = $stateParams.schoolId;
-  dataFactory.getReview(schoolId).then(
-    function(data){
-      $scope.reviews = data;
-    }
-  );
-  
   $scope.getDatetime = function() {
     return (new Date).toLocaleFormat("%A, %B %e, %Y");
   };
 
   $scope.commentClass = function(){
-    if( $scope.newReview.content == "点评不能为空" )
-    {
-      return 'emptyComment';
-    }
-    return '';
+    return $scope.newReview.content == "点评不能为空" ? 'emptyComment' : '';
   }
 
-  $scope.canSubmitReview = function(){
+  var canSubmitReview = function(){
       var $canSubmit = true;
       Object.keys($scope.newReview).forEach(function (key) { 
         var value = $scope.newReview[key];
@@ -61,11 +50,11 @@ angular.module('myApp.showSchool.review', ['myApp.schoolServices'])
   }
 
   $scope.addReview = function(){
-      if( $scope.canSubmitReview())
+      if( canSubmitReview())
       {
             $scope.submitButtonText ="正在提交...";
-            $scope.reviews.push($scope.newReview);
-            dataFactory.update(schoolId, { 'reviews':$scope.reviews})
+            $scope.school.reviews.push($scope.newReview);
+            dataFactory.update($scope.school.id, { 'reviews':$scope.school.reviews})
             .then(function(){
               $window.location.reload();
             }, function(){
@@ -73,6 +62,5 @@ angular.module('myApp.showSchool.review', ['myApp.schoolServices'])
               $scope.submitButtonText = "提交点评";
             });
       }
-
   }
 })

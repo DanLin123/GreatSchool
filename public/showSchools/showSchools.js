@@ -1,6 +1,5 @@
 angular.module('myApp.showSchools', ['myApp.schoolServices'])
-.controller('showSchoolsController', function ($scope, $http,
-                                  $stateParams, commonFactory, dataFactory) {
+.controller('showSchoolsController', function ($scope, $stateParams, generalService, dataFactory) {
     $scope.selected = {
       city : $stateParams.city,
       name : $stateParams.name,
@@ -14,7 +13,6 @@ angular.module('myApp.showSchools', ['myApp.schoolServices'])
     $scope.numPages = 0;
     $scope.levels = ['幼儿园', '小学', '中学', '高中'];
     $scope.schoolTypes = ['公立', '私立'];
-
 
     dataFactory.cities()
     .then(function(response) {
@@ -30,36 +28,29 @@ angular.module('myApp.showSchools', ['myApp.schoolServices'])
     .then(function(response) {
         $scope.areas = response.data;
     })
+
     dataFactory.schools($scope.selected.city, $scope.selected.name, 
       $scope.selected.area, $scope.selected.level, $scope.selected.type)
     .then(function(response) {
         $scope.schools = response.data;
         $scope.numPages = Math.floor($scope.schools.length/$scope.pageSize) + 1;
+
         for(var i =0; i < $scope.schools.length; i++)
         {
-            $scope.schools[i].score = commonFactory.getScore($scope.schools[i].review);
-            $scope.schools[i].logo = commonFactory.getLogo($scope.schools[i].logo);
+            $scope.schools[i].logo = generalService.getLogo($scope.schools[i].logo);
             $scope.schools[i].id = $scope.schools[i]._id;
         }
     });
+
     $scope.getReviewsCount = function(reviews){
-      if(reviews)
-      {
-        return reviews.length;
-      }
-      return 0;
+      return reviews != null ? reviews.length : 0; 
     }
 
 })
-.filter('startFrom', function() {
+.filter('indexFrom', function() {
+
     return function(input, start) {
-        start = +start; 
-        if(input != null && input!=undefined){
-        	return input.slice(start);
-        }
-        else{
-        	return input;
-        }
-        
+      return input != null ? input.slice(start) : [];   
     }
+
 });
